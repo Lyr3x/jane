@@ -23,8 +23,8 @@ coming soon!
 ##Software installation
 ###LIRC
 - ```$ sudo apt-get install lirc```
-- **Enter the following lines**
-- ```/etc/modules``` 
+- **Enter the following lines:**
+- ```sudo vim /etc/modules``` 
 - ```lircv_dev```
 - ```lirc_rpi gpio_in_pin=17 gpio_out_pin=18```
 
