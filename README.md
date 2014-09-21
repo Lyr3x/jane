@@ -41,3 +41,7 @@ Enter/comment the following line:
 - ```MODULES="lirc_rpi"```
 Save and quit the file and execute the following
 - ```sudo /etc/init.d/lirc restart```
+
+##Read key codes
+
+coming soon!
