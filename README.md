@@ -25,7 +25,7 @@ coming soon!
 **Enter the following commands:**
 - ```$ sudo apt-get install lirc```
 - ```$ sudo vim /etc/modules```
-- **Add the following lines:**
+**Add the following lines:**
 - ```lircv_dev```
 - ```lirc_rpi gpio_in_pin=17 gpio_out_pin=18```
 
