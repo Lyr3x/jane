@@ -22,7 +22,7 @@ coming soon!
 
 ##Software installation
 ###LIRC
-```$ sudo apt-get install lirc```
+- ```$ sudo apt-get install lirc```
 edit the following file:
 - ```/etc/modules``` and enter the following lines
 - ```lircv_dev```
