@@ -48,4 +48,4 @@ Save and quit the file and execute the following
 coming soon!
 
 ## License
-see [LICENSE](https://github.com/Lyr3x/Jarvis/blob/master/LICENSE.md) files
+see [LICENSE](https://github.com/Lyr3x/Jarvis/blob/master/LICENSE) files
