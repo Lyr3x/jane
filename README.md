@@ -22,15 +22,16 @@ coming soon!
 
 ##Software installation
 ###LIRC
+**Enter the following commands:**
 - ```$ sudo apt-get install lirc```
-- **Enter the following lines:**
-- ```sudo vim /etc/modules``` 
+- ```$ sudo vim /etc/modules```
+- **Add the following lines:**
 - ```lircv_dev```
 - ```lirc_rpi gpio_in_pin=17 gpio_out_pin=18```
 
 ###LIRC configuration
-- ```cd /etc/lirc/```
-- ```sudo vim hardware.conf```
+- ```$ cd /etc/lirc/```
+- ```$ sudo vim hardware.conf```
 Enter/comment the following line: 
 - ```LIRCD_ARGS="-listen"``` TCP Listener at Port 8765
 - ```#START_LIRCMD=false```
