@@ -15,6 +15,7 @@ Jarvis (not the final name) is a very early project.
 - 1x 1.5 Ohm Resistor 
 - 1x 200 Ohm Resistor
 - 1x bipolar Transistor NPN - BC547C
+- WiFi-stick recommended for more flexibility
 
 ##Circuit plan
 
