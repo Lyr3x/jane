@@ -21,7 +21,7 @@ Jarvis (not the final name) is a very early project.
 coming soon!
 
 ##Software installation
-LIRC
+###LIRC
 ```$ sudo apt-get install lirc```
 edit the following file:
 -```/etc/modules``` and enter the following lines
