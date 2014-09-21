@@ -24,20 +24,20 @@ coming soon!
 ###LIRC
 ```$ sudo apt-get install lirc```
 edit the following file:
--```/etc/modules``` and enter the following lines
--```lircv_dev```
--```lirc_rpi gpio_in_pin=17 gpio_out_pin=18```
+- ```/etc/modules``` and enter the following lines
+- ```lircv_dev```
+- ```lirc_rpi gpio_in_pin=17 gpio_out_pin=18```
 
 ###LIRC configuration
--```cd /etc/lirc/```
--```sudo vim hardware.conf```
+- ```cd /etc/lirc/```
+- ```sudo vim hardware.conf```
 Enter/comment the following line: 
--```LIRCD_ARGS="-listen"``` TCP Listener at Port 8765
--```#START_LIRCMD=false```
--```#START_IREXEC=false```
--```LOAD_MODULES=true```
--```DRIVER="default```
--```DEVICE="/dev/lirc0```
--```MODULES="lirc_rpi"```
+- ```LIRCD_ARGS="-listen"``` TCP Listener at Port 8765
+- ```#START_LIRCMD=false```
+- ```#START_IREXEC=false```
+- ```LOAD_MODULES=true```
+- ```DRIVER="default```
+- ```DEVICE="/dev/lirc0```
+- ```MODULES="lirc_rpi"```
 Save and quit the file and execute the following
--```sudo /etc/init.d/lirc restart```
+- ```sudo /etc/init.d/lirc restart```
