@@ -4,8 +4,8 @@ Jarvis
 Jarvis (not the final name) is a very early project.
 
 ##What is Jarvis?
-- A system to control home devices e.g.: AVR, TV or other IR devices via infrarot
-- Jarvis use Tasker with AutoVoice to control the system with your voice
+- A system to control home devices e.g.: AVR, TV or other IR devices
+- Jarvis uses Tasker with AutoVoice to control the system with your voice
 
 ##Requirements
 - Raspberry PI + raspbian
