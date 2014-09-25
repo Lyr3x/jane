@@ -1,7 +1,7 @@
 Jarvis
 ======
 
-Jarvis (not the final name) is a very early project.
+Jarvis (not the final name) is in a early development state.
 
 ##What is Jarvis?
 - A system to control home devices e.g.: AVR, TV or other IR devices
