@@ -19,7 +19,7 @@ Jarvis (not the final name) is a very early project.
 
 ##Circuit plan
 
-coming soon!
+![Alt text](https://github.com/Lyr3x/Jarvis/blob/master/circuit/Circuit-plan_Steckplatine.png "Circuit Plan")
 
 ##Software installation
 ###LIRC
