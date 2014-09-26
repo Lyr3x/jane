@@ -53,9 +53,8 @@ Save and quit the file and execute the following
 - Notice the keys you need
 - To test the receiver execute: ```$ sudo irrecord -d /dev/lirc0 ~/led.conf```
 - All commands are stored in ~/led.conf now. Copy the whole content in ```/etc/lirc/lircd.conf```
-
 - For each control you have to repeat this procedure
-- 
+
 ### Send commands
 
 - First restart the lirc daemon ```sudo /etc/init.d/lirc restart```
