@@ -42,11 +42,25 @@ Enter/comment the following line:
 - ```DEVICE="/dev/lirc0```
 - ```MODULES="lirc_rpi"```
 Save and quit the file and execute the following
-- ```sudo /etc/init.d/lirc restart```
+- ```$ sudo /etc/init.d/lirc restart```
 
 ##Read key codes
 
-coming soon!
+- The standard configuration file is located in ```/etc/lirc/lircd.conf```
+- For the first tests, create the file ```~/led.conf```
+- LIRC have a lot options for key bindings, to see the options execute:
+- ```$ irrecord -list namespace```
+- Notice the keys you need
+- To test the receiver execute: ```$ sudo irrecord -d /dev/lirc0 ~/led.con```
+- All commands are stored in ~/led.conf now. Copy the whole content in ```/etc/lirc/lircd.conf```
+
+- For each control you have to repeat this procedure
+- 
+### Send commands
+
+- First restart the lirc daemon ```sudo /etc/init.d/lirc restart```
+- To send a command execute: ```$ irsend SEND_ONCE "name of the control" "key"```
+- example: ```$ irsend SEND_ONCE TV KEY_POWER```
 
 ## License
 see [LICENSE](https://github.com/Lyr3x/Jarvis/blob/master/LICENSE) files
