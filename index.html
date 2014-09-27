@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/pygment_trac.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <title>Jarvis by Lyr3x</title>
+  </head>
+
+  <body>
+    <header>
+      <div class="inner">
+        <h1>Jarvis</h1>
+        <h2>IR transmitting by Tasker</h2>
+        <a href="https://github.com/Lyr3x/Jarvis" class="button"><small>View project on</small> GitHub</a>
+      </div>
+    </header>
+
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h1>
+<a name="jarvis" class="anchor" href="#jarvis"><span class="octicon octicon-link"></span></a>Jarvis</h1>
+
+<p>Jarvis (not the final name) is in a early development state.</p>
+
+<h2>
+<a name="what-is-jarvis" class="anchor" href="#what-is-jarvis"><span class="octicon octicon-link"></span></a>What is Jarvis?</h2>
+
+<ul>
+<li>A system to control home devices e.g.: AVR, TV or other IR devices</li>
+<li>Jarvis uses Tasker with AutoVoice to control the system with your voice</li>
+</ul><h2>
+<a name="requirements" class="anchor" href="#requirements"><span class="octicon octicon-link"></span></a>Requirements</h2>
+
+<ul>
+<li>Raspberry PI + raspbian</li>
+<li>eurocard or plugboard</li>
+<li>1x IR-Emitter - TSAL 6200</li>
+<li>1x IR-Receiver - TSOP4838</li>
+<li>1x 1.5 Ohm Resistor </li>
+<li>1x 200 Ohm Resistor</li>
+<li>1x bipolar Transistor NPN - BC547C</li>
+<li>WiFi-stick recommended for more flexibility</li>
+</ul><h2>
+<a name="circuit-plan" class="anchor" href="#circuit-plan"><span class="octicon octicon-link"></span></a>Circuit plan</h2>
+
+<p><img src="https://github.com/Lyr3x/Jarvis/blob/master/circuit/Circuit-plan_Steckplatine.png" alt="Alt text" title="Circuit Plan"></p>
+
+<h2>
+<a name="software-installation" class="anchor" href="#software-installation"><span class="octicon octicon-link"></span></a>Software installation</h2>
+
+<h3>
+<a name="lirc" class="anchor" href="#lirc"><span class="octicon octicon-link"></span></a>LIRC</h3>
+
+<p><strong>Enter the following commands:</strong></p>
+
+<ul>
+<li><code>$ sudo apt-get install lirc</code></li>
+<li><code>$ sudo vim /etc/modules</code></li>
+<li><strong>Add the following lines:</strong></li>
+<li><code>lircv_dev</code></li>
+<li><code>lirc_rpi gpio_in_pin=17 gpio_out_pin=18</code></li>
+</ul><h3>
+<a name="lirc-configuration" class="anchor" href="#lirc-configuration"><span class="octicon octicon-link"></span></a>LIRC configuration</h3>
+
+<ul>
+<li><code>$ cd /etc/lirc/</code></li>
+<li>
+<code>$ sudo vim hardware.conf</code>
+Enter/comment the following line: </li>
+<li>
+<code>LIRCD_ARGS="-listen"</code> TCP Listener at Port 8765</li>
+<li><code>#START_LIRCMD=false</code></li>
+<li><code>#START_IREXEC=false</code></li>
+<li><code>LOAD_MODULES=true</code></li>
+<li><code>DRIVER="default</code></li>
+<li><code>DEVICE="/dev/lirc0</code></li>
+<li>
+<code>MODULES="lirc_rpi"</code>
+Save and quit the file and execute the following</li>
+<li><code>$ sudo /etc/init.d/lirc restart</code></li>
+</ul><h2>
+<a name="read-key-codes" class="anchor" href="#read-key-codes"><span class="octicon octicon-link"></span></a>Read key codes</h2>
+
+<ul>
+<li>The standard configuration file is located in <code>/etc/lirc/lircd.conf</code>
+</li>
+<li>For the first tests, create the file <code>~/led.conf</code>
+</li>
+<li>LIRC have a lot options for key bindings, to see the options execute:</li>
+<li><code>$ irrecord -list namespace</code></li>
+<li>Notice the keys you need</li>
+<li>To test the receiver execute: <code>$ sudo irrecord -d /dev/lirc0 ~/led.conf</code>
+</li>
+<li>All commands are stored in ~/led.conf now. Copy the whole content in <code>/etc/lirc/lircd.conf</code>
+</li>
+<li>For each control you have to repeat this procedure</li>
+</ul><h3>
+<a name="send-commands" class="anchor" href="#send-commands"><span class="octicon octicon-link"></span></a>Send commands</h3>
+
+<ul>
+<li>First restart the lirc daemon <code>sudo /etc/init.d/lirc restart</code>
+</li>
+<li>To send a command execute: <code>$ irsend SEND_ONCE "name of the control" "key"</code>
+</li>
+<li>example: <code>$ irsend SEND_ONCE TV KEY_POWER</code>
+</li>
+</ul><h2>
+<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
+
+<p>see <a href="https://github.com/Lyr3x/Jarvis/blob/master/LICENSE">LICENSE</a> files</p>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/Lyr3x/Jarvis/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/Lyr3x/Jarvis/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/Lyr3x/Jarvis"></a> is maintained by <a href="https://github.com/Lyr3x">Lyr3x</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
+    </div>
+
+  
+  </body>
+</html>
