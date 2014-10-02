@@ -12,8 +12,8 @@ Jarvis (not the final name) is in a early development state.
 - eurocard or plugboard
 - 1x IR-Emitter - TSAL 6200
 - 1x IR-Receiver - TSOP4838
-- 1x 1.5 Ohm Resistor 
-- 1x 200 Ohm Resistor
+- 1x 1 kOhm Resistor 
+- 1x 100 Ohm Resistor
 - 1x bipolar Transistor NPN - BC547C
 - WiFi-stick recommended for more flexibility
 
