@@ -28,7 +28,7 @@ Jarvis (not the final name) is in a early development state.
 - ```$ sudo vim /etc/modules```
 - **Add the following lines:**
 - ```lircv_dev```
-- ```lirc_rpi gpio_in_pin=17 gpio_out_pin=18```
+- ```lirc_rpi gpio_in_pin=22 gpio_out_pin=23```
 
 ###LIRC configuration
 - ```$ cd /etc/lirc/```
