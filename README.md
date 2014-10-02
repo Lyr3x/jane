@@ -61,5 +61,9 @@ Save and quit the file and execute the following
 - To send a command execute: ```$ irsend SEND_ONCE "name of the control" "key"```
 - example: ```$ irsend SEND_ONCE TV KEY_POWER```
 
+### Coming Features
+- Webinterface
+- Android app
+
 ## License
 see [LICENSE](https://github.com/Lyr3x/Jarvis/blob/master/LICENSE) files
