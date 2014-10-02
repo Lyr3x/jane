@@ -7,6 +7,11 @@ Jarvis (not the final name) is in a early development state.
 - A system to control home devices e.g.: AVR, TV or other IR devices
 - Jarvis uses Tasker with AutoVoice to control the system with your voice
 
+##What is working?
+- Infrared control code receiving
+- Sending single infrared codes via Tasker using AutoVoice
+- Sinatra Webserver
+
 ##Requirements
 - Raspberry PI + raspbian
 - eurocard or plugboard
