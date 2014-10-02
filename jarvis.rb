@@ -11,7 +11,7 @@ end
 #Power commands
 #power on/off all devices
 get '/power' do
-	`ruby /Users/nesurion/Programming/JarvisServer/rightarm.rb`
+	`touch power`
 	'created test file'
 end
 
