@@ -54,8 +54,8 @@
 <li>eurocard or plugboard</li>
 <li>1x IR-Emitter - TSAL 6200</li>
 <li>1x IR-Receiver - TSOP4838</li>
-<li>1x 1.5 Ohm Resistor </li>
-<li>1x 200 Ohm Resistor</li>
+<li>1x 1 kOhm Resistor </li>
+<li>1x 100 Ohm Resistor</li>
 <li>1x bipolar Transistor NPN - BC547C</li>
 <li>WiFi-stick recommended for more flexibility</li>
 </ul><h2>
@@ -76,7 +76,7 @@
 <li><code>$ sudo vim /etc/modules</code></li>
 <li><strong>Add the following lines:</strong></li>
 <li><code>lircv_dev</code></li>
-<li><code>lirc_rpi gpio_in_pin=17 gpio_out_pin=18</code></li>
+<li><code>lirc_rpi gpio_in_pin=22 gpio_out_pin=23</code></li>
 </ul><h3>
 <a name="lirc-configuration" class="anchor" href="#lirc-configuration"><span class="octicon octicon-link"></span></a>LIRC configuration</h3>
 
@@ -122,6 +122,12 @@ Save and quit the file and execute the following</li>
 </li>
 <li>example: <code>$ irsend SEND_ONCE TV KEY_POWER</code>
 </li>
+</ul><h3>
+<a name="coming-features" class="anchor" href="#coming-features"><span class="octicon octicon-link"></span></a>Coming Features</h3>
+
+<ul>
+<li>Webinterface</li>
+<li>Android app</li>
 </ul><h2>
 <a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
 
