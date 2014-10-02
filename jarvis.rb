@@ -22,7 +22,7 @@ end
 
 #power on avr
 get '/avr_power' do
-
+	`irsend SEND_ONCE avr KEY_POWER`
 end
 
 #power on htpc
