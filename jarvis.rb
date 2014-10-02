@@ -27,6 +27,8 @@ end
 
 #power on htpc
 get '/htpc_power' do
-
+	`irsend SEND_ONCE avr KEY_POWER`
+		sleep(2)
+	`irsend SEND_ONCE tv KEY_POWER`
 end
 
