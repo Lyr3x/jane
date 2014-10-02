@@ -17,7 +17,7 @@ end
 
 #power on tv
 get '/tv_power' do
-	'irsend SEND_ONCE tv KEY_POWER'
+	`irsend SEND_ONCE tv KEY_POWER`
 end
 
 #power on avr
