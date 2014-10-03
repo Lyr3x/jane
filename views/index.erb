@@ -1,5 +1,6 @@
 <head>
 	  <link rel="stylesheet" href="css/foundation.css">
+	  <script src="/js/vendor/modernizr.js"></script>
 </head>
 
 <body>
@@ -12,12 +13,30 @@
 
 <div class="small-10 large-8 columns">
 	<h1>This is Jarvis</h1>
-	<a href="#" class="button expand">Power All</a>
+	<button class="button expand" onclick="power()">Power</button>
+	<button class="button expand" onclick="tv_power()">TV Power</button>
 </div>
 
 <div class="small-1 large-2 columns">
 </div>
 
 </div>
+
+<script>
+function power(){
+	$.get("power");
+}
+
+function tv_power(){
+	$.get("tv_power");
+}
+</script>
+
+<script src="/js/vendor/jquery.js"></script>
+<script src="/js/vendor/fastclick.js"></script>
+<script src="/js/foundation.min.js"></script>
+<script>
+  $(document).foundation();
+</script>
 
 </body>
