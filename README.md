@@ -1,11 +1,11 @@
-Jarvis
+Jane
 ======
 
-Jarvis (not the final name) is in a early development state.
+Jane is in a early development state.
 
-##What is Jarvis?
+##What is Jane?
 - A system to control home devices e.g.: AVR, TV or other IR devices
-- Jarvis uses Tasker with AutoVoice to control the system with your voice
+- Jane uses Tasker with AutoVoice to control the system with your voice
 
 ##What is working?
 - Infrared control code receiving
@@ -68,7 +68,7 @@ Save and quit the file and execute the following
 
 ### Android App
 The Android app is located in a seperate repostiroy:
-- [Jarvis-app](https://github.com/Lyr3x/Jarvis-app)
+- [Jane-app](https://github.com/Lyr3x/Jarvis-app)
 - 
 ### Coming Features
 - Webinterface
