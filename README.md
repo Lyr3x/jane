@@ -68,7 +68,7 @@ Save and quit the file and execute the following
 
 ### Android App
 The Android app is located in a seperate repostiroy:
-- ![Alt text](https://github.com/Lyr3x/Jarvis-app "Jarvis-app")
+- [Jarvis-app](https://github.com/Lyr3x/Jarvis-app)
 - 
 ### Coming Features
 - Webinterface
