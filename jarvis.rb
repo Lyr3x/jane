@@ -11,7 +11,6 @@ end
 #Power commands
 #power on/off all devices
 get '/power' do
-<<<<<<< HEAD
   	`irsend SEND_ONCE avr KEY_POWER`
                 sleep(2)
    	`irsend SEND_ONCE tv KEY_POWER`
