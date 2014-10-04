@@ -11,8 +11,9 @@ end
 #Power commands
 #power on/off all devices
 get '/power' do
-	`touch power`
-	'created test file'
+	`irsend SEND_ONCE avr KEY_POWER`
+		sleep(2)
+	`irsend SEND_ONCE tv KEY_POWER`
 end
 
 #power on tv
@@ -27,8 +28,6 @@ end
 
 #power on htpc
 get '/htpc_power' do
-	`irsend SEND_ONCE avr KEY_POWER`
-		sleep(2)
-	`irsend SEND_ONCE tv KEY_POWER`
+	
 end
 

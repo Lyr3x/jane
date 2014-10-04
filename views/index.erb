@@ -1,5 +1,6 @@
 <head>
 	  <link rel="stylesheet" href="css/foundation.css">
+	  <link rel="stylesheet" href="css/foundation-icons.css">
 	  <script src="/js/vendor/modernizr.js"></script>
 </head>
 
@@ -8,27 +9,32 @@
 
 <div class="row">
 
-<div class="small-1 large-2 columns">
-</div>
-
-<div class="small-10 large-8 columns">
-	<h1>This is Jarvis</h1>
-	<button class="button expand" onclick="power()">Power</button>
-	<button class="button expand" onclick="tv_power()">TV Power</button>
-</div>
-
-<div class="small-1 large-2 columns">
-</div>
+	<div class="small-8 small-offset-2 columns">
+		<h1>This is Jarvis</h1>
+		<h2><i class="fi-power"></i>  power</h2>
+		<ul class="button-group">
+			<li><button class="button large" onclick="power()">All</button></li>
+			<li><button class="button large" onclick="power('tv')">TV</button></li>
+			<li><button class="button large" onclick="power('avr')">AVR</button></li>
+			<li><button class="button large" onclick="power('htpc')">HTPC</button></li>
+		</ul>
+		
+		<!-- <button class="button expand" onclick="power('tv')">TV Power</button>
+		<button class="button expand" onclick="power('avr')">AVR Power</button>
+		<button class="button expand" onclick="power('htpc')">HTPC Power</button> -->
+	</div>
 
 </div>
 
 <script>
-function power(){
-	$.get("power");
-}
-
-function tv_power(){
-	$.get("tv_power");
+function power(device){
+	if ('undefined' === typeof device) {
+		$.get("power");
+	}else{
+		var device = device.concat("_power");
+		$.get(device);
+	}
+	
 }
 </script>
 
