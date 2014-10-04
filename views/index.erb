@@ -12,13 +12,14 @@
 	<div class="small-8 small-offset-2 columns">
 		<h1>This is Jarvis</h1>
 		<h2><i class="fi-power"></i>  power</h2>
-		<ul class="button-group show-for-large-up">
-			<li><button class="button large" onclick="power()">All</button></li>
-			<li><button class="button large" onclick="power('tv')">TV</button></li>
-			<li><button class="button large" onclick="power('avr')">AVR</button></li>
-			<li><button class="button large" onclick="power('htpc')">HTPC</button></li>
-		</ul>
-		
+		<div class="small-8">
+			<ul class="button-group stack">
+				<li><button class="button expand" onclick="power()">All</button></li>
+				<li><button class="button expand" onclick="power('tv')">TV</button></li>
+				<li><button class="button expand" onclick="power('avr')">AVR</button></li>
+				<li><button class="button expand" onclick="power('htpc')">HTPC</button></li>
+			</ul>
+		</div>
 		<!-- <button class="button expand" onclick="power('tv')">TV Power</button>
 		<button class="button expand" onclick="power('avr')">AVR Power</button>
 		<button class="button expand" onclick="power('htpc')">HTPC Power</button> -->
