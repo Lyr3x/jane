@@ -45,9 +45,13 @@
             $.get(call);
         }
         
-        function action(name){
-            var name = "action_" + name;
-            $.get(name);
+        function action(func, para){
+            if('undefined' === typeof para){
+                var call = "action_" + func;
+            }else{
+                var call = "action_" + func + "_" + para;
+            }
+            $.get(call);
         }
     }
     </script>
