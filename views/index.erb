@@ -25,8 +25,8 @@
                 <!-- actions -->
                 <h3><span class="glyphicon glyphicon-star"></span>  actions</h3>
                 <div class="well">
-                    <button type="button" class="btn btn-info btn-lg btn-block" onclick="action(power_all)">power all</button>
-                    <!-- <button type="button" class="btn btn-info btn-lg btn-block" onclick="power('tv')">power tv</button> -->
+                    <button type="button" class="btn btn-info btn-lg btn-block" onclick="action('power_all')">power all</button>
+                    <!-- <button type="button" class="btn btn-info btn-lg btn-block" onclick="tv('channel', 'hdmi1')">power tv</button> -->
                 </div>
 
             </div>
@@ -36,9 +36,13 @@
 
     <!-- call jane functions in background on button click -->
     <script>
-        function power(device){
-            var device = device.concat("_power");
-            $.get(device);
+        function tv(func, para){
+            if('undefined' === typeof para){
+                var call = "tv_" + func;
+            }else{
+                var call = "tv_" + func + "_" + para;
+            }
+            $.get(call);
         }
         
         function action(name){
