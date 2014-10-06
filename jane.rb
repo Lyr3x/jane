@@ -31,3 +31,7 @@ get '/htpc_power' do
 
 end
 
+#reboot via ssh
+get '/htpc_reboot' do
+	`ruby reboot.rb`
+end
