@@ -1,4 +1,4 @@
-#Jarvis Brain
+#Jane Brain
 require 'sinatra'
 
 #listen to 0.0.0.0 instead of localhost
