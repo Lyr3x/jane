@@ -36,23 +36,16 @@
 
     <!-- call jane functions in background on button click -->
     <script>
-        function tv(func, para){
+        
+        function jane(device, func, para){
             if('undefined' === typeof para){
-                var call = "tv_" + func;
+                var call = device + "_" + func;
             }else{
-                var call = "tv_" + func + "_" + para;
+                var call = device + "_" + func + "_" + para;
             }
             $.get(call);
         }
         
-        function action(func, para){
-            if('undefined' === typeof para){
-                var call = "action_" + func;
-            }else{
-                var call = "action_" + func + "_" + para;
-            }
-            $.get(call);
-        }
     }
     </script>
 
