@@ -6202,6 +6202,12 @@ button.close {
 }
 /*# sourceMappingURL=bootstrap.css.map */
 
-/*body { padding-top: 70px; }*/
+.logo {
+  font-family: 'Lobster', cursive;
+  font-size: 128px;
+  text-align: center;
+  color: #b7293a;
+  text-shadow: 4px 4px 0 #513a33;
+}
 
 
