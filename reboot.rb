@@ -2,7 +2,7 @@ require 'rubygems'
 require 'net/ssh'
 
 # INITIALIZE CONSTANTS HERE
-HOST = '192.168.2.85'
+HOST = 'ip'
 USER = 'username'
 PASSWORD = 'password'
 
