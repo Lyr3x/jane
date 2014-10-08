@@ -39,12 +39,12 @@ Jane is in a early development state.
 - ```$ cd /etc/lirc/```
 - ```$ sudo vim hardware.conf```
 Enter/comment the following line: 
-- ```LIRCD_ARGS="-listen"``` TCP Listener at Port 8765
+- ```LIRCD_ARGS="--listen"``` TCP Listener at Port 8765
 - ```#START_LIRCMD=false```
 - ```#START_IREXEC=false```
 - ```LOAD_MODULES=true```
-- ```DRIVER="default```
-- ```DEVICE="/dev/lirc0```
+- ```DRIVER="default"```
+- ```DEVICE="/dev/lirc0"```
 - ```MODULES="lirc_rpi"```
 Save and quit the file and execute the following
 - ```$ sudo /etc/init.d/lirc restart```
