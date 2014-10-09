@@ -70,7 +70,7 @@ The Android app is located in a seperate repostiroy:
 - [Jane-app](https://github.com/Lyr3x/Jarvis-app)
 - 
 ### Coming Features
-- Webinterface
+- Remote control outlet integration
 
 
 ## License
