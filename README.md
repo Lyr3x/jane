@@ -1,6 +1,6 @@
 #Jane
 
-Jane is in a early development state.
+Jane is released in Version 1.0
 
 ##What is Jane?
 - A system to control home devices e.g.: AVR, TV or other IR devices
