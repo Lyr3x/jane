@@ -23,7 +23,7 @@ Jane is released in Version 1.0
 
 ##Circuit plan
 
-![Alt text](https://raw.githubusercontent.com/Lyr3x/Jarvis/master/circuit/Circuit-plan_Steckplatine.png "Circuit Plan")
+![Alt text](https://github.com/Lyr3x/Jane/blob/master/circuit/Circuit-plan_Steckplatine.png "Circuit Plan")
 
 ##Software installation
 ###LIRC
