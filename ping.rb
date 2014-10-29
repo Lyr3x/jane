@@ -5,14 +5,21 @@ include Net
 
 Ping::TCP.service_check = true
 
-kai = Net::Ping::TCP.new('192.168.2.109')
-repeat = 5
+hosts = ['192.168.2.109', '192.168.1.999']
+threads = []
+ping_objects = []
 
-(1..repeat).each do
-
-	if kai.ping?
-	  puts "TCP ping successful"
-	else
-	  puts "TCP ping unsuccessful: " + kai.exception
-	end
+hosts.each do |ip|
+   ping_objects << Net::Ping::TCP.new(ip)
+   threads << Thread.new(ip, ping_objects.last) do |ip, p|
+     loop do
+     	if hosts[0] || hosts [1]
+     		puts 'execute command'
+     	end
+       sleep 2
+     end
+   end
 end
+threads.each { |th| th.join }
+
+
