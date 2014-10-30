@@ -5,6 +5,7 @@ include Net
 
 Ping::TCP.service_check = true
 
+#add several hosts you want to ping
 hosts = ['192.168.2.109', '192.168.2.5']
 threads = []
 ping_objects = []
@@ -17,6 +18,7 @@ hosts.each do |ip|
         puts "#{ip}"
         # execute commands
         else
+        # sleeptime if no host is available
         sleep 240
       end
 
