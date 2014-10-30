@@ -1,7 +1,7 @@
 #Jane
 require 'sinatra'
 require 'rufus-scheduler'
-require 'addons/sunset'
+require './addons/sunset'
 
 #listen to 0.0.0.0 instead of localhost
 set :bind, '0.0.0.0'
