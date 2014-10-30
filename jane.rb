@@ -17,6 +17,7 @@ useSunsetFunction = true
 #Sunset light
 if useSunsetFunction 
 	scheduler = Rufus::Scheduler.new
+	sunsettime = Sunset.new("Bonn")
 
 	scheduler.cron '0 1 * * *' do
 		#every day at 1 am
