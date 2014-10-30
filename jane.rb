@@ -1,5 +1,7 @@
 #Jane
 require 'sinatra'
+require 'rufus-scheduler'
+require 'addons/sunset'
 
 #listen to 0.0.0.0 instead of localhost
 set :bind, '0.0.0.0'
@@ -7,6 +9,24 @@ set :bind, '0.0.0.0'
 #render index.erb
 get '/' do
 	erb :index
+end
+
+#decide if you want to use the sunset function
+useSunsetFunction = true
+
+#Sunset light
+if useSunsetFunction 
+	scheduler = Rufus::Scheduler.new
+
+	scheduler.cron '0 1 * * *' do
+		#every day at 1 am
+		sunsettime = Sunset.new("Bonn")
+	end
+
+	scheduler.at sunsettime.sunset do
+		#check if you are home (ping your smartphone)
+		#command to turn lights on here
+	end
 end
 
 #Time for your code!
