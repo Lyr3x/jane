@@ -34,14 +34,6 @@
                 <% categories.each do |category, category_parts| %>
                     <%= render_category(category)%>
                 <%end%>
-                
-
-                <!-- actions -->
-                <h3><span class="glyphicon glyphicon-star"></span>  actions</h3>
-                <div class="well">
-                    <button type="button" class="btn btn-info btn-lg btn-block" onclick="jane('action','power','all')">power all</button>
-                    <!-- <button type="button" class="btn btn-info btn-lg btn-block" onclick="tv('channel', 'hdmi1')">power tv</button> -->
-                </div>
 
             </div>
         </div>
@@ -53,9 +45,9 @@
         
         function jane(device, func, para){
             if('undefined' === typeof para){
-                var call = device + "_" + func;
+                var call = device + "/" + func;
             }else{
-                var call = device + "_" + func + "_" + para;
+                var call = device + "/" + func + "/" + para;
             }
             $.get(call);
         }
