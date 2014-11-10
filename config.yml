@@ -1,0 +1,37 @@
+- :title: actions
+  :icon: star
+  :buttons:
+  - :name: boot
+    :icon: 'off'
+    :btn_class: btn-info
+    :fn_args:
+    - action
+    - power
+    - all
+    :command: puts 'boot'
+  - :name: button2
+    :icon: 'off'
+    :btn_class: btn-info
+    :fn_args:
+    - channel
+    - tv
+    :command: puts 'button2'
+
+- :title: TV
+  :icon: star
+  :buttons:
+  - :name: button1
+    :icon: 'off'
+    :btn_class: btn-default
+    :fn_args:
+    - action
+    - power
+    - all
+    :command: puts 'button1'
+  - :name: button2
+    :icon: 'off'
+    :btn_class: btn-info
+    :fn_args:
+    - channel
+    - tv
+    :command: puts 'button2'
