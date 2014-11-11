@@ -1,7 +1,7 @@
 #Jane
 require 'sinatra'
 require 'rufus-scheduler'
-require File.join(__dir__, "addons", "sunset.rb")
+require File.join(File.dirname(__FILE__), "addons", "sunset.rb")
 require 'yaml'
 require "net/http"
 
@@ -41,7 +41,7 @@ get '/' do
 	erb :index
 end
 
-config = YAML.load_file(File.join(__dir__, 'config.yml'))
+config = YAML.load_file(File.join(File.dirname(__FILE__), 'config.yml'))
 
 config.each do |category|
 	category[:buttons].each do |button|
