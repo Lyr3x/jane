@@ -1,6 +1,6 @@
 #Jane
 
-Jane is released in Version 1.0
+Jane is released in Version 1.1 - Black Widow
 
 ##What is Jane?
 - A system to control home devices e.g.: AVR, TV or other IR devices
