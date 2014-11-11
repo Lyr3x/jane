@@ -1,0 +1,30 @@
+# This is an example category with 2 buttons
+# if you want to add a category just copy paste the example code and change
+# the values to your need
+- :title: 'actions'
+  :icon: 'star'
+  :buttons:
+  #first button
+  - :name: 'boot'
+    #icon codes: http://getbootstrap.com/components/
+    #just use the last word ex: glyphicon-ok -> ok
+    :icon: 'off'
+    #button classes: http://getbootstrap.com/css/#buttons
+    :btn_class: 'btn-info'
+    #buttons parameter, generates your route
+    #ex: action, power, all -> http://0.0.0.0/action/power/all
+    :fn_args:
+    - 'action'
+    - 'power'
+    - 'all'
+    #this command is run on an http get at the fn_args generated url
+    #the command will be converted to ruby by eval(), so just use ruby code
+    :command: ""
+  #secound button
+  - :name: 'button2'
+    :icon: 'off'
+    :btn_class: 'btn-info'
+    :fn_args:
+    - 'channel'
+    - 'tv'
+    :command: "puts 'button2'"
