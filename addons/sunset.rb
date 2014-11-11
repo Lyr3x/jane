@@ -6,13 +6,13 @@ require 'sun-times'
 class Sunset
 	def initialize(city)
 		@city = city
-		@sunset = sunsetcalc(city)
+		@time = sunsetcalc(city)
 	end
-	attr_reader :sunset
+	attr_reader :time
 	attr_reader :city
 
 	def sunsetcalc(city)
-		uri = URI('http://maps.googleapis.com/maps/api/geocode/json?address=' + city)
+		uri = URI('https://maps.googleapis.com/maps/api/geocode/json?address=' + city)
 		geodata = JSON.parse(Net::HTTP.get(uri))
 		geodata = geodata["results"][0]["geometry"]["location"]
 
