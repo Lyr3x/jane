@@ -1,6 +1,6 @@
 #Jane
 
-Jane is in a early development state.
+Jane is released in Version 1.1 - Black Widow
 
 ##What is Jane?
 - A system to control home devices e.g.: AVR, TV or other IR devices
@@ -23,7 +23,7 @@ Jane is in a early development state.
 
 ##Circuit plan
 
-![Alt text](https://raw.githubusercontent.com/Lyr3x/Jarvis/master/circuit/Circuit-plan_Steckplatine.png "Circuit Plan")
+![Alt text](https://github.com/Lyr3x/Jane/blob/master/circuit/Circuit-plan_Steckplatine.png "Circuit Plan")
 
 ##Software installation
 ###LIRC
@@ -38,12 +38,12 @@ Jane is in a early development state.
 - ```$ cd /etc/lirc/```
 - ```$ sudo vim hardware.conf```
 Enter/comment the following line: 
-- ```LIRCD_ARGS="-listen"``` TCP Listener at Port 8765
+- ```LIRCD_ARGS="--listen"``` TCP Listener at Port 8765
 - ```#START_LIRCMD=false```
 - ```#START_IREXEC=false```
 - ```LOAD_MODULES=true```
-- ```DRIVER="default```
-- ```DEVICE="/dev/lirc0```
+- ```DRIVER="default"```
+- ```DEVICE="/dev/lirc0"```
 - ```MODULES="lirc_rpi"```
 Save and quit the file and execute the following
 - ```$ sudo /etc/init.d/lirc restart```
@@ -70,7 +70,7 @@ The Android app is located in a seperate repostiroy:
 - [Jane-app](https://github.com/Lyr3x/Jarvis-app)
 - 
 ### Coming Features
-- Webinterface
+- Remote control outlet integration
 
 
 ## License
