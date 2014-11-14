@@ -3,3 +3,4 @@ nohup.out
 .DS_Store
 config.yml
 testing.rb
+config_sunset.yml
