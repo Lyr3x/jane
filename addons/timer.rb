@@ -1,6 +1,6 @@
 require 'rufus-scheduler'
 
-def timer(time, button)
+def timer(time, button_name)
 	if time.is_a?(Time)
 		job = Rufus::Scheduler.new
 		config = YAML.load_file(File.join(File.expand_path(File.dirname(__FILE__)), 'config' ,'config.yml'))
@@ -8,7 +8,7 @@ def timer(time, button)
 		
 		config.each do |category|
 			category[:buttons].each do |button|
-				if button[:name] == button
+				if button[:name] == button_name
 					command = button[:command]
 				end
 			end
