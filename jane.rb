@@ -2,6 +2,7 @@
 require 'sinatra'
 require 'rufus-scheduler'
 require File.join(File.expand_path(File.dirname(__FILE__)), "addons", "sunset.rb")
+#require File.join(File.expand_path(File.dirname(__FILE__)), "addons", "timer.rb")
 require 'yaml'
 require "net/http"
 
@@ -80,5 +81,8 @@ if sunset_config[:useSunset]
       end
     end
 	end
-  
+
+#Timer
+#timer(Time.now + 1 * 60, "Lampe aus")
+
 end
