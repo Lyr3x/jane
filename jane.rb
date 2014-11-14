@@ -41,7 +41,7 @@ get '/' do
 	erb :index
 end
 
-config = YAML.load_file(File.join(File.expand_path(File.dirname(__FILE__)), 'config.yml'))
+config = YAML.load_file(File.join(File.expand_path(File.dirname(__FILE__)), 'config' ,'config.yml'))
 
 config.each do |category|
 	category[:buttons].each do |button|
