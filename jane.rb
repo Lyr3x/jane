@@ -56,22 +56,30 @@ config.each do |category|
 	end
 end
 
-# sunset_config = YAML.load_file("config_sunset.yml")
+sunset_config = YAML.load_file(File.join(File.expand_path(File.dirname(__FILE__)), 'config' ,'config_sunset.yml'))
 
-# #Sunset light
-# if sunset_config[:useSunset] 
-# 	scheduler = Rufus::Scheduler.new
+#Sunset light
+if sunset_config[:useSunset] 
+	job = Rufus::Scheduler.new
 	
-# 	sunsettime = Sunset.new(sunset_config[:city])
+	sunset = Sunset.new(sunset_config[:city])
 
-# 	#create new sunset object at 1am
-# 	scheduler.cron '0 1 * * *' do
-# 		sunsettime = Sunset.new(sunset_config[:city])
-# 	end
+	#create new sunset object at 1am
+	job.cron '0 1 * * *' do
+		sunset = Sunset.new(sunset_config[:city])
+	end
 
-# 	scheduler.at sunsettime do
-# 		#check if you are home (ping your smartphone)
-# 		#command to turn lights on here
-		
-# 	end
-# end
+	job.at sunset.time do
+		#check if you are home (ping your smartphone)
+		#command to turn lights on here
+		config.each do |category|
+      category[:buttons].each do |button|
+        if button[:name] == sunset_config[:light_button_name]
+          eval(button[:command])
+        end
+      end
+    end
+	end
+
+  job.join
+end
