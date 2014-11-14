@@ -80,6 +80,5 @@ if sunset_config[:useSunset]
       end
     end
 	end
-
-  job.join
+  
 end
