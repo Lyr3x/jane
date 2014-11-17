@@ -74,7 +74,7 @@ if sunset_config[:useSunset]
 	end
 
 	job.at sunset.time do
-    file.puts Time.new.to_s + " " sunset.time + " executed job"
+    file.puts Time.new.to_s + " " + sunset.time + " executed job"
     #check if you are home (ping your smartphone)
 		#command to turn lights on here
 		config.each do |category|
