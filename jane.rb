@@ -63,7 +63,7 @@ sunset_config = YAML.load_file(File.join(File.expand_path(File.dirname(__FILE__)
 if sunset_config[:useSunset] 
 	job = Rufus::Scheduler.new
   #debug
-  file = File.open("log", 'w')
+  file = File.open("log_sunset", 'w')
 	
 	sunset = Sunset.new(sunset_config[:city])
 
