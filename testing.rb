@@ -1,0 +1,33 @@
+require 'rufus-scheduler'
+require File.join(File.expand_path(File.dirname(__FILE__)), "addons", "sunset.rb")
+require 'yaml'
+require 'sinatra'
+
+sunset_config = YAML.load_file(File.join(File.expand_path(File.dirname(__FILE__)), 'config' ,'config_sunset.yml'))
+jane_config = YAML.load_file(File.join(File.expand_path(File.dirname(__FILE__)), 'config' ,'config.yml'))
+
+sunset = Sunset.new(sunset_config[:city])
+puts sunset.time
+
+# File.open("log", 'w') { |file| file.write("your text") }
+# jane_config.each do |category|
+# 	category[:buttons].each do |button|
+# 		if button[:name] == sunset_config[:light_button_name]
+# 			puts button[:command]
+# 		end
+# 	end
+# end
+
+job = Rufus::Scheduler.new
+
+job.every '2s' do
+	eval("puts '2s'")
+	# jane_config.each do |category|
+	#   category[:buttons].each do |button|
+	#         if button[:name] == sunset_config[:light_button_name]
+	#           eval(button[:command])
+	#           # file.puts "executed command"
+	#         end
+	#   end
+	# end
+end
