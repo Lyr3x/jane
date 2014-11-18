@@ -17,17 +17,19 @@ puts sunset.time
 # 		end
 # 	end
 # end
+light_on_command = ""
+jane_config.each do |category|
+	category[:buttons].each do |button|
+		if button[:name] == sunset_config[:light_button_name]
+			light_on_command = button[:command]
+			# file.puts "executed command"
+    	end
+  end
+end
+
 
 job = Rufus::Scheduler.new
 
-job.every '2s' do
-	eval("puts '2s'")
-	# jane_config.each do |category|
-	#   category[:buttons].each do |button|
-	#         if button[:name] == sunset_config[:light_button_name]
-	#           eval(button[:command])
-	#           # file.puts "executed command"
-	#         end
-	#   end
-	# end
+job.at '2014-11-18 17:35:00' do
+	eval(light_on_command)
 end

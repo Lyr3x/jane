@@ -61,7 +61,17 @@ sunset_config = YAML.load_file(File.join(File.expand_path(File.dirname(__FILE__)
 
 #Sunset light
 if sunset_config[:useSunset] 
-	job = Rufus::Scheduler.new
+	light_on_command = ""
+    #finding the light on command in config.yml
+    config.each do |category|
+      category[:buttons].each do |button|
+        if button[:name] == sunset_config[:light_button_name]
+          light_on_command = button[:command]
+        end
+      end
+    end
+
+  job = Rufus::Scheduler.new
   #debug
   file = File.open("log_sunset", 'w')
 	
@@ -77,14 +87,7 @@ if sunset_config[:useSunset]
     file.puts Time.new.to_s + " " + sunset.time + " executed job"
     #check if you are home (ping your smartphone)
 		#command to turn lights on here
-		config.each do |category|
-      category[:buttons].each do |button|
-        if button[:name] == sunset_config[:light_button_name]
-          eval(button[:command])
-          file.puts "executed command"
-        end
-      end
-    end
+		eval(light_on_command)
 	end
 
 #Timer
