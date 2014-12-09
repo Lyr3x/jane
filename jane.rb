@@ -57,38 +57,8 @@ config.each do |category|
 	end
 end
 
-sunset_config = YAML.load_file(File.join(File.expand_path(File.dirname(__FILE__)), 'config' ,'config_sunset.yml'))
-
-#Sunset light
-if sunset_config[:useSunset] 
-	light_on_command = ""
-    #finding the light on command in config.yml
-    config.each do |category|
-      category[:buttons].each do |button|
-        if button[:name] == sunset_config[:light_button_name]
-          light_on_command = button[:command]
-        end
-      end
-    end
-
-  job = Rufus::Scheduler.new
-  #debug
-  file = File.open("log_sunset", 'w')
-	
-	sunset = Sunset.new(sunset_config[:city])
-
-	#create new sunset object at 1am
-	job.cron '0 1 * * *' do
-		sunset = Sunset.new(sunset_config[:city])
-    file.puts Time.new.to_s + " new sunset object generated"
-	end
-
-	job.at sunset.time do
-    file.puts Time.new.to_s + " " + sunset.time + " executed job"
-    #check if you are home (ping your smartphone)
-		#command to turn lights on here
-		eval(light_on_command)
-	end
+#sunset inital cron entry
+`whenever --update-cron`
 
 #Timer
 #timer(Time.now + 1 * 60, "Lampe aus")
