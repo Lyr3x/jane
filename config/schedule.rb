@@ -5,9 +5,9 @@ set :job_template, nil
 
 sunset = Sunset.new("Bonn")
 every 1.day, :at => sunset.time do
-	command "ruby" + File.join(File.expand_path(File.dirname(__FILE__)), "..", "addons", "lighton.rb")
+	command "ruby " + File.join(File.expand_path(File.dirname(__FILE__)), "..", "addons", "lighton.rb")
 end
 
 every 1.day, :at => "1am" do
-	command "bash -l -c" + File.join(File.expand_path(File.dirname(__FILE__)), "..", "addons", "wheneverUpdateCron.sh")
+	command "bash -l -c " + File.join(File.expand_path(File.dirname(__FILE__)), "..", "addons", "wheneverUpdateCron.sh")
 end
