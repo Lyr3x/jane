@@ -1,7 +1,7 @@
 #Jane
 require 'sinatra'
 require 'rufus-scheduler'
-require File.join(File.expand_path(File.dirname(__FILE__)), "addons", "sunset.rb")
+#require File.join(File.expand_path(File.dirname(__FILE__)), "addons", "sunset.rb")
 #require File.join(File.expand_path(File.dirname(__FILE__)), "addons", "timer.rb")
 require 'yaml'
 require "net/http"
