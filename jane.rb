@@ -62,5 +62,3 @@ end
 
 #Timer
 #timer(Time.now + 1 * 60, "Lampe aus")
-
-end
