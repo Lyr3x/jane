@@ -58,7 +58,7 @@ config.each do |category|
 end
 
 #sunset inital cron entry
-`whenever --update-cron`
+`cd /home/pi/Jane/ && whenever --update-cron`
 
 #Timer
 #timer(Time.now + 1 * 60, "Lampe aus")

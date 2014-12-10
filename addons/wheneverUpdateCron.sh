@@ -1,2 +1,2 @@
 #!/bin/bash
-whenever --update-crontab
+cd /home/pi/Jane/ && whenever --update-crontab
