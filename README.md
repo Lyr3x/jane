@@ -3,7 +3,7 @@
 Jane is released in Version 1.1 - Black Widow
 
 ##What is Jane?
-- A system to control home devices e.g.: AVR, TV or other IR devices and Devices via SSH
+- A system to control home devices e.g.: AVR, TV or other IR devices and computers via SSH
 - Jane uses Tasker with AutoVoice to control the system with your voice
 
 ##What is working?
