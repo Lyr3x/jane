@@ -15,7 +15,6 @@ Jane is released in Version 1.1 - Black Widow
 ###Addons
 - SSH connection + command execution
 - SunSet
-- 
 
 ##Requirements
 - Raspberry PI + raspbian
