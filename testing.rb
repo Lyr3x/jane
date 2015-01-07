@@ -3,9 +3,10 @@ require 'rufus-scheduler'
 require File.join(File.expand_path(File.dirname(__FILE__)), "addons", "sunset.rb")
 require 'yaml'
 require 'sinatra'
+require './lib/jane'
 
 # sunset_config = YAML.load_file(File.join(File.expand_path(File.dirname(__FILE__)), 'config' ,'config_sunset.yml'))
-# jane_config = YAML.load_file(File.join(File.expand_path(File.dirname(__FILE__)), 'config' ,'config.yml'))
+# jane_config = Jane.config
 
 # sunset = Sunset.new(sunset_config[:city])
 # puts sunset.time

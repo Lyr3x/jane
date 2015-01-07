@@ -1,9 +1,11 @@
 require 'rufus-scheduler'
 
+require './lib/jane'
+
 def timer(time, button_name)
 	if time.is_a?(Time)
 		job = Rufus::Scheduler.new
-		config = YAML.load_file(File.join(File.expand_path(File.dirname(__FILE__)), 'config' ,'config.yml'))
+		config = Jane.config
 		command = ""
 		
 		config.each do |category|

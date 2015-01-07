@@ -6,6 +6,8 @@ require 'rufus-scheduler'
 require 'yaml'
 require 'net/http'
 
+require './lib/jane'
+
 # listen to 0.0.0.0 instead of localhost
 set :bind, '0.0.0.0'
 
@@ -42,9 +44,7 @@ get '/' do
   erb :index
 end
 
-config = YAML.load_file(File.join(File.expand_path(File.dirname(__FILE__)),
-                        'config', 'config.yml'))
-
+config = Jane.config
 config.each do |category|
   category[:buttons].each do |button|
     route = '/'

@@ -1,7 +1,4 @@
-<%
-require 'yaml' 
-categories = YAML.load_file(File.join(File.expand_path(File.dirname(__FILE__)), '..', 'config' ,'config.yml'))
-%><!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -31,7 +28,7 @@ categories = YAML.load_file(File.join(File.expand_path(File.dirname(__FILE__)), 
         <div class="row">
             <div class="col-xs-10 col-md-4 col-sm-6 col-xs-offset-1 col-md-offset-4 col-sm-offset-3">
                 
-                <% categories.each do |category, category_parts| %>
+                <% Jane.config.each do |category, category_parts| %>
                     <%= render_category(category)%>
                 <% end %>
 
