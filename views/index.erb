@@ -33,7 +33,7 @@ categories = YAML.load_file(File.join(File.expand_path(File.dirname(__FILE__)), 
                 
                 <% categories.each do |category, category_parts| %>
                     <%= render_category(category)%>
-                <%end%>
+                <% end %>
 
             </div>
         </div>
