@@ -1,4 +1,7 @@
-<!DOCTYPE html>
+<%
+require 'yaml' 
+categories = YAML.load_file(File.join(File.expand_path(File.dirname(__FILE__)), '..', 'config' ,'config.yml'))
+%><!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -21,9 +24,6 @@
       <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-  <% require 'yaml' 
-  %>
-  <%categories = YAML.load_file(File.join(File.expand_path(File.dirname(__FILE__)), '..', 'config' ,'config.yml'))%>
 
   <body>
     <div class="container">
@@ -33,25 +33,21 @@
                 
                 <% categories.each do |category, category_parts| %>
                     <%= render_category(category)%>
-                <%end%>
+                <% end %>
 
             </div>
         </div>
     </div>
     
-
     <!-- call jane functions in background on button click -->
     <script>
-        
-        function jane(device, func, para){
-            if('undefined' === typeof para){
-                var call = device + "/" + func;
-            }else{
-                var call = device + "/" + func + "/" + para;
-            }
-            $.get(call);
+    function jane(device, func, param){
+        var call = device + "/" + func;
+        if (!param){
+            call += "/" + param
         }
-        
+        $.get(call);
+    }
     </script>
 
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
