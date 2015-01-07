@@ -20,12 +20,17 @@ GEM
       rainbow (>= 1.99.1, < 3.0)
       ruby-progressbar (~> 1.4)
     ruby-progressbar (1.7.1)
+    rufus-scheduler (3.0.9)
+      tzinfo
     sinatra (1.4.5)
       rack (~> 1.4)
       rack-protection (~> 1.4)
       tilt (~> 1.3, >= 1.3.4)
     slop (3.6.0)
+    thread_safe (0.3.4)
     tilt (1.4.1)
+    tzinfo (1.2.2)
+      thread_safe (~> 0.1)
     whenever (0.9.4)
       chronic (>= 0.6.3)
 
@@ -34,5 +39,6 @@ PLATFORMS
 
 DEPENDENCIES
   rubocop
+  rufus-scheduler
   sinatra
   whenever
