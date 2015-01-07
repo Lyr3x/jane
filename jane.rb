@@ -43,13 +43,9 @@ end
 config = Jane.config
 config.each do |category|
   category[:buttons].each do |button|
-    route = '/'
-    button[:fn_args].each do |arg|
-      route += arg + '/'
-    end
-    route = route[0..-2]
-    self.send(:get, route) do
-      eval(button[:command])
+    route = "/#{button[:fn_args].join('/')}"
+    send(:get, route) do
+      system button[:command]
     end
   end
 end
