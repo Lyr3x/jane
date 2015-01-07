@@ -6,13 +6,9 @@ require 'rufus-scheduler'
 require 'yaml'
 require 'net/http'
 
-<<<<<<< HEAD
 require './lib/jane'
 
-#listen to 0.0.0.0 instead of localhost
-=======
 # listen to 0.0.0.0 instead of localhost
->>>>>>> dev
 set :bind, '0.0.0.0'
 
 helpers do
