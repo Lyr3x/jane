@@ -41,12 +41,10 @@ categories = YAML.load_file(File.join(File.expand_path(File.dirname(__FILE__)), 
     
     <!-- call jane functions in background on button click -->
     <script>
-    function jane(device, func, para){
-        var call;
-        if ('undefined' === typeof para){
-            call = device + "/" + func;
-        } else {
-            call = device + "/" + func + "/" + para;
+    function jane(device, func, param){
+        var call = device + "/" + func;
+        if (!param){
+            call += "/" + param
         }
         $.get(call);
     }
