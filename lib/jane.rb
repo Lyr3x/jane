@@ -4,12 +4,12 @@ module Jane
     File.expand_path(
       File.join(
         File.dirname(__FILE__),
-        '..', 'config', 'config.yml'
+        '..', 'config', 'config.json'
       )
     )
   end
 
   def self.config
-    YAML.load_file(config_file)
+    JSON.parse(File.read(config_file), symbolize_names: true)
   end
 end

@@ -4,4 +4,5 @@ nohup.out
 config/config.yml
 config/config_sunset.yml
 log_sunset
-
+config/config.json
+config/config_sunset.json

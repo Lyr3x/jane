@@ -1,9 +1,7 @@
 # Jane
 require 'sinatra'
 require 'rufus-scheduler'
-# require File.join(File.expand_path(File.dirname(__FILE__)), "addons", "sunset.rb")
-# require File.join(File.expand_path(File.dirname(__FILE__)), "addons", "timer.rb")
-require 'yaml'
+require 'json'
 require 'net/http'
 
 require './lib/jane'
@@ -41,7 +39,7 @@ get '/' do
 end
 
 config = Jane.config
-config.each do |category|
+config[:categories].each do |category|
   category[:buttons].each do |button|
     route = "/#{button[:fn_args].join('/')}"
     send(:get, route) do
