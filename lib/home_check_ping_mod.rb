@@ -1,6 +1,6 @@
 # home_check
 require "json"
-module HomeCheckPing
+module HomeCheckPingMod
   def self.config_file
     File.expand_path(
       File.join(
