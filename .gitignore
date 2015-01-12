@@ -1,8 +1,5 @@
-img/logo/
 nohup.out
 .DS_Store
-config/config.yml
-config/config_sunset.yml
 log_sunset
-config/config.json
-config/config_sunset.json
+config/*.json
+config/*.yml

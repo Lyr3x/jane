@@ -1,12 +1,14 @@
 require 'rubygems'
 require 'net/ping'
+require '../lib/home_check_ping.rb'
 
 include Net
 
 Ping::TCP.service_check = true
 
 #add several hosts you want to ping
-hosts = ['192.168.2.109', '192.168.2.5']
+config = HomeCheckPing.config
+hosts = config[:hosts]
 threads = []
 ping_objects = []
 
