@@ -49,7 +49,7 @@ config[:categories].each do |category|
 end
 
 # sunset inital cron entry
-`cd /home/jarvis/Jane/ && whenever --update-cron`
+`cd ~/Jane/ && whenever --update-cron`
 
 # Timer
 # timer(Time.now + 1 * 60, "Lampe aus")
