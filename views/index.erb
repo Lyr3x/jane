@@ -40,7 +40,7 @@
     <script>
     function jane(device, func, param){
         var call = device + "/" + func;
-        if (!param){
+        if (param){
             call += "/" + param
         }
         $.get(call);
