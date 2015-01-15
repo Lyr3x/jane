@@ -21,7 +21,7 @@ require File.join(Jane.path, 'addons', 'sunset.rb')
 set :job_template, nil
 
 
-sunset = Sunset.new 'Bonn'
+sunset = Sunset.new sunset_lib_path.city
 
 every 1.day, at: sunset.time do
   rake 'lighton'
