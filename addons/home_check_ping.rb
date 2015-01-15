@@ -1,4 +1,11 @@
-require '../lib/home_check_ping_mod.rb'
+home_check_ping_lib_path = 
+  File.expand_path(
+    File.join(
+      File.dirname(__FILE__), '..', 'lib', 'home_check_ping_mod'
+    )
+  )
+require home_check_ping_lib_path
+
 class HomeCheckPing
   
   def initialize 

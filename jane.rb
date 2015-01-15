@@ -50,7 +50,8 @@ config[:categories].each do |category|
 end
 
 # sunset inital cron entry
-Rake.application['update_cron'].invoke('one')
+#Rake.application['update_cron'].invoke()
+`rake update_cron`
 
 # Timer
 # timer(Time.now + 1 * 60, "Lampe aus")
