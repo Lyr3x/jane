@@ -17,5 +17,5 @@ require home_check_ping_path
 require sunset_mod
 
 if HomeCheckPing.new.reachable
-  sunset_mod.lighton_command
+  system Sunset.lighton_command
 end

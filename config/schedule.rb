@@ -10,7 +10,7 @@ jane_lib_path =
 sunset_lib_path =
   File.expand_path(
     File.join(
-      File.dirname(__FILE__), '..', 'lib', 'sunset'
+      File.dirname(__FILE__), '..', 'lib', 'sunset_mod'
     )
   )
 

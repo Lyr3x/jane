@@ -23,13 +23,15 @@ module Sunset
   def self.lighton_command
     jane_config = Jane.config
     sunset_config = config
+    command = ""
     jane_config[:categories].each do |category|
       category[:buttons].each do |button|
         if button[:name].eql? config[:light_on_button_name]
-          return button[:command]
+          command = button[:command]
         end
       end
     end
+    return command
   end
 
 end
