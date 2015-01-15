@@ -1,9 +1,13 @@
+require "rubygems"
+require "./lib/jane"
+
 task default: %w[update_cron]
 
 task :lighton do
-  system 'ruby', File.expand_path(File.join(File.dirname(__FILE__), "addons", "lighton.rb"))
+  system 'ruby', File.join(Jane.path, "addons", "lighton.rb")
 end
 
 task :update_cron do
-  system 'bash -l -c', File.expand_path(File.join(File.dirname(__FILE__), "addons", "wheneverUpdateCron.sh"))
+  schedule_path = File.join(Jane.path, 'config', 'schedule.rb')
+  `whenever --load-file #{schedule_path} --update-crontab`
 end

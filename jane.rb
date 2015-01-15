@@ -3,6 +3,7 @@ require 'sinatra'
 require 'rufus-scheduler'
 require 'json'
 require 'net/http'
+require 'rake'
 
 require './lib/jane'
 
@@ -49,7 +50,8 @@ config[:categories].each do |category|
 end
 
 # sunset inital cron entry
-`cd ~/Jane/ && whenever --update-cron`
+#Rake.application['update_cron'].invoke()
+`rake update_cron`
 
 # Timer
 # timer(Time.now + 1 * 60, "Lampe aus")
