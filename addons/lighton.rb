@@ -17,5 +17,7 @@ require home_check_ping_path
 require sunset_mod
 
 if HomeCheckPing.new.reachable
+  #lighton_command returns a String containing a Net:Http.get... command
+  #so this doesnt make sense
   system Sunset.lighton_command
 end
