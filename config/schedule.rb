@@ -7,10 +7,19 @@ jane_lib_path =
     )
   )
 
+sunset_lib_path =
+  File.expand_path(
+    File.join(
+      File.dirname(__FILE__), '..', 'lib', 'sunset'
+    )
+  )
+
 require jane_lib_path
+require sunset_lib_path
 require File.join(Jane.path, 'addons', 'sunset.rb')
 
 set :job_template, nil
+
 
 sunset = Sunset.new 'Bonn'
 
