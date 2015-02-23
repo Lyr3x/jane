@@ -20,7 +20,7 @@
     <header>
       <div class="inner">
         <h1>Jane</h1>
-        <h2>IR transmitting by Tasker</h2>
+        <h2>Home Automation System</h2>
         <a href="https://github.com/Lyr3x/Jane" class="button"><small>View project on</small> GitHub</a>
       </div>
     </header>
@@ -29,25 +29,38 @@
       <div class="inner clearfix">
         <section id="main-content">
           <h1>
-<a name="jarvis" class="anchor" href="#jarvis"><span class="octicon octicon-link"></span></a>Jarvis</h1>
+<a id="jane" class="anchor" href="#jane" aria-hidden="true"><span class="octicon octicon-link"></span></a>Jane</h1>
 
-<p>Jarvis (not the final name) is in a early development state.</p>
+<p>Jane is released in Version 1.1 - Black Widow</p>
 
 <h2>
-<a name="what-is-jarvis" class="anchor" href="#what-is-jarvis"><span class="octicon octicon-link"></span></a>What is Jarvis?</h2>
+<a id="what-is-jane" class="anchor" href="#what-is-jane" aria-hidden="true"><span class="octicon octicon-link"></span></a>What is Jane?</h2>
 
 <ul>
-<li>A system to control home devices e.g.: AVR, TV or other IR devices</li>
-<li>Jarvis uses Tasker with AutoVoice to control the system with your voice</li>
-</ul><h2>
-<a name="what-is-working" class="anchor" href="#what-is-working"><span class="octicon octicon-link"></span></a>What is working?</h2>
+<li>A system to control home devices e.g.: AVR, TV or other IR devices and computers via SSH</li>
+<li>Jane uses Tasker with AutoVoice to control the system with your voice</li>
+</ul>
+
+<h2>
+<a id="what-is-working" class="anchor" href="#what-is-working" aria-hidden="true"><span class="octicon octicon-link"></span></a>What is working?</h2>
 
 <ul>
 <li>Infrared control code receiving</li>
 <li>Sending single infrared codes via Tasker using AutoVoice</li>
 <li>Sinatra Webserver</li>
-</ul><h2>
-<a name="requirements" class="anchor" href="#requirements"><span class="octicon octicon-link"></span></a>Requirements</h2>
+<li>Remote Control Outlets</li>
+</ul>
+
+<h3>
+<a id="addons" class="anchor" href="#addons" aria-hidden="true"><span class="octicon octicon-link"></span></a>Addons</h3>
+
+<ul>
+<li>SSH connection + command execution</li>
+<li>SunSet</li>
+</ul>
+
+<h2>
+<a id="requirements" class="anchor" href="#requirements" aria-hidden="true"><span class="octicon octicon-link"></span></a>Requirements</h2>
 
 <ul>
 <li>Raspberry PI + raspbian</li>
@@ -58,16 +71,18 @@
 <li>1x 100 Ohm Resistor</li>
 <li>1x bipolar Transistor NPN - BC547C</li>
 <li>WiFi-stick recommended for more flexibility</li>
-</ul><h2>
-<a name="circuit-plan" class="anchor" href="#circuit-plan"><span class="octicon octicon-link"></span></a>Circuit plan</h2>
-
-<p><img src="https://raw.githubusercontent.com/Lyr3x/Jarvis/master/circuit/Circuit-plan_Steckplatine.png" alt="Alt text" title="Circuit Plan"></p>
+</ul>
 
 <h2>
-<a name="software-installation" class="anchor" href="#software-installation"><span class="octicon octicon-link"></span></a>Software installation</h2>
+<a id="circuit-plan" class="anchor" href="#circuit-plan" aria-hidden="true"><span class="octicon octicon-link"></span></a>Circuit plan</h2>
+
+<p><img src="https://github.com/Lyr3x/Jane/blob/master/circuit/Circuit-plan_Steckplatine.png" alt="Alt text" title="Circuit Plan"></p>
+
+<h2>
+<a id="software-installation" class="anchor" href="#software-installation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Software installation</h2>
 
 <h3>
-<a name="lirc" class="anchor" href="#lirc"><span class="octicon octicon-link"></span></a>LIRC</h3>
+<a id="lirc" class="anchor" href="#lirc" aria-hidden="true"><span class="octicon octicon-link"></span></a>LIRC</h3>
 
 <p><strong>Enter the following commands:</strong></p>
 
@@ -77,8 +92,10 @@
 <li><strong>Add the following lines:</strong></li>
 <li><code>lircv_dev</code></li>
 <li><code>lirc_rpi gpio_in_pin=22 gpio_out_pin=23</code></li>
-</ul><h3>
-<a name="lirc-configuration" class="anchor" href="#lirc-configuration"><span class="octicon octicon-link"></span></a>LIRC configuration</h3>
+</ul>
+
+<h3>
+<a id="lirc-configuration" class="anchor" href="#lirc-configuration" aria-hidden="true"><span class="octicon octicon-link"></span></a>LIRC configuration</h3>
 
 <ul>
 <li><code>$ cd /etc/lirc/</code></li>
@@ -86,18 +103,20 @@
 <code>$ sudo vim hardware.conf</code>
 Enter/comment the following line: </li>
 <li>
-<code>LIRCD_ARGS="-listen"</code> TCP Listener at Port 8765</li>
+<code>LIRCD_ARGS="--listen"</code> TCP Listener at Port 8765</li>
 <li><code>#START_LIRCMD=false</code></li>
 <li><code>#START_IREXEC=false</code></li>
 <li><code>LOAD_MODULES=true</code></li>
-<li><code>DRIVER="default</code></li>
-<li><code>DEVICE="/dev/lirc0</code></li>
+<li><code>DRIVER="default"</code></li>
+<li><code>DEVICE="/dev/lirc0"</code></li>
 <li>
 <code>MODULES="lirc_rpi"</code>
 Save and quit the file and execute the following</li>
 <li><code>$ sudo /etc/init.d/lirc restart</code></li>
-</ul><h2>
-<a name="read-key-codes" class="anchor" href="#read-key-codes"><span class="octicon octicon-link"></span></a>Read key codes</h2>
+</ul>
+
+<h2>
+<a id="read-key-codes" class="anchor" href="#read-key-codes" aria-hidden="true"><span class="octicon octicon-link"></span></a>Read key codes</h2>
 
 <ul>
 <li>The standard configuration file is located in <code>/etc/lirc/lircd.conf</code>
@@ -112,8 +131,10 @@ Save and quit the file and execute the following</li>
 <li>All commands are stored in ~/led.conf now. Copy the whole content in <code>/etc/lirc/lircd.conf</code>
 </li>
 <li>For each control you have to repeat this procedure</li>
-</ul><h3>
-<a name="send-commands" class="anchor" href="#send-commands"><span class="octicon octicon-link"></span></a>Send commands</h3>
+</ul>
+
+<h3>
+<a id="send-commands" class="anchor" href="#send-commands" aria-hidden="true"><span class="octicon octicon-link"></span></a>Send commands</h3>
 
 <ul>
 <li>First restart the lirc daemon <code>sudo /etc/init.d/lirc restart</code>
@@ -122,14 +143,29 @@ Save and quit the file and execute the following</li>
 </li>
 <li>example: <code>$ irsend SEND_ONCE TV KEY_POWER</code>
 </li>
-</ul><h3>
-<a name="coming-features" class="anchor" href="#coming-features"><span class="octicon octicon-link"></span></a>Coming Features</h3>
+</ul>
+
+<h3>
+<a id="android-app" class="anchor" href="#android-app" aria-hidden="true"><span class="octicon octicon-link"></span></a>Android App</h3>
+
+<p>! No active development for now !
+The Android app is located in a seperate repostiroy:</p>
+
+<h2>
+<a id="--jane-app" class="anchor" href="#--jane-app" aria-hidden="true"><span class="octicon octicon-link"></span></a>- <a href="https://github.com/Lyr3x/Jane-app">Jane-app</a>
+</h2>
+
+<h3>
+<a id="coming-features" class="anchor" href="#coming-features" aria-hidden="true"><span class="octicon octicon-link"></span></a>Coming Features</h3>
 
 <ul>
-<li>Webinterface</li>
-<li>Android app</li>
-</ul><h2>
-<a name="license" class="anchor" href="#license"><span class="octicon octicon-link"></span></a>License</h2>
+<li>HomeCheck (addon)</li>
+<li>new Material Design WebUI</li>
+<li>Temperaturesensor with light feedback</li>
+</ul>
+
+<h2>
+<a id="license" class="anchor" href="#license" aria-hidden="true"><span class="octicon octicon-link"></span></a>License</h2>
 
 <p>see <a href="https://github.com/Lyr3x/Jarvis/blob/master/LICENSE">LICENSE</a> files</p>
         </section>
