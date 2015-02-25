@@ -7,16 +7,16 @@
 #     )
 #   )
 
-# sunset_lib_path =
-#   File.expand_path(
-#     File.join(
-#       File.dirname(__FILE__), '..', 'lib', 'sunset_mod'
-#     )
-#   )
+sunset_lib_path =
+  File.expand_path(
+    File.join(
+      File.dirname(__FILE__), '..', 'lib', 'sunset_mod'
+    )
+  )
 
 # require jane_lib_path
-#require sunset_lib_path
-require "/Users/nesurion/Development/Jane/lib/sunset.rb"
+require sunset_lib_path
+#require "/Users/nesurion/Development/Jane/lib/sunset.rb"
 #require File.join(Jane.path, 'addons', 'sunset')
 
 set :job_template, nil
