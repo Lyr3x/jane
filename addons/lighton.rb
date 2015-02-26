@@ -17,6 +17,5 @@ require home_check_ping_path
 require sunset
 
 if HomeCheckPing.new.reachable
-  p "true"
   Sunset.light_on
 end
