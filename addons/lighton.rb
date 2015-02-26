@@ -17,6 +17,6 @@ require home_check_ping_path
 require sunset
 
 if HomeCheckPing.new.reachable
-  #eval is evil, so try to come up with a different solution
-  Sunset.lighton
+  p "true"
+  Sunset.light_on
 end
