@@ -2,9 +2,9 @@ require 'rubygems'
 require 'net/ssh'
 
 # INITIALIZE CONSTANTS HERE
-HOST = 'ip'
-USER = 'username'
-PASSWORD = 'password'
+HOST = '192.168.2.85'
+USER = 'xbmc'
+PASSWORD = 'xbmc'
 
 commands = [
   "sudo /sbin/reboot"
