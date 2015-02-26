@@ -63,6 +63,9 @@ config[:categories].each do |category|
                           command[:command_parameter][:task],
                           command[:sleep_after_command]
         end
+        if command[:type] == "addon"
+          Command.addon command[:name]
+        end
       end
     end
   end
