@@ -5,16 +5,16 @@ home_check_ping_path =
     )
   )
 
-sunset_mod = 
+sunset = 
   File.expand_path(
     File.join(
-      File.dirname(__FILE__), '..', 'lib', 'sunset_mod'
+      File.dirname(__FILE__), '..', 'lib', 'sunset'
     )
   )
 
 require "net/http"
 require home_check_ping_path
-require sunset_mod
+require sunset
 
 if HomeCheckPing.new.reachable
   #lighton_command returns a String containing a Net:Http.get... command
