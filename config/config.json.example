@@ -61,13 +61,9 @@
                 }
             },
             {
-              "type" : "irsend",
-              "sleep_after_command" : 0,
-              "command_parameter":
-                {
-                  "receiving_device": "avr",
-                  "task": "KEY_POWER"
-                }
+              "type" : "addon",
+              "sleep_after_command" : 2,
+              "name": "your_addon.rb"
             }
           ]
         }
