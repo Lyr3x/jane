@@ -18,5 +18,5 @@ require sunset
 
 if HomeCheckPing.new.reachable
   #eval is evil, so try to come up with a different solution
-  eval(Sunset.lighton_command)
+  Sunset.lighton
 end
