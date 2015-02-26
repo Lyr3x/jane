@@ -4,11 +4,17 @@ require 'rufus-scheduler'
 require 'json'
 require 'net/http'
 require 'rake'
+require 'rack/cache'
 
 require './lib/jane'
 
 # listen to 0.0.0.0 instead of localhost
 set :bind, '0.0.0.0'
+
+use Rack::Cache,
+  :verbose => true,
+    :metastore   => 'file:cache/meta',
+    :entitystore => 'file:cache/body'
 
 helpers do
   def render_button(btn_desc)
