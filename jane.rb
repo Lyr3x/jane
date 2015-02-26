@@ -44,14 +44,11 @@ config[:categories].each do |category|
   category[:buttons].each do |button|
     route = "/#{button[:fn_args].join('/')}"
     send(:get, route) do
+      #this doesnt make sense for powerpi url calls
       system button[:command]
     end
   end
 end
 
 # sunset inital cron entry
-#Rake.application['update_cron'].invoke()
 `rake update_cron`
-
-# Timer
-# timer(Time.now + 1 * 60, "Lampe aus")
