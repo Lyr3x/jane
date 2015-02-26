@@ -6,6 +6,7 @@
     "reboot"
     ]
 ,
+"powerpi_server" : "0.0.0.0",
 "categories" : 
   [
     {
