@@ -1,11 +1,11 @@
 require "net/http"
 
 module Command
-  def self.powerpi(device, task, sleep_time)
+  def self.powerpi(device, task, sleep_time, powerpi_ip)
     if task == "on"
       task = 1
     end
-    Net::HTTP.get(URI("http://0.0.0.0/lib/powerpi.php?action=setsocket&socket=#{device}&status=#{task}"))
+    Net::HTTP.get(URI("http://#{powerpi_ip}/lib/powerpi.php?action=setsocket&socket=#{device}&status=#{task}"))
     sleep(sleep_time.to_i)
   end
 

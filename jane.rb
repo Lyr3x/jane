@@ -46,14 +46,23 @@ get '/' do
 end
 
 config = Jane.config
+powerpi_server = config[:powerpi_server]
 config[:categories].each do |category|
   category[:buttons].each do |button|
     route = "/#{button[:fn_args].join('/')}"
     send(:get, route) do
       button[:commands].each do |command|
-        Command.send(command[:type],command[:command_parameter][:receiving_device], 
-                      command[:command_parameter][:task],
-                      command[:sleep_after_command])
+        if command[:type] == "powerpi"
+          Command.powerpi command[:command_parameter][:receiving_device], 
+                          command[:command_parameter][:task],
+                          command[:sleep_after_command],
+                          powerpi_server
+        end
+        if command[:type] == "irsend"
+          Command.irsend command[:command_parameter][:receiving_device], 
+                          command[:command_parameter][:task],
+                          command[:sleep_after_command]
+        end
       end
     end
   end
