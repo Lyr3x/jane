@@ -1,4 +1,3 @@
-
 {
   "addons_enabled":
     [
@@ -12,39 +11,64 @@
     {
       "title": "actions",
       "icon": "star",
-      "buttons":
-      [
+      "buttons":[
         {
-          // first button
-          "name": "boot",
-          // icon codes: http://getbootstrap.com/components/
-          // just use the last word ex: glyphicon-ok -> ok
+          "name": "light",
           "icon": "off",
-          // button classes: http://getbootstrap.com/css/#buttons
           "btn_class": "btn-info",
-          // buttons parameter, generates your route
-          // ex: action, power, all -> http://0.0.0.0/action/power/all
-          "fn_args":
-          [
+          "fn_args": [
             "action",
-            "power",
-            "all"
+            "boot"
           ],
-          // this command is run on an http get at the fn_args generated url
-          // the command will be converted to ruby by eval(), so just use ruby code
-          "command": ""
+          "commands": [
+            {
+              "type" : "powerpi",
+              "sleep_after_command" : 2,
+              "command_parameter":
+                {
+                  "receiving_device": "tablelamp",
+                  "task": "on"
+                }
+            },
+            {
+              "type" : "powerpi",
+              "sleep_after_command" : 0,
+              "command_parameter":
+                {
+                  "receiving_device": "tablelamp",
+                  "task": "off"
+                }
+            }
+          ]
         },
         {
-          // secound button
           "name": "button2",
           "icon": "off",
           "btn_class": "btn-info",
-          "fn_args":
-          [
-            "channel",
-            "tv"
+          "fn_args": [
+            "action",
+            "button2"
           ],
-          "command": "Net::HTTP.get(URI('http://192.168.2.123:4567/socket/lamp/off'))"
+          "commands": [
+            {
+              "type" : "irsend",
+              "sleep_after_command" : 2,
+              "command_parameter":
+                {
+                  "receiving_device": "tv",
+                  "task": "KEY_POWER"
+                }
+            },
+            {
+              "type" : "irsend",
+              "sleep_after_command" : 0,
+              "command_parameter":
+                {
+                  "receiving_device": "avr",
+                  "task": "KEY_POWER"
+                }
+            }
+          ]
         }
       ]
     }
