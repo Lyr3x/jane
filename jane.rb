@@ -1,12 +1,12 @@
 # Jane
 require 'sinatra'
-require 'rufus-scheduler'
 require 'json'
 require 'net/http'
 require 'rake'
 require 'rack/cache'
 
 require './lib/jane'
+require './lib/command'
 
 # listen to 0.0.0.0 instead of localhost
 set :bind, '0.0.0.0'
@@ -50,8 +50,11 @@ config[:categories].each do |category|
   category[:buttons].each do |button|
     route = "/#{button[:fn_args].join('/')}"
     send(:get, route) do
-      #this doesnt make sense for powerpi url calls
-      system button[:command]
+      button[:commands].each do |command|
+        Command.send(command[:type],command[:command_parameter][:receiving_device], 
+                      command[:command_parameter][:task],
+                      command[:sleep_after_command])
+      end
     end
   end
 end
