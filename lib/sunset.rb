@@ -1,6 +1,13 @@
 # sunset
+jane_lib_path =
+  File.expand_path(
+    File.join(
+      File.dirname(__FILE__), '..', 'lib', 'jane'
+    )
+  )
+
 require "json"
-require "./jane"
+require jane_lib_path
 require "net/http"
 
 module Sunset

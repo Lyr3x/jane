@@ -1,7 +1,7 @@
 require "rubygems"
 require "./lib/jane"
 
-task default: %w[update_cron]
+#task default: %w[update_cron]
 
 task :light_on do
   system 'ruby', File.join(Jane.path, "addons", "lighton.rb")
