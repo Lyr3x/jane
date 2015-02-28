@@ -10,6 +10,7 @@ require './lib/command'
 
 # listen to 0.0.0.0 instead of localhost
 set :bind, '0.0.0.0'
+set :root, File.dirname(__FILE__)
 
 use Rack::Cache,
   :verbose => true,
