@@ -14,12 +14,13 @@ module Command
     sleep(sleep_time.to_i)
   end
 
-  def self.addon(name)
+  def self.addon(name, sleep_time)
     addon_path =  File.expand_path(
                     File.join(
                       File.dirname(__FILE__), '..', "addons", "#{name}"
                     )
                   )
     load addon_path
+    sleep(sleep_time.to_i)
   end
 end
