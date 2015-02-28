@@ -59,7 +59,7 @@ module Sunset
                               command[:sleep_after_command]
             end
             if command[:type] == "addon"
-              Command.addon command[:name]
+              Command.addon command[:name], command[:sleep_after_command]
             end
           end
         end
