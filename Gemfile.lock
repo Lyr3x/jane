@@ -1,0 +1,33 @@
+GIT
+  remote: git@github.com:sinatra/sinatra.git
+  revision: be9c18ac44214069f4709ced6da65abba9501d24
+  specs:
+    sinatra (1.4.5)
+      rack (~> 1.4)
+      rack-protection (~> 1.4)
+      tilt (>= 1.3, < 3)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    chronic (0.10.2)
+    net-ping (1.7.6)
+    rack (1.6.0)
+    rack-cache (1.2)
+      rack (>= 0.4)
+    rack-protection (1.5.3)
+      rack
+    rake (10.4.2)
+    tilt (2.0.1)
+    whenever (0.9.4)
+      chronic (>= 0.6.3)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  net-ping
+  rack-cache
+  rake
+  sinatra!
+  whenever
