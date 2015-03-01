@@ -10,6 +10,7 @@ require './lib/command'
 
 # listen to 0.0.0.0 instead of localhost
 set :bind, '0.0.0.0'
+set :environment, :production
 
 use Rack::Cache,
   :verbose => true,
