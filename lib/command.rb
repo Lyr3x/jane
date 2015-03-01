@@ -1,5 +1,12 @@
+jane_lib_path =
+  File.expand_path(
+    File.join(
+      File.dirname(__FILE__), '..', 'lib', 'jane'
+    )
+  )
+
 require "net/http"
-require "./jane"
+require jane_lib_path
 
 module Command
   def self.run(command)
