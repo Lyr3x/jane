@@ -15,7 +15,7 @@ use Rack::Cache,
   :verbose => true,
     :metastore   => 'file:public/cache/meta',
     :entitystore => 'file:public/cache/body',
-    :default_ttl => 604 800
+    :default_ttl => 604800
 
 helpers do
   def render_button(btn_desc)
