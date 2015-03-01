@@ -6,7 +6,7 @@ config_path =
   File.expand_path(
     File.join(
      File.dirname(__FILE__),
-       '..', 'config', 'reboot.json'
+       '..', 'config', 'ssh.json'
     )
   )
 
