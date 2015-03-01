@@ -10,7 +10,7 @@ config_path =
     )
   )
 
-config = JSON.parse(config_path, symbolize_names: true)
+config = JSON.parse(File.read(config_path), symbolize_names: true)
 
 HOST = config[:name]
 USER = config[:user]
