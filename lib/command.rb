@@ -11,19 +11,22 @@ require jane_lib_path
 module Command
   def self.run(command)
     type = command[:type]
-    parameter = command[:command_parameter]
-    device = parameter[:receiving_device]
-    task = parameter[:task]
-    powerpi_ip = Jane.config[:powerpi_server]
-    sleep_time = command[:sleep_after_command]
-    addon_name = command[:name]
 
     if type == 'addon'
-      addon(addon_name, sleep_time)
+      addon(command[:name],
+            command[:sleep_after_command]
+            )
     elsif type == 'powerpi'
-      powerpi(device, task, sleep_time, powerpi_ip)
+      powerpi(command[:command_parameter][:receiving_device],
+              command[:command_parameter][:task],
+              command[:sleep_after_command],
+              Jane.config[:powerpi_server]
+              )
     elsif type == 'irsend'
-      irsend(device, task, sleep_time)
+      irsend(command[:command_parameter][:receiving_device],
+             command[:command_parameter][:task],
+             command[:sleep_after_command]
+             )
     end
   end
 
