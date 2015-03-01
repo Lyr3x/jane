@@ -52,20 +52,7 @@ config[:categories].each do |category|
     route = "/#{button[:fn_args].join('/')}"
     send(:get, route) do
       button[:commands].each do |command|
-        if command[:type] == "powerpi"
-          Command.powerpi command[:command_parameter][:receiving_device], 
-                          command[:command_parameter][:task],
-                          command[:sleep_after_command],
-                          powerpi_server
-        end
-        if command[:type] == "irsend"
-          Command.irsend command[:command_parameter][:receiving_device], 
-                          command[:command_parameter][:task],
-                          command[:sleep_after_command]
-        end
-        if command[:type] == "addon"
-          Command.addon command[:name], command[:sleep_after_command]
-        end
+        Command.run(command)
       end
     end
   end
