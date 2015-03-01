@@ -1,10 +1,20 @@
 require 'rubygems'
 require 'net/ssh'
+require 'json'
 
-# INITIALIZE CONSTANTS HERE
-HOST = '192.168.2.85'
-USER = 'xbmc'
-PASSWORD = 'xbmc'
+config_path = 
+  File.expand_path(
+    File.join(
+     File.dirname(__FILE__),
+       '..', 'config', 'reboot.json'
+    )
+  )
+
+config = JSON.parse(config_path, symbolize_names: true)
+
+HOST = config[:name]
+USER = config[:user]
+PASSWORD = config[:password]
 
 commands = [
   "sudo /sbin/reboot"
