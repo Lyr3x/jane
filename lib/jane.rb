@@ -1,5 +1,5 @@
 # Jane
-require "JSON"
+require "json"
 
 module Jane
   
