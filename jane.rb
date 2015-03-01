@@ -9,12 +9,14 @@ require './lib/jane'
 require './lib/command'
 
 # listen to 0.0.0.0 instead of localhost
+set :environment, :production
 set :bind, '0.0.0.0'
 
 use Rack::Cache,
   :verbose => true,
     :metastore   => 'file:public/cache/meta',
-    :entitystore => 'file:public/cache/body'
+    :entitystore => 'file:public/cache/body',
+    :default_ttl => 604800
 
 helpers do
   def render_button(btn_desc)
