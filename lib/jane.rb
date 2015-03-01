@@ -1,4 +1,6 @@
 # Jane
+require "JSON"
+
 module Jane
   
   def self.path
