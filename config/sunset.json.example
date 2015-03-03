@@ -1,0 +1,6 @@
+{
+  // Get cityID from openweathermap.org
+  "cityID" : 2946447,
+  // jane looks in the config for a button with this name => must be unique
+  "light_button_name" : "light"
+}
