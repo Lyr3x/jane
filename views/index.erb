@@ -29,7 +29,7 @@
             <div class="col-xs-10 col-md-4 col-sm-6 col-xs-offset-1 col-md-offset-0 col-sm-offset-0">  
                 <div class="row">
                     <div class="container">
-                        <% $i=0 %>
+                        <% @i=0 %>
                         <% Jane.config[:categories].each do |category, category_parts| %>
                             <%= render_category(category)%>
                         <% end %>

@@ -39,12 +39,12 @@ helpers do
     end
     html_renderd_category += "</div></div>"
     
-    $i += 1
-    if $i%2==0
+    @i += 1
+    if @i%2==0
       html_renderd_category += "<div class=\"clearfix visible-sm-block visible-md-block\"></div>" 
     end
 
-    if $i%3==0
+    if @i%3==0
       html_renderd_category += "<div class=\"clearfix visible-lg-block\"></div>" 
     end
     return html_renderd_category
