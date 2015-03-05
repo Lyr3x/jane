@@ -31,7 +31,7 @@ helpers do
 
   def render_category(category_hash)
     html_renderd_category =
-    "<div class='col-md-4 col-sm-6'><h3><span class=\"glyphicon glyphicon-#{category_hash[:icon]}\"></span>  #{category_hash[:title]}</h3>
+    "<div class=\"col-md-4 col-sm-6\"><h3><span class=\"glyphicon glyphicon-#{category_hash[:icon]}\"></span>  #{category_hash[:title]}</h3>
     <div class=\"well\">\n"
 
     category_hash[:buttons].each do |button|
@@ -40,12 +40,12 @@ helpers do
     html_renderd_category += "</div></div>"
     
     $i += 1
-    if $i%2==0 then
-      html_renderd_category += "<div class='clearfix visible-sm-block visible-md-block'></div>" 
+    if $i%2==0
+      html_renderd_category += "<div class=\"clearfix visible-sm-block visible-md-block\"></div>" 
     end
 
-    if $i%3==0 then
-      html_renderd_category += "<div class='clearfix visible-lg-block'></div>" 
+    if $i%3==0
+      html_renderd_category += "<div class=\"clearfix visible-lg-block\"></div>" 
     end
     return html_renderd_category
   end
