@@ -28,7 +28,7 @@ helpers do
     content = "#{icon_tag} #{btn_desc[:name]}"
     "<button #{button_options.map { |k, v| "#{k}=\"#{v}\"" }.join(' ')}>#{content}</button>"
   end
-
+  
   def render_category(category_hash)
     html_renderd_category =
     "<div class='col-md-4 col-sm-6'><h3><span class=\"glyphicon glyphicon-#{category_hash[:icon]}\"></span>  #{category_hash[:title]}</h3>
@@ -37,8 +37,14 @@ helpers do
     category_hash[:buttons].each do |button|
       html_renderd_category += render_button(button)
     end
-    html_renderd_category += '</div></div>'
-    # return html_renderd_category
+    html_renderd_category += "</div></div>"
+    
+    $i += 1
+    if $i%2==0 then
+      html_renderd_category += "<div class='clearfix visible-sm-block'></div>" 
+      puts $i
+    end
+    return html_renderd_category
   end
 end
 
