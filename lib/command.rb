@@ -28,6 +28,7 @@ module Command
              command[:sleep_after_command]
              )
     end
+
   end
 
   def self.powerpi(device, task, sleep_time, powerpi_ip)
@@ -36,11 +37,13 @@ module Command
     end
     Net::HTTP.get(URI("http://#{powerpi_ip}/lib/powerpi.php?action=setsocket&socket=#{device}&status=#{task}"))
     sleep(sleep_time.to_i)
+        return "test"
   end
 
   def self.irsend(device, task, sleep_time)
     system "irsend SEND_ONCE #{device} #{task}"
     sleep(sleep_time.to_i)
+        return "test"
   end
 
   def self.addon(addon_name, sleep_time)
@@ -51,5 +54,6 @@ module Command
                   )
     load addon_path
     sleep(sleep_time.to_i)
+        return "test"
   end
 end
