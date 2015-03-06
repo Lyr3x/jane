@@ -65,6 +65,7 @@ config[:categories].each do |category|
       button[:commands].each do |command|
         Command.run(command)
       end
+      return "#{button[:fn_args].join(' ')} executed"
     end
   end
 end
