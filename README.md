@@ -3,13 +3,18 @@
 Jane is released in Version 1.1 - Black Widow
 
 ##What is Jane?
-- A system to control home devices e.g.: AVR, TV or other IR devices
+- A system to control home devices e.g.: AVR, TV or other IR devices and computers via SSH
 - Jane uses Tasker with AutoVoice to control the system with your voice
 
 ##What is working?
 - Infrared control code receiving
 - Sending single infrared codes via Tasker using AutoVoice
 - Sinatra Webserver
+- Remote Control Outlets
+
+###Addons
+- SSH connection + command execution
+- SunSet
 
 ##Requirements
 - Raspberry PI + raspbian
@@ -33,7 +38,9 @@ Jane is released in Version 1.1 - Black Widow
 - **Add the following lines:**
 - ```lircv_dev```
 - ```lirc_rpi gpio_in_pin=22 gpio_out_pin=23```
-
+### With Kernel >= 3.18
+** Add the following line into /boot/config.txt **
+- ```dtoverlay=lirc-rpi,gpio_in_pin=22,gpio_out_pin=23 ```
 ###LIRC configuration
 - ```$ cd /etc/lirc/```
 - ```$ sudo vim hardware.conf```
@@ -66,11 +73,14 @@ Save and quit the file and execute the following
 - example: ```$ irsend SEND_ONCE TV KEY_POWER```
 
 ### Android App
+! No active development for now !
 The Android app is located in a seperate repostiroy:
-- [Jane-app](https://github.com/Lyr3x/Jarvis-app)
+- [Jane-app](https://github.com/Lyr3x/Jane-app)
 - 
 ### Coming Features
-- Remote control outlet integration
+- HomeCheck (addon)
+- new Material Design WebUI
+- Temperaturesensor with light feedback
 
 
 ## License
