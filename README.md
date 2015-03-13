@@ -39,10 +39,11 @@ Jane is released in Version 1.1 - Black Widow
 - ```lircv_dev```
 - ```lirc_rpi gpio_in_pin=22 gpio_out_pin=23```
 
-###With Kernel >= 3.18
-- ** Add the following line into /boot/config.txt **
-- ```dtoverlay=lirc-rpi,gpio_in_pin=22,gpio_out_pin=23 ```
-###LIRC configuration
+### With Kernel >= 3.18
+**Add the following line into /boot/config.txt:**
+- ```dtoverlay=lirc-rpi,gpio_in_pin=22,gpio_out_pin=23```
+
+### LIRC configuration 
 - ```$ cd /etc/lirc/```
 - ```$ sudo vim hardware.conf```
 Enter/comment the following line: 
