@@ -42,6 +42,7 @@ Jane is released in Version 1.1 - Black Widow
 ### With Kernel >= 3.18
 **Add the following line into /boot/config.txt:**
 - ```dtoverlay=lirc-rpi,gpio_in_pin=22,gpio_out_pin=23```
+- After this reboot the Pi
 
 ### LIRC configuration 
 - ```$ cd /etc/lirc/```
