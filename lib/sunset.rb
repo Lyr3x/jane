@@ -1,20 +1,20 @@
 # sunset
-jane_lib_path =
+jane_lib =
   File.expand_path(
     File.join(
-      File.dirname(__FILE__), '..', 'lib', 'jane'
+      ENV['JANE_PATH'], 'lib', 'jane'
     )
   )
 
 command =
   File.expand_path(
     File.join(
-      File.dirname(__FILE__), '..', 'lib', 'command'
+      ENV['JANE_PATH'], 'lib', 'command'
     )
   )
 
 require "json"
-require jane_lib_path
+require jane_lib
 require command
 require "net/http"
 
@@ -22,8 +22,7 @@ module Sunset
   def self.config_file
     File.expand_path(
       File.join(
-        File.dirname(__FILE__),
-        '..', 'config', 'sunset.json'
+        ENV['JANE_PATH'], 'config', 'sunset.json'
       )
     )
   end

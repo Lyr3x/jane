@@ -5,8 +5,22 @@ require 'net/http'
 require 'rake'
 require 'rack/cache'
 
-require './lib/jane'
-require './lib/command'
+jane_lib =
+  File.expand_path(
+    File.join(
+      ENV['JANE_PATH'], 'lib', 'jane'
+    )
+  )
+
+command =
+  File.expand_path(
+    File.join(
+      ENV['JANE_PATH'], 'lib', 'command'
+    )
+  )
+
+require jane_lib
+require command
 
 # listen to 0.0.0.0 instead of localhost
 set :bind, '0.0.0.0'
