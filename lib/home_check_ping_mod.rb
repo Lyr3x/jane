@@ -4,8 +4,7 @@ module HomeCheckPingMod
   def self.config_file
     File.expand_path(
       File.join(
-        File.dirname(__FILE__),
-        '..', 'config', 'home_check_ping.json'
+        ENV['JANE_PATH'], 'config', 'home_check_ping.json'
       )
     )
   end
