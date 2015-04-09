@@ -70,19 +70,26 @@ get '/' do
   erb :index
 end
 
-config = Jane.config
-powerpi_server = config[:powerpi_server]
-config[:categories].each do |category|
-  category[:buttons].each do |button|
-    route = "/#{button[:fn_args].join('/')}"
-    send(:get, route) do
-      button[:commands].each do |command|
-        Command.run(command)
-      end
-      return "#{button[:fn_args].join(' ')} executed"
-    end
-  end
+get '/v1' do
+  device = params[:device]
+  action = params[:action]
+  Commander.execute(device, action)
+  return "done"
 end
+
+# config = Jane.config
+# powerpi_server = config[:powerpi_server]
+# config[:categories].each do |category|
+#   category[:buttons].each do |button|
+#     route = "/#{button[:fn_args].join('/')}"
+#     send(:get, route) do
+#       button[:commands].each do |command|
+#         Command.run(command)
+#       end
+#       return "#{button[:fn_args].join(' ')} executed"
+#     end
+#   end
+# end
 
 # sunset inital cron entry
 `rake update_cron`

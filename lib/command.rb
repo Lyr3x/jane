@@ -1,59 +1,30 @@
 jane_lib_path =
   File.expand_path(
     File.join(
-      File.dirname(__FILE__), '..', 'lib', 'jane'
+      ENV['JANE_PATH'], 'lib', 'jane'
     )
   )
 
-require "net/http"
 require jane_lib_path
 
-module Command
-  def self.run(command)
-    type = command[:type]
+module Commander
 
-    if type == 'addon'
-      addon(command[:name],
-            command[:sleep_after_command]
-            )
-    elsif type == 'powerpi'
-      powerpi(command[:command_parameter][:receiving_device],
-              command[:command_parameter][:task],
-              command[:sleep_after_command],
-              Jane.config[:powerpi_server]
-              )
-    elsif type == 'irsend'
-      irsend(command[:command_parameter][:receiving_device],
-             command[:command_parameter][:task],
-             command[:sleep_after_command]
-             )
+  def self.execute(device, action)
+    addons_path = File.expand_path(File.join(ENV['JANE_PATH'], 'addons'))
+    config = Jane.config
+    config.each do |button|
+      if button[:device] == device and button[:action] == action
+        button[:commands].each do |command|
+          addon = File.join(addons_path, command[:addon])
+          require addon
+          addon = addon.split('/')[-1]
+          addon = addon.capitalize!
+          mod = Object.const_get(addon)
+          mod.run(command[:command_parameter])
+          sleep(command[:sleep_after_command])
+        end
+      end
     end
-
   end
 
-  def self.powerpi(device, task, sleep_time, powerpi_ip)
-    if task == "on"
-      task = 1
-    end
-    Net::HTTP.get(URI("http://#{powerpi_ip}/lib/powerpi.php?action=setsocket&socket=#{device}&status=#{task}"))
-    sleep(sleep_time.to_i)
-        return "test"
-  end
-
-  def self.irsend(device, task, sleep_time)
-    system "irsend SEND_ONCE #{device} #{task}"
-    sleep(sleep_time.to_i)
-        return "test"
-  end
-
-  def self.addon(addon_name, sleep_time)
-    addon_path =  File.expand_path(
-                    File.join(
-                      File.dirname(__FILE__), '..', "addons", "#{addon_name}"
-                    )
-                  )
-    load addon_path
-    sleep(sleep_time.to_i)
-        return "test"
-  end
 end
