@@ -77,19 +77,5 @@ get '/v1' do
   return "done"
 end
 
-# config = Jane.config
-# powerpi_server = config[:powerpi_server]
-# config[:categories].each do |category|
-#   category[:buttons].each do |button|
-#     route = "/#{button[:fn_args].join('/')}"
-#     send(:get, route) do
-#       button[:commands].each do |command|
-#         Command.run(command)
-#       end
-#       return "#{button[:fn_args].join(' ')} executed"
-#     end
-#   end
-# end
-
 # sunset inital cron entry
 `rake update_cron`
