@@ -1,13 +1,20 @@
-home_check_ping_lib_path = 
-  File.expand_path(
-    File.join(
-      File.dirname(__FILE__), '..', 'lib', 'home_check_ping_mod'
-    )
-  )
-require home_check_ping_lib_path
+require "json"
 
-class HomeCheckPing
-  
+module HomeCheckPing
+  def run()
+    config = JSON.parse(
+              File.read(File.expand_path(ENV['JANE_PATH'], 'config', 'ping.json')),
+              symbolize_names: true
+            )
+    threads = []
+    one_server_up = false
+    config[:hosts].each do |target|
+      threads << Thread.new{ping target, config[:ping_count].to_i}
+    end
+    threads.each { |th| th.join }
+    return one_server_up
+  end
+
   def initialize 
     @config = HomeCheckPingMod.config
     @server = @config[:hosts]
@@ -20,15 +27,5 @@ class HomeCheckPing
     if ($?.exitstatus == 0)
       @one_server_up = true
     end
-  end
-
-  def reachable
-    threads = []
-    @server.each do |target|
-      threads << Thread.new{ping target, @ping_count}
-    end
-    threads.each { |th| th.join }
-
-    return @one_server_up
   end
 end
