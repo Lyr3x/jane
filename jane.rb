@@ -15,7 +15,7 @@ jane_lib =
 command =
   File.expand_path(
     File.join(
-      ENV['JANE_PATH'], 'lib', 'command'
+      ENV['JANE_PATH'], 'lib', 'commander'
     )
   )
 
