@@ -1,5 +1,12 @@
+jane_lib =
+  File.expand_path(
+    File.join(
+      ENV['JANE_PATH'], 'lib', 'jane'
+    )
+  )
+
 require "rubygems"
-require "./lib/jane"
+require jane_lib
 
 #task default: %w[update_cron]
 
