@@ -3,7 +3,7 @@ require "rubygems"
 #task default: %w[update_cron]
 
 task :light_on do
-  system 'ruby', File.join(ENV['JANE_PATH'], "addons", "sunset.rb")
+  system 'ruby', '-r', File.join(ENV['JANE_PATH'], "addons", "sunset.rb"), '-e', "Sunset.run ''"
 end
 
 task :update_cron do

@@ -9,10 +9,6 @@ require "json"
 require "net/http"
 require ping
 
-if __FILE__ == $0
-  run
-end
-
 module Sunset
   def self.config_file
     File.expand_path(
@@ -34,8 +30,8 @@ module Sunset
     return sunset_time
   end
 
-  def self.run
-    if Ping.run
+  def self.run(command_parameters)
+    if Ping.run(nil)
       config[:lights].each do |light|
         uri = URI("http://localhost:4567/v1?device=#{light[:device]}&action=#{light[:action]}")
         Net::HTTP.get(uri)
