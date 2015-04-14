@@ -64,7 +64,7 @@ helpers do
     html_device =
     "<div class=\"col-md-4 col-sm-6\"><h3>#{device_name}</h3><div class=\"well\">\n"
     # <span class=\"glyphicon glyphicon-#{category_hash[:icon]}\"></span>  
-
+    
     buttons.each do |button|
       html_device += render_button(button)
     end
