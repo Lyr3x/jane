@@ -9,6 +9,10 @@ require "json"
 require "net/http"
 require ping
 
+if __FILE__ == $0
+  run
+end
+
 module Sunset
   def self.config_file
     File.expand_path(

@@ -1,21 +1,21 @@
-home_check_ping_path = 
+ping =
   File.expand_path(
     File.join(
-      File.dirname(__FILE__), 'home_check_ping'
+      ENV['JANE_PATH'], 'addons', 'ping'
     )
   )
 
-sunset = 
+sunset =
   File.expand_path(
     File.join(
-      File.dirname(__FILE__), '..', 'lib', 'sunset'
+      ENV['JANE_PATH'], 'addons', 'sunset'
     )
   )
 
 require "net/http"
-require home_check_ping_path
+require ping
 require sunset
 
-if HomeCheckPing.new.reachable
-  Sunset.light_on
+if Ping.run
+  Sunset.run
 end
