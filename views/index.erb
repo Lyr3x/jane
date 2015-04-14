@@ -42,8 +42,6 @@
     <!-- call jane functions in background on button click -->
     <script>
     function jane(device_in, action_in){
-        // var call = "v1?device=" + device + "&action=" + action;
-        // $.get(call)
         $.get("v1", { device : device_in, action : action_in});
     }
     </script>
