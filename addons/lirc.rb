@@ -1,0 +1,4 @@
+#lirc
+
+module Lirc
+end
