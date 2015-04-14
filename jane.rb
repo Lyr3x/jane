@@ -33,13 +33,13 @@ set :environment, :production
 #     :default_ttl => 604800
 
 helpers do
-  def render_button(btn_desc)
+  def render_button(button)
     button_options = {
-      class: "btn #{btn_desc[:btn_class]} btn-lg btn-block",
-      onclick: "jane(#{btn_desc[:fn_args].map { |arg| "'#{arg}'" }.join(',')})"
+      class: "btn #{button[:btn_class]} btn-lg btn-block",
+      onclick: "jane('#{button[:device]}', '#{button[:action]}')"
     }
-    icon_tag = "<span class=\"glyphicon glyphicon-#{btn_desc[:icon]}\"></span>"
-    content = "#{icon_tag} #{btn_desc[:name]}"
+    icon_tag = "<span class=\"glyphicon glyphicon-#{button[:icon]}\"></span>"
+    content = "#{icon_tag} #{button[:label]}"
     "<button #{button_options.map { |k, v| "#{k}=\"#{v}\"" }.join(' ')}>#{content}</button>"
   end
 

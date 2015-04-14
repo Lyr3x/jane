@@ -30,8 +30,8 @@
                 <div class="row">
                     <div class="container">
                         <% @i=0 %>
-                        <% Jane.config[:categories].each do |category, category_parts| %>
-                            <%= render_category(category)%>
+                        <% Jane.config.each do |button| %>
+                            <%= render_button(button)%>
                         <% end %>
                     </div>
                 </div>
@@ -41,12 +41,10 @@
     
     <!-- call jane functions in background on button click -->
     <script>
-    function jane(device, func, param){
-        var call = device + "/" + func;
-        if (param){
-            call += "/" + param
-        }
-        $.get(call);
+    function jane(device_in, action_in){
+        // var call = "v1?device=" + device + "&action=" + action;
+        // $.get(call)
+        $.get("v1", { device : device_in, action : action_in});
     }
     </script>
 
