@@ -5,7 +5,7 @@ module TvPower
     powerstatus = `/opt/vc/bin/tvservice -s`
     powerstatus = powerstatus.split[1]
     p powerstatus
-    powerstatus = powerstatus[-1]
+    powerstatus = powerstatus[-1].to_i
     p powerstatus
     if powerstatus == 1
       return true
