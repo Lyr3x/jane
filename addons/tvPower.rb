@@ -11,6 +11,7 @@ module TvPower
       return true
     else
       return false
+    end
     # if tv is on: state 0x40001 [NTSC 4:3], 720x480 @ 60.00Hz, interlaced
     # if tv is off: state 0x40002 [NTSC 4:3], 720x480 @ 60.00Hz, interlaced
     # parse returned value to standby (true/false)
