@@ -15,8 +15,6 @@ module Tvpower
     lirc_command = {device: "tv", task: "KEY_POWER"}
     if (powerstatus == 2 and command_parameter[:task] == "off") or \
        (powerstatus == 1 and command_parameter[:task] == "on")
-       p powerstatus
-       p command_parameter[:task]
        Lirc.run(lirc_command)
     end
     # if tv is on: state 0x40002 [NTSC 4:3], 720x480 @ 60.00Hz, interlaced
