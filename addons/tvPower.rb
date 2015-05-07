@@ -1,4 +1,4 @@
-# tvPower
+# tvpower
 lirc = File.expand_path(
         File.join(
           ENV['JANE_PATH'], 'addons', 'lirc'
@@ -6,7 +6,7 @@ lirc = File.expand_path(
        )
 require lirc
 
-module TvPower
+module Tvpower
   def self.run(command_parameter)
     # get powerstatus from tvservice
     powerstatus = `/opt/vc/bin/tvservice -s`
