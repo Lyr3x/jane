@@ -1,74 +1,32 @@
-{
-  "addons_enabled":
-    [
-    "ping",
-    "sunset",
-    "reboot"
-    ]
-,
-"powerpi_server" : "0.0.0.0",
-"categories" : 
-  [
-    {
-      "title": "actions",
-      "icon": "star",
-      "buttons":[
-        {
-          "name": "light",
-          "icon": "off",
-          "btn_class": "btn-info",
-          "fn_args": [
-            "action",
-            "boot"
-          ],
-          "commands": [
-            {
-              "type" : "powerpi",
-              "sleep_after_command" : 2,
-              "command_parameter":
-                {
-                  "receiving_device": "tablelamp",
-                  "task": "on"
-                }
-            },
-            {
-              "type" : "powerpi",
-              "sleep_after_command" : 0,
-              "command_parameter":
-                {
-                  "receiving_device": "tablelamp",
-                  "task": "off"
-                }
-            }
-          ]
-        },
-        {
-          "name": "button2",
-          "icon": "off",
-          "btn_class": "btn-info",
-          "fn_args": [
-            "action",
-            "button2"
-          ],
-          "commands": [
-            {
-              "type" : "irsend",
-              "sleep_after_command" : 2,
-              "command_parameter":
-                {
-                  "receiving_device": "tv",
-                  "task": "KEY_POWER"
-                }
-            },
-            {
-              "type" : "addon",
-              "sleep_after_command" : 2,
-              "name": "your_addon.rb"
-            }
-          ]
-        }
-      ]
-    }
-  ]
+[
+ { "label": "light-on",
+   "icon": "on",
+   "btn_class": "btn-info",
+   "device" : "lampe",
+   "action" : "on",
+   "commands": [
+     { "addon" : "radio",
+       "sleep_after_command" : 0,
+       "command_parameter":
+         { "device": "lamp",
+           "task": "on"
+         }
+     }
+   ]
+ },
+ { "label": "light-off",
+   "icon": "off",
+   "btn_class": "btn-info",
+   "device" : "lampe",
+   "action" : "off",
+   "commands": [
+     { "addon" : "lamp",
+       "sleep_after_command" : 0,
+       "command_parameter":
+         { "device": "lamp",
+           "task": "off"
+         }
+     }
+   ]
  }
-
+]
