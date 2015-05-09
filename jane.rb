@@ -26,11 +26,11 @@ require command
 set :bind, '0.0.0.0'
 set :environment, :production
 
-# use Rack::Cache,
-#   :verbose => true,
-#     :metastore   => 'file:public/cache/meta',
-#     :entitystore => 'file:public/cache/body',
-#     :default_ttl => 604800
+use Rack::Cache,
+  :verbose => true,
+    :metastore   => 'file:public/cache/meta',
+    :entitystore => 'file:public/cache/body',
+    :default_ttl => 604800
 
 helpers do
   def render_ui(config)
@@ -92,6 +92,7 @@ get '/' do
 end
 
 get '/v1' do
+  expires 1, :public, :must_revalidate
   device = params[:device]
   action = params[:action]
   Commander.execute(device, action)
