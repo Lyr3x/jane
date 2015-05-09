@@ -1,22 +1,13 @@
 # sunset
-jane_lib =
-  File.expand_path(
-    File.join(
-      ENV['JANE_PATH'], 'lib', 'jane'
-    )
-  )
-
-command =
-  File.expand_path(
-    File.join(
-      ENV['JANE_PATH'], 'lib', 'command'
-    )
-  )
+ping = File.expand_path(
+        File.join(
+          ENV['JANE_PATH'], 'addons', 'ping'
+        )
+       )
 
 require "json"
-require jane_lib
-require command
 require "net/http"
+require ping
 
 module Sunset
   def self.config_file
@@ -39,15 +30,11 @@ module Sunset
     return sunset_time
   end
 
-  def self.light_on
-    jane_config = Jane.config
-    jane_config[:categories].each do |category|
-      category[:buttons].each do |button|
-        if button[:name] == config[:light_button_name]
-          button[:commands].each do |command|
-            Command.run(command)
-          end
-        end
+  def self.run(command_parameters)
+    if Ping.run(nil)
+      config[:lights].each do |light|
+        uri = URI("http://localhost:4567/v1?device=#{light[:device]}&action=#{light[:action]}")
+        Net::HTTP.get(uri)
       end
     end
   end
