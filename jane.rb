@@ -95,7 +95,6 @@ get '/v1' do
   device = params[:device]
   action = params[:action]
   Commander.execute(device, action)
-  return "done"
 end
 
 # sunset inital cron entry
