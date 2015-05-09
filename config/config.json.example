@@ -1,6 +1,6 @@
 [
  { "label": "light-on",
-   "icon": "on",
+   "icon": "off",
    "btn_class": "btn-info",
    "generate_button": true,
    "device" : "lampe",

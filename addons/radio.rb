@@ -21,11 +21,9 @@ module Radio
     config = get_config
     config.each do |remote|
       remote[:devices].each do |device, code|
-        puts "device: #{device}"
-        puts "input: #{command_parameter[:receiving_device]}"
-        if device.to_s == command_parameter[:receiving_device]
+        if device.to_s == command_parameter[:device]
           system "#{radiosend} #{remote[:systemcode]} #{code_hash[code]} #{on_off_hash[command_parameter[:task]]}"
-          puts "#{radiosend} #{remote[:systemcode]} #{code_hash[code]} #{on_off_hash[command_parameter[:task]]}"
+          # puts "#{radiosend} #{remote[:systemcode]} #{code_hash[code]} #{on_off_hash[command_parameter[:task]]}"
         end
       end
     end
