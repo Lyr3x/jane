@@ -23,7 +23,7 @@ module Radio
       remote[:devices].each do |device, code|
         if device.to_s == command_parameter[:receiving_device]
           system "#{radiosend} #{remote[:systemcode]} #{code_hash[code]} #{on_off_hash[command_parameter[:task]]}"
-          # puts "#{radiosend} #{remote[:systemcode]} #{code_hash[code]} #{on_off_hash[command_parameter[:task]]}"
+          puts "#{radiosend} #{remote[:systemcode]} #{code_hash[code]} #{on_off_hash[command_parameter[:task]]}"
         else
         end
       end
