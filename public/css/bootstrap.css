@@ -6204,10 +6204,10 @@ button.close {
 
 .logo {
   font-family: 'Lobster', cursive;
-  font-size: 128px;
+  font-size: 64px;
   text-align: center;
   color: #b7293a;
-  text-shadow: 4px 4px 0 #513a33;
+  text-shadow: 2px 2px 0 #513a33;
 }
 
 
