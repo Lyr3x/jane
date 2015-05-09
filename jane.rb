@@ -38,11 +38,15 @@ helpers do
     sorted_by_device = {}
     # fill hash with device keys and empty arrays
     config.each do |button|
-      sorted_by_device[button[:device]] = []
+      if button[:generate_button]
+        sorted_by_device[button[:device]] = []
+      end
     end
     # write buttons based on device in array at key_device
     config.each do |button|
-      sorted_by_device[button[:device]] << button
+      if button[:generate_button]
+        sorted_by_device[button[:device]] << button
+      end
     end
     sorted_by_device.each do |device_name, buttons|
       ui << render_device(device_name, buttons)
