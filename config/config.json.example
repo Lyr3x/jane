@@ -14,17 +14,24 @@
      }
    ]
  },
- { "label": "light-off",
+ { "label": "avr power",
    "icon": "off",
    "btn_class": "btn-info",
-   "device" : "lampe",
-   "action" : "off",
+   "device" : "avr",
+   "action" : "power",
    "commands": [
-     { "addon" : "lamp",
+     { "addon" : "lirc",
+       "sleep_after_command" : 5,
+       "command_parameter":
+         { "device": "avr",
+           "task": "KEY_POWER"
+         }
+     },
+     { "addon" : "lirc",
        "sleep_after_command" : 0,
        "command_parameter":
-         { "device": "lamp",
-           "task": "off"
+         { "device": "avr",
+           "task": "KEY_1"
          }
      }
    ]
