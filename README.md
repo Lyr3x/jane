@@ -42,7 +42,12 @@ The current Master version is outdated! A lot of system changes are done at the 
 - ```lircv_dev```
 - ```lirc_rpi gpio_in_pin=22 gpio_out_pin=23```
 
-###LIRC configuration
+### With Kernel >= 3.18
+**Add the following line into /boot/config.txt:**
+- ```dtoverlay=lirc-rpi,gpio_in_pin=22,gpio_out_pin=23```
+- After this reboot the Pi
+
+### LIRC configuration 
 - ```$ cd /etc/lirc/```
 - ```$ sudo vim hardware.conf```
 Enter/comment the following line: 

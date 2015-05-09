@@ -5,12 +5,27 @@ require 'net/http'
 require 'rake'
 require 'rack/cache'
 
-require './lib/jane'
-require './lib/command'
+jane_lib =
+  File.expand_path(
+    File.join(
+      ENV['JANE_PATH'], 'lib', 'jane'
+    )
+  )
+
+command =
+  File.expand_path(
+    File.join(
+      ENV['JANE_PATH'], 'lib', 'commander'
+    )
+  )
+
+require jane_lib
+require command
 
 # listen to 0.0.0.0 instead of localhost
 set :environment, :production
 set :bind, '0.0.0.0'
+set :environment, :production
 
 use Rack::Cache,
   :verbose => true,
@@ -19,26 +34,56 @@ use Rack::Cache,
     :default_ttl => 604800
 
 helpers do
-  def render_button(btn_desc)
+  def render_ui(config)
+    ui = ""
+    sorted_by_device = {}
+    # fill hash with device keys and empty arrays
+    config.each do |button|
+      if button[:generate_button]
+        sorted_by_device[button[:device]] = []
+      end
+    end
+    # write buttons based on device in array at key_device
+    config.each do |button|
+      if button[:generate_button]
+        sorted_by_device[button[:device]] << button
+      end
+    end
+    sorted_by_device.each do |device_name, buttons|
+      ui << render_device(device_name, buttons)
+    end
+    return ui
+  end
+
+  def render_button(button)
     button_options = {
-      class: "btn #{btn_desc[:btn_class]} btn-lg btn-block",
-      onclick: "jane(#{btn_desc[:fn_args].map { |arg| "'#{arg}'" }.join(',')})"
+      class: "btn #{button[:btn_class]} btn-lg btn-block",
+      onclick: "jane('#{button[:device]}', '#{button[:action]}')"
     }
-    icon_tag = "<span class=\"glyphicon glyphicon-#{btn_desc[:icon]}\"></span>"
-    content = "#{icon_tag} #{btn_desc[:name]}"
+    icon_tag = "<span class=\"glyphicon glyphicon-#{button[:icon]}\"></span>"
+    content = "#{icon_tag} #{button[:label]}"
     "<button #{button_options.map { |k, v| "#{k}=\"#{v}\"" }.join(' ')}>#{content}</button>"
   end
 
-  def render_category(category_hash)
-    html_renderd_category =
-    "<h3><span class=\"glyphicon glyphicon-#{category_hash[:icon]}\"></span>  #{category_hash[:title]}</h3>
-    <div class=\"well\">\n"
-
-    category_hash[:buttons].each do |button|
-      html_renderd_category += render_button(button)
+  def render_device(device_name, buttons)
+    html_device =
+    "<div class=\"col-md-4 col-sm-6\"><h3>#{device_name}</h3><div class=\"well\">\n"
+    # <span class=\"glyphicon glyphicon-#{category_hash[:icon]}\"></span>  
+    
+    buttons.each do |button|
+      html_device += render_button(button)
     end
-    html_renderd_category += '</div>'
-    # return html_renderd_category
+    html_device += "</div></div>"
+    
+    @i += 1
+    if @i%2==0
+      html_device += "<div class=\"clearfix visible-sm-block visible-md-block\"></div>" 
+    end
+
+    if @i%3==0
+      html_device += "<div class=\"clearfix visible-lg-block\"></div>" 
+    end
+    return html_device
   end
 end
 
@@ -47,30 +92,11 @@ get '/' do
   erb :index
 end
 
-config = Jane.config
-powerpi_server = config[:powerpi_server]
-config[:categories].each do |category|
-  category[:buttons].each do |button|
-    route = "/#{button[:fn_args].join('/')}"
-    send(:get, route) do
-      button[:commands].each do |command|
-        if command[:type] == "powerpi"
-          Command.powerpi command[:command_parameter][:receiving_device], 
-                          command[:command_parameter][:task],
-                          command[:sleep_after_command],
-                          powerpi_server
-        end
-        if command[:type] == "irsend"
-          Command.irsend command[:command_parameter][:receiving_device], 
-                          command[:command_parameter][:task],
-                          command[:sleep_after_command]
-        end
-        if command[:type] == "addon"
-          Command.addon command[:name], command[:sleep_after_command]
-        end
-      end
-    end
-  end
+get '/v1' do
+  expires 1, :public, :must_revalidate
+  device = params[:device]
+  action = params[:action]
+  Commander.execute(device, action)
 end
 
 # sunset inital cron entry

@@ -1,19 +1,16 @@
 # Jane
+require "json"
+
 module Jane
   
   def self.path
-    File.expand_path(
-      File.join(
-        File.dirname(__FILE__), '..'
-      )
-    )
+    ENV['JANE_PATH']
   end
   
   def self.config_file
     File.expand_path(
       File.join(
-        File.dirname(__FILE__),
-        '..', 'config', 'config.json'
+        path, 'config', 'config.json'
       )
     )
   end
