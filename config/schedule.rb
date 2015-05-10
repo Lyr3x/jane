@@ -1,7 +1,7 @@
 sunset_lib_path =
   File.expand_path(
     File.join(
-      File.dirname(__FILE__), '..', 'lib', 'sunset'
+      ENV['JANE_PATH'], 'addons', 'sunset'
     )
   )
 

@@ -1,5 +1,5 @@
 GIT
-  remote: git@github.com:sinatra/sinatra.git
+  remote: https://github.com/sinatra/sinatra/
   revision: be9c18ac44214069f4709ced6da65abba9501d24
   specs:
     sinatra (1.4.5)
@@ -11,7 +11,9 @@ GEM
   remote: https://rubygems.org/
   specs:
     chronic (0.10.2)
+    json (1.8.2)
     net-ping (1.7.6)
+    net-ssh (2.9.2)
     rack (1.6.0)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -26,7 +28,9 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  json
   net-ping
+  net-ssh
   rack-cache
   rake
   sinatra!
