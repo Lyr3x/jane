@@ -22,7 +22,7 @@
       <h1>
 <a id="jane" class="anchor" href="#jane" aria-hidden="true"><span class="octicon octicon-link"></span></a>Jane</h1>
 
-<p>Jane is released in Version 1.1 - Black Widow</p>
+<p>Jane is released in Version 1.2 - Captain America</p>
 
 <h2>
 <a id="what-is-jane" class="anchor" href="#what-is-jane" aria-hidden="true"><span class="octicon octicon-link"></span></a>What is Jane?</h2>
@@ -37,9 +37,12 @@
 
 <ul>
 <li>Infrared control code receiving</li>
-<li>Sending single infrared codes via Tasker using AutoVoice</li>
-<li>Sinatra Webserver</li>
+<li>Sending commands via the WebUI, Tasker (+ AutoVoice), Android Wear</li>
+<li>Sinatra Webserver + Caching</li>
 <li>Remote Control Outlets</li>
+<li>Sending commands via SSH</li>
+<li>Sunset -&gt; automatic action at sunsettime</li>
+<li>Homecheck</li>
 </ul>
 
 <h3>
@@ -48,6 +51,7 @@
 <ul>
 <li>SSH connection + command execution</li>
 <li>SunSet</li>
+<li>HomeCheck</li>
 </ul>
 
 <h2>
@@ -62,6 +66,7 @@
 <li>1x 100 Ohm Resistor</li>
 <li>1x bipolar Transistor NPN - BC547C</li>
 <li>WiFi-stick recommended for more flexibility</li>
+<li>433 Mhz sender</li>
 </ul>
 
 <h2>
@@ -83,6 +88,16 @@
 <li><strong>Add the following lines:</strong></li>
 <li><code>lircv_dev</code></li>
 <li><code>lirc_rpi gpio_in_pin=22 gpio_out_pin=23</code></li>
+</ul>
+
+<h3>
+<a id="with-kernel--318" class="anchor" href="#with-kernel--318" aria-hidden="true"><span class="octicon octicon-link"></span></a>With Kernel &gt;= 3.18</h3>
+
+<p><strong>Add the following line into /boot/config.txt:</strong></p>
+
+<ul>
+<li><code>dtoverlay=lirc-rpi,gpio_in_pin=22,gpio_out_pin=23</code></li>
+<li>After this reboot the Pi</li>
 </ul>
 
 <h3>
@@ -137,6 +152,20 @@ Save and quit the file and execute the following</li>
 </ul>
 
 <h3>
+<a id="crontab" class="anchor" href="#crontab" aria-hidden="true"><span class="octicon octicon-link"></span></a>Crontab</h3>
+
+<pre><code>JANE_PATH=/path/to/jane/
+# m h  dom mon dow   command
+@reboot cd /home/jarvis/Jane/ &amp;&amp; nohup ruby jane.rb &amp;
+@reboot /home/jarvis/jasper/jasper.py
+@reboot gpio export 17 out
+# Begin Whenever generated tasks for: /home/jarvis/Jane/config/schedule.rb
+4 21 * * * cd /home/jarvis/Jane &amp;&amp; RAILS_ENV=production bundle exec rake light_on --silent
+
+0 1 * * * cd /home/jarvis/Jane &amp;&amp; RAILS_ENV=production bundle exec rake update_cron --silent
+</code></pre>
+
+<h3>
 <a id="android-app" class="anchor" href="#android-app" aria-hidden="true"><span class="octicon octicon-link"></span></a>Android App</h3>
 
 <p>! No active development for now !
@@ -150,9 +179,9 @@ The Android app is located in a seperate repostiroy:</p>
 <a id="coming-features" class="anchor" href="#coming-features" aria-hidden="true"><span class="octicon octicon-link"></span></a>Coming Features</h3>
 
 <ul>
-<li>HomeCheck (addon)</li>
-<li>new Material Design WebUI</li>
-<li>Temperaturesensor with light feedback</li>
+<li>new webinterface, with create config function</li>
+<li>automatic cache deletes when there are some changes</li>
+<li>Android app which uses the jane config</li>
 </ul>
 
 <h2>
