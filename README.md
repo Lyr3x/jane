@@ -1,9 +1,6 @@
 #Jane
 
-Jane is released in Version 1.1 - Black Widow
-
-## Information
-The current Master version is outdated! A lot of system changes are done at the current Development version. We recommned to wait for the next release, which will be available in the next few weeks. At the moment we are refactoring the Development Version cause of a new Setup and a new API. 
+Jane is released in Version 1.2 - Captain America
 
 ##What is Jane?
 - A system to control home devices e.g.: AVR, TV or other IR devices and computers via SSH
@@ -11,13 +8,17 @@ The current Master version is outdated! A lot of system changes are done at the 
 
 ##What is working?
 - Infrared control code receiving
-- Sending single infrared codes via Tasker using AutoVoice
-- Sinatra Webserver
+- Sending commands via the WebUI, Tasker (+ AutoVoice), Android Wear
+- Sinatra Webserver + Caching
 - Remote Control Outlets
+- Sending commands via SSH
+- Sunset -> automatic action at sunsettime
+- Homecheck
 
 ###Addons
 - SSH connection + command execution
 - SunSet
+- HomeCheck
 
 ##Requirements
 - Raspberry PI + raspbian
@@ -28,6 +29,7 @@ The current Master version is outdated! A lot of system changes are done at the 
 - 1x 100 Ohm Resistor
 - 1x bipolar Transistor NPN - BC547C
 - WiFi-stick recommended for more flexibility
+- 433 Mhz sender
 
 ##Circuit plan
 
@@ -42,7 +44,12 @@ The current Master version is outdated! A lot of system changes are done at the 
 - ```lircv_dev```
 - ```lirc_rpi gpio_in_pin=22 gpio_out_pin=23```
 
-###LIRC configuration
+### With Kernel >= 3.18
+**Add the following line into /boot/config.txt:**
+- ```dtoverlay=lirc-rpi,gpio_in_pin=22,gpio_out_pin=23```
+- After this reboot the Pi
+
+### LIRC configuration 
 - ```$ cd /etc/lirc/```
 - ```$ sudo vim hardware.conf```
 Enter/comment the following line: 
@@ -73,6 +80,18 @@ Save and quit the file and execute the following
 - To send a command execute: ```$ irsend SEND_ONCE "name of the control" "key"```
 - example: ```$ irsend SEND_ONCE TV KEY_POWER```
 
+### Crontab
+```
+JANE_PATH=/path/to/jane/
+# m h  dom mon dow   command
+@reboot cd /home/jarvis/Jane/ && nohup ruby jane.rb &
+@reboot /home/jarvis/jasper/jasper.py
+@reboot gpio export 17 out
+# Begin Whenever generated tasks for: /home/jarvis/Jane/config/schedule.rb
+4 21 * * * cd /home/jarvis/Jane && RAILS_ENV=production bundle exec rake light_on --silent
+
+0 1 * * * cd /home/jarvis/Jane && RAILS_ENV=production bundle exec rake update_cron --silent
+```
 ### Android App
 ! No active development for now !
 The Android app is located in a seperate repostiroy:
