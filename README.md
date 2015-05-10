@@ -98,9 +98,9 @@ The Android app is located in a seperate repostiroy:
 - [Jane-app](https://github.com/Lyr3x/Jane-app)
 - 
 ### Coming Features
-- HomeCheck (addon)
-- new Material Design WebUI
-- Temperaturesensor with light feedback
+- new webinterface, with create config function
+- automatic cache deletes when there are some changes
+- Android app which uses the jane config
 
 
 ## License
