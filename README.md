@@ -8,7 +8,8 @@ Jane is released in Version 1.2 - Captain America
 
 ##What is working?
 - Infrared control code receiving
-- Sending commands via the WebUI, Tasker (+ AutoVoice), Android Wear
+- Sending commands via the WebUI, Tasker (+ AutoVoice)
+- AndroidWear Voice command execution via AutoWear + AutoVoice withour root
 - Sinatra Webserver + Caching
 - Remote Control Outlets
 - Sending commands via SSH
