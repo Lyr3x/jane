@@ -2,6 +2,8 @@
 
 Jane is released in Version 1.2 - Captain America
 
+INFO: Keep in mind that the wiki is outdated. The new documentation is under development!
+
 ##What is Jane?
 - A system to control home devices e.g.: AVR, TV or other IR devices and computers via SSH
 - Jane uses Tasker with AutoVoice to control the system with your voice
