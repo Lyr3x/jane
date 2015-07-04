@@ -104,7 +104,7 @@ get '/timer' do
   device = params[:device]
   action = params[:action]
   delay = params[:delay]
-  m = /\d{1,}[smh]/.match(delay)
+  m = /(\d{1,})([smh])/.match(delay)
   puts m.to_s
   case m[-1]
   when "s"
