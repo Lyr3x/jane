@@ -104,7 +104,7 @@ get '/timer' do
   device = params[:device]
   action = params[:action]
   delay = params[:delay]
-  Thead.new do 
+  Thread.new do 
     sleep(params[:delay].to_i)
     Commander.execute(device, action)
   end
