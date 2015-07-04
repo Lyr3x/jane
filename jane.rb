@@ -119,6 +119,7 @@ get '/timer' do
     sleep(delay_in_s)
     Commander.execute(device, action)
   end
+  redirect to('/')
 end
 
 # sunset inital cron entry
