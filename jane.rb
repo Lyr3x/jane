@@ -99,5 +99,13 @@ get '/v1' do
   Commander.execute(device, action)
 end
 
+get '/timer'
+  expires 1, :public, :must_revalidate
+  device = params[:device]
+  action = params[:action]
+  delay = params[:delay]
+  thr = Thead.new{sleep(params[:delay].to_i); Commander.execute(device, action)}
+end
+
 # sunset inital cron entry
 `rake update_cron`
