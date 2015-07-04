@@ -92,7 +92,7 @@ helpers do
     renderd = '<ul class="list-group">'
     puts $scheudled_jobs
     $scheudled_jobs.each do |job|
-      renderd += "<li class=\"list-group-item\"><b>End Time</b> #{job[:end_time].strftime("%H:%M:%S")}  <b>Start Time</b> #{job[:start_time].strftime("%H:%M:%S")}  <b>Device</b> #{job[:device]}  <b>Action</b> #{job[:action]}</li>"  
+      renderd += "<li class=\"list-group-item\"><b>End Time</b> #{job[:end_time].strftime("%H:%M:%S")} </br> <b>Start Time</b> #{job[:start_time].strftime("%H:%M:%S")} </br> <b>Device</b> #{job[:device]} </br> <b>Action</b> #{job[:action]}</li>"  
     end
     renderd += '</ul>'
   end
