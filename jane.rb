@@ -107,7 +107,7 @@ get '/timer' do
   min = params[:min].to_i or 0
   hour = params[:hour].to_i or 0
   
-  delay = sec * (60*min) * (60*60*hour)
+  delay = sec + (60*min) + (60*60*hour)
   
   Thread.new do 
     sleep(delay)
