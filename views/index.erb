@@ -8,7 +8,7 @@
     <title>Jane</title>
 
     <!-- Lobster Font for Logo -->
-    <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+    <!-- <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'> -->
     <!-- Bootstrap -->
     <link href="css/bootstrap.css" rel="stylesheet">
     <!-- iOS and Android icon -->
@@ -24,7 +24,7 @@
 
   <body>
     <div class="container">
-        <h1 class="logo">Jane</h1>
+        <!-- <h1 class="logo">Jane</h1> -->
         <div class="row">
             <div class="col-xs-10 col-md-4 col-sm-6 col-xs-offset-1 col-md-offset-0 col-sm-offset-0">  
                 <div class="row">
@@ -40,30 +40,22 @@
                     <form class="form-inline" action="/timer" method="get">
                         <div class="form-group">
                             <label for="device">Device</label>
-                            <input type="text" class="form-control" name="device" placeholder="tv">
+                            <input type="text" class="form-control" name="device" placeholder="device">
                         </div>
                         <div class="form-group">
                             <label for="action">Action</label>
-                            <input type="text" class="form-control" name="action" placeholder="on">
+                            <input type="text" class="form-control" name="action" placeholder="action">
                         </div>
                         <div class="form-group">
                             <label for="delay">Delay</label>
-                            <input type="number" class="form-control" name="time" placeholder="1">
-                            <label class="radio-inline">
-                              <input type="radio" name="mod" id="sec" value="s"> s
-                            </label>
-                            <label class="radio-inline">
-                              <input type="radio" name="mod" id="min" value="m"> m
-                            </label>
-                            <label class="radio-inline">
-                              <input type="radio" name="mod" id="hou" value="h"> h
-                            </label>
+                            <input type="number" class="form-control" name="sec" placeholder="sec">
+                            <input type="number" class="form-control" name="min" placeholder="min">
+                            <input type="number" class="form-control" name="hour" placeholder="hours">
                         </div>
-                        <button type="submit" class="btn btn-default">set timer</button>
+                        <button type="submit" class="btn btn-primary">set timer</button>
                     </form>
                 </div>
     </div>
-    
     <!-- call jane functions in background on button click -->
     <script>
     function jane(device_in, action_in){

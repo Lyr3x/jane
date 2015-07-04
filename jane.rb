@@ -103,20 +103,14 @@ get '/timer' do
   expires 1, :public, :must_revalidate
   device = params[:device]
   action = params[:action]
-  time = params[:time].to_i
-  mod = params[:mod]
-  case mod
-  when "s"
-    delay_in_s = time
-  when "m"
-    delay_in_s = 60*time
-  when "h"
-    delay_in_s = 60*60*time
-  else
-    raise "#{mod} is not a valid time modifer. Use [s, m, h]"
-  end
+  sec = params[:sec].to_i or 0
+  min = params[:min].to_i or 0
+  hour = params[:hour].to_i or 0
+  
+  delay = sec * (60*min) * (60*60*hour)
+  
   Thread.new do 
-    sleep(delay_in_s)
+    sleep(delay)
     Commander.execute(device, action)
   end
   redirect to('/')
