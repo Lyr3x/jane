@@ -92,10 +92,42 @@ helpers do
     renderd = '<ul class="list-group">'
     puts $scheudled_jobs
     $scheudled_jobs.each do |job|
-      renderd += "<li class=\"list-group-item\"><b>End Time</b> #{job[:end_time].strftime("%H:%M:%S")} </br> <b>Start Time</b> #{job[:start_time].strftime("%H:%M:%S")} </br> <b>Device</b> #{job[:device]} </br> <b>Action</b> #{job[:action]}</li>"  
+      renderd += "<li class=\"list-group-item\"><b>End Time:</b> #{job[:end_time].strftime("%H:%M:%S")} </br> <b>Start Time:</b> #{job[:start_time].strftime("%H:%M:%S")} </br> <b>Device:</b> #{job[:device]} </br> <b>Action:</b> #{job[:action]}</li>"  
     end
     renderd += '</ul>'
   end
+
+  def config_parser(config)
+    device_action_hash = {}
+    config.each do |button|
+      device_action_hash[button[:device]] = []
+      device_action_hash[button[:device]] << button[:action]
+    end
+    return device_action_hash
+  end
+
+  def list_devices(config)
+    renderd = ""
+    device_action_hash = config_parser(config)
+
+    device_action_hash.keys.each do |device|
+      renderd += "<option value=\"#{device}\">#{device}</option>\n"
+    end
+    return renderd
+  end
+
+  def list_actions(config)
+    renderd = ""
+    device_action_hash = config_parser(config)
+    
+    device_action_hash.each do |device, actions|
+      actions.each do |action|
+        renderd += "<option value=\"#{action}\">#{action}</option>\n"
+      end
+    end
+    return renderd
+  end
+
 end
 
 # render index.erb

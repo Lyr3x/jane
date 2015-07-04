@@ -39,14 +39,14 @@
             <div class="col-xs-10 col-md-12 col-sm-12 col-xs-offset-1 col-md-offset-0 col-sm-offset-0">  
                 <h3>Timer</h3>
                 <form class="form-inline" action="/timer" method="get">
-                    <div class="form-group">
-                        <label for="device">Device</label>
-                        <input type="text" class="form-control" name="device" placeholder="device">
-                    </div>
-                    <div class="form-group">
-                        <label for="action">Action</label>
-                        <input type="text" class="form-control" name="action" placeholder="action">
-                    </div>
+                    <label for="device">Device</label>
+                    <select class="form-control" id="devices">
+                        <%= list_devices(Jane.config) %>
+                    </select>
+                    <label for="action">Action</label>
+                    <select class="form-control" id="actions">
+                        <%= list_actions(Jane.config) %>
+                    </select>
                     <div class="form-group">
                         <label for="delay">Delay</label>
                         <input type="number" class="form-control" name="sec" placeholder="sec">
