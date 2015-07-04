@@ -103,21 +103,17 @@ get '/timer' do
   expires 1, :public, :must_revalidate
   device = params[:device]
   action = params[:action]
-  delay = params[:delay]
-  m = /(\d{1,})([smh])/.match(delay)
-  puts m.to_s
-  case m[-1]
+  time = params[:delay]
+  mod = params[:mod]
+  case mod
   when "s"
-    puts "s " + m[-1]
-    delay_in_s = m[0].to_i
+    delay_in_s = time
   when "m"
-    puts "m " + m[-1]
-    delay_in_s = 60*(m[0].to_i)
+    delay_in_s = 60*time
   when "h"
-    puts "h " + m[-1]
-    delay_in_s = 60*60*(m[0].to_i)
+    delay_in_s = 60*60*time
   else
-    raise "#{m[-1]} is not a valid time modifer. Use [s, m, h]"
+    raise "#{mod} is not a valid time modifer. Use [s, m, h]"
   end
   Thread.new do 
     sleep(delay_in_s)
