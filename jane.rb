@@ -33,6 +33,8 @@ use Rack::Cache,
     :entitystore => 'file:public/cache/body',
     :default_ttl => 604800
 
+$scheudled_jobs = []
+
 helpers do
   def render_ui(config)
     ui = ""
@@ -85,10 +87,64 @@ helpers do
     end
     return html_device
   end
+
+  def list_scheudled_jobs
+    renderd = '<ul class="list-group">'
+    $scheudled_jobs.each do |job|
+      renderd += "<li class=\"list-group-item\"><b>End Time:</b> #{job[:end_time].strftime("%H:%M:%S")} </br> <b>Start Time:</b> #{job[:start_time].strftime("%H:%M:%S")} </br> <b>Device:</b> #{job[:device]} </br> <b>Action:</b> #{job[:action]}</li>"  
+    end
+    renderd += '</ul>'
+  end
+
+  def config_parser(config)
+    device_action_hash = {}
+    config.each do |button|
+      if button[:generate_button]
+        device_action_hash[button[:device]] = []
+      end
+    end
+    config.each do |button|
+      if button[:generate_button]
+        device_action_hash[button[:device]].push(button[:action])
+      end
+    end
+    
+    return device_action_hash
+  end
+
+  def list_devices(config)
+    renderd = ""
+    device_action_hash = config_parser(config)
+
+    device_action_hash.keys.each do |device|
+      renderd += "<option value=\"#{device}\">#{device}</option>\n"
+    end
+    return renderd
+  end
+
+  def list_actions(config)
+    renderd = ""
+    device_action_hash = config_parser(config)
+    all_actions = []
+    
+    device_action_hash.each do |device, actions|
+      actions.each do |action|
+        unless all_actions.include? action
+          all_actions.push(action)
+        end
+      end
+    end
+    all_actions.each do |action|
+      renderd += "<option value=\"#{action}\">#{action}</option>\n"
+    end
+    return renderd
+  end
+
 end
 
 # render index.erb
 get '/' do
+  $scheudled_jobs.delete_if{|job| job[:end_time] < Time.now}
   erb :index
 end
 
@@ -97,6 +153,26 @@ get '/v1' do
   device = params[:device]
   action = params[:action]
   Commander.execute(device, action)
+end
+
+get '/timer' do
+  expires 1, :public, :must_revalidate
+  device = params[:device]
+  action = params[:action]
+  sec = params[:sec].to_i or 0
+  min = params[:min].to_i or 0
+  hour = params[:hour].to_i or 0
+  delay = sec + (60*min) + (60*60*hour)
+
+  now = Time.now
+  job = {start_time: now, end_time: (now + delay), device: device, action: action}
+  $scheudled_jobs.push(job)
+  
+  Thread.new do 
+    sleep(delay)
+    Commander.execute(device, action)
+  end
+  redirect to('/')
 end
 
 # sunset inital cron entry
