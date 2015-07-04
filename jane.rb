@@ -27,11 +27,11 @@ set :environment, :production
 set :bind, '0.0.0.0'
 set :environment, :production
 
-# use Rack::Cache,
-#   :verbose => true,
-#     :metastore   => 'file:public/cache/meta',
-#     :entitystore => 'file:public/cache/body',
-#     :default_ttl => 604800
+use Rack::Cache,
+  :verbose => true,
+    :metastore   => 'file:public/cache/meta',
+    :entitystore => 'file:public/cache/body',
+    :default_ttl => 604800
 
 $scheudled_jobs = []
 
