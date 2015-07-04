@@ -109,13 +109,13 @@ get '/timer' do
   case m[-1]
   when "s"
     puts "s " + m[-1]
-    delay_in_s = m[0...-1].to_i
+    delay_in_s = m[0].to_i
   when "m"
     puts "m " + m[-1]
-    delay_in_s = 60*(m[0...-1].to_i)
+    delay_in_s = 60*(m[0].to_i)
   when "h"
     puts "h " + m[-1]
-    delay_in_s = 60*60*(m[0...-1].to_i)
+    delay_in_s = 60*60*(m[0].to_i)
   else
     raise "#{m[-1]} is not a valid time modifer. Use [s, m, h]"
   end
