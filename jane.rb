@@ -103,7 +103,7 @@ get '/timer' do
   expires 1, :public, :must_revalidate
   device = params[:device]
   action = params[:action]
-  time = params[:delay]
+  time = params[:time].to_i
   mod = params[:mod]
   case mod
   when "s"
