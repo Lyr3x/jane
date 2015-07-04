@@ -109,7 +109,6 @@ helpers do
       end
     end
     
-    puts device_action_hash
     return device_action_hash
   end
 
@@ -168,7 +167,6 @@ get '/timer' do
   now = Time.now
   job = {start_time: now, end_time: (now + delay), device: device, action: action}
   $scheudled_jobs.push(job)
-  puts job
   
   Thread.new do 
     sleep(delay)
