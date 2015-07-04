@@ -104,8 +104,19 @@ get '/timer' do
   device = params[:device]
   action = params[:action]
   delay = params[:delay]
+  m = /\d{1,}[smh]/.match(delay)
+  case m[-1]
+  when "s"
+    delay_in_s = m[0...-1].to_i
+  when "m"
+    delay_in_s = 60*m[0...-1].to_i
+  when "h"
+    delay_in_s = 60*60*m[0...-1].to_i
+  else
+    raise "#{m[-1]} is not a valid time modifer. Use [s, m, h]"
+  end
   Thread.new do 
-    sleep(params[:delay].to_i)
+    sleep(delay_in_s)
     Commander.execute(device, action)
   end
 end
