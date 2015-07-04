@@ -106,7 +106,7 @@ get '/timer' do
   delay = params[:delay]
   m = /\d{1,}[smh]/.match(delay)
   puts m.to_s
-  case m[-1].to_s
+  case m[-1]
   when "s"
     puts "s " + m[-1]
     delay_in_s = m[0...-1].to_i
