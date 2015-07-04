@@ -27,11 +27,13 @@ set :environment, :production
 set :bind, '0.0.0.0'
 set :environment, :production
 
-use Rack::Cache,
-  :verbose => true,
-    :metastore   => 'file:public/cache/meta',
-    :entitystore => 'file:public/cache/body',
-    :default_ttl => 604800
+# use Rack::Cache,
+#   :verbose => true,
+#     :metastore   => 'file:public/cache/meta',
+#     :entitystore => 'file:public/cache/body',
+#     :default_ttl => 604800
+
+$scheudled_jobs = []
 
 helpers do
   def render_ui(config)
@@ -85,10 +87,20 @@ helpers do
     end
     return html_device
   end
+
+  def list_scheudled_jobs
+    renderd = '<ul class="list-group">'
+    puts $scheudled_jobs
+    $scheudled_jobs.each do |job|
+      renderd += "<li class=\"list-group-item\"><b>End Time</b> #{job[:end_time].strftime("%H:%M:%S")}  <b>Start Time</b> #{job[:start_time].strftime("%H:%M:%S")}  <b>Device</b> #{job[:device]}  <b>Action</b> #{job[:action]}</li>"  
+    end
+    renderd += '</ul>'
+  end
 end
 
 # render index.erb
 get '/' do
+  $scheudled_jobs.delete_if{|job| job[:end_time] < Time.now}
   erb :index
 end
 
@@ -106,8 +118,12 @@ get '/timer' do
   sec = params[:sec].to_i or 0
   min = params[:min].to_i or 0
   hour = params[:hour].to_i or 0
-  
   delay = sec + (60*min) + (60*60*hour)
+
+  now = Time.now
+  job = {start_time: now, end_time: (now + delay), device: device, action: action}
+  $scheudled_jobs.push(job)
+  puts job
   
   Thread.new do 
     sleep(delay)

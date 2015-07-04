@@ -37,7 +37,7 @@
         </div>
         <div class="row">
             <div class="col-xs-10 col-md-12 col-sm-12 col-xs-offset-1 col-md-offset-0 col-sm-offset-0">  
-                <h4>Timer</h4>
+                <h3>Timer</h3>
                 <form class="form-inline" action="/timer" method="get">
                     <div class="form-group">
                         <label for="device">Device</label>
@@ -55,6 +55,12 @@
                     </div>
                     <button type="submit" class="btn btn-primary">set timer</button>
                 </form>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-10 col-md-12 col-sm-12 col-xs-offset-1 col-md-offset-0 col-sm-offset-0">  
+                <h4>Schedule</h4>
+                <%= list_scheudled_jobs %>
             </div>
         </div>
     </div>
