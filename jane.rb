@@ -89,11 +89,11 @@ helpers do
   end
 
   def list_scheudled_jobs
-    renderd = '<ul class="list-group">'
+    renderd = ''
     $scheudled_jobs.each do |job|
       renderd += "<li class=\"list-group-item\"><b>End Time:</b> #{job[:end_time].strftime("%H:%M:%S")} </br> <b>Start Time:</b> #{job[:start_time].strftime("%H:%M:%S")} </br> <b>Device:</b> #{job[:device]} </br> <b>Action:</b> #{job[:action]}</li>"  
     end
-    renderd += '</ul>'
+    return renderd
   end
 
   def config_parser(config)
