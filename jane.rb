@@ -88,14 +88,6 @@ helpers do
     return html_device
   end
 
-  def list_scheudled_jobs
-    renderd = ''
-    $scheudled_jobs.each do |job|
-      renderd += "<li class=\"list-group-item\"><b>End Time:</b> #{job[:end_time].strftime("%H:%M:%S")} </br> <b>Start Time:</b> #{job[:start_time].strftime("%H:%M:%S")} </br> <b>Device:</b> #{job[:device]} </br> <b>Action:</b> #{job[:action]}</li>"  
-    end
-    return renderd
-  end
-
   def config_parser(config)
     device_action_hash = {}
     config.each do |button|
