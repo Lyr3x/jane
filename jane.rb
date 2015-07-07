@@ -33,7 +33,7 @@ use Rack::Cache,
     :entitystore => 'file:public/cache/body',
     :default_ttl => 604800
 
-$scheudled_jobs = []
+$scheudled_jobs = {}
 
 helpers do
   def render_ui(config)
@@ -155,25 +155,60 @@ get '/v1' do
   Commander.execute(device, action)
 end
 
-get '/timer' do
+get '/job/create' do
   expires 1, :public, :must_revalidate
+  #parse URL params
   device = params[:device]
   action = params[:action]
   sec = params[:sec].to_i or 0
   min = params[:min].to_i or 0
   hour = params[:hour].to_i or 0
+  #create job
   delay = sec + (60*min) + (60*60*hour)
-
   now = Time.now
   job = {start_time: now, end_time: (now + delay), device: device, action: action}
-  $scheudled_jobs.push(job)
+  thr = Thread.new{run_job(delay, device, action)}
   
-  Thread.new do 
-    sleep(delay)
-    Commander.execute(device, action)
+  clean_job_list
+
+  $scheudled_jobs[thr] = job
+  #return active_job list as JSON
+  active_jobs = []
+  $scheudled_jobs.each do |thr, desc|
+    active_jobs.push({device: desc[:device],
+                      action: desc[:action],
+                      start_time: desc[:start_time].strftime("%H:%M:%S"),
+                      end_time: desc[:end_time].strftime("%H:%M:%S"),
+                      id: thr.object_id})
   end
-  redirect to('/')
+  return active_jobs.to_json
 end
 
+def run_job(delay, device, action)
+  sleep(delay)
+  Commander.execute(device, action)
+end
+  
+def remove_from_schedule(thr_id)
+  $scheudled_jobs.delete(thr_id)
+end
+
+def clean_job_list()
+  $scheudled_jobs.each do |thread|
+    if !thread[0].status
+      $scheudled_jobs.delete(thread[0])
+    end
+  end
+end
+
+get '/job/delete' do
+  expires 1, :public, :must_revalidate
+  id = params[:id]
+  # TODO: kill thread with id. return success or err message
+end
+
+get '/job/listall' do
+  #return JSON formated all active jobs with id
+end
 # sunset inital cron entry
 `rake update_cron`
