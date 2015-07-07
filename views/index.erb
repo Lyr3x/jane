@@ -59,7 +59,7 @@
                         <input type="number" class="form-control" id="min" placeholder="minutes">
                         <input type="number" class="form-control" id="sec" placeholder="secounds">
                     </div>
-                    <button type="submit" class="btn btn-primary" onclick="create_job()">set timer</button>
+                    <button type="button" class="btn btn-primary" onclick="create_job()">set timer</button>
                 </form>
             </div>
         </div>
@@ -78,6 +78,7 @@
     }
 
     function create_job(){
+        console.log("create_job");
         var job = {
             device: $("#device").val(),
             action: $("#action").val(),
@@ -85,11 +86,12 @@
             min: $("#min").val(),
             sec: $("#sec").val(),
         }
-        $.get("job/create", job, update_DOM(data));
+        $.get("job/create", job, update_DOM);
     }
 
     function update_DOM(data){
         // transform json to li elements
+        console.log("update_DOM");
         return function(){
             var li_elements = "";
             for(var i = 0; i < data.length; i++){
@@ -107,8 +109,7 @@
                  data.action +
                  "</li>"
             }
-            $("#job-list").replaceWith("<ul class=\"list-group\" id=\"job-list\">" + li_elements + "</ul>")
-        }
+            $("#job-list").replaceWith("<ul class=\"list-group\" id=\"job-list\">" + li_elements + "</ul>");
     }
 
     $( document ).ready(function(){

@@ -136,7 +136,6 @@ end
 
 # render index.erb
 get '/' do
-  $scheudled_jobs.delete_if{|job| job[:end_time] < Time.now}
   erb :index
 end
 
@@ -148,6 +147,7 @@ get '/v1' do
 end
 
 get '/job/list' do
+  content_type :json
   return_active_jobs
 end
 
@@ -197,7 +197,7 @@ def return_active_jobs()
                       end_time: desc[:end_time].strftime("%H:%M:%S"),
                       id: thr.object_id})
   end
-  return active_jobs.to_json
+  active_jobs.to_json
 end
 
 get '/job/delete' do
