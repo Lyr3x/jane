@@ -93,9 +93,10 @@
         // transform json to li elements
         console.log("update_DOM");
         return function(){
-            var li_elements = "";
+            console.log("inner function");
+            var new_list = "";
             for(var i = 0; i < data.length; i++){
-                li_elements += "<li class=\"list-group-item\">" +
+                new_list += "<li class=\"list-group-item\">" +
                 "<b>End Time:</b>"+
                  data.end_time +
                  "</br>" +
@@ -107,9 +108,11 @@
                  "</br>" +
                  "<b>Action:</b>" +
                  data.action +
-                 "</li>"
+                 "</li>";
             }
-            $("#job-list").replaceWith("<ul class=\"list-group\" id=\"job-list\">" + li_elements + "</ul>");
+            console.log(new_list);
+            $("#job-list").replaceWith(new_list);
+        }
     }
 
     $( document ).ready(function(){
