@@ -147,6 +147,10 @@ get '/v1' do
   Commander.execute(device, action)
 end
 
+get '/job/list' do
+  return_active_jobs
+end
+
 get '/job/create' do
   expires 1, :public, :must_revalidate
   #parse URL params
@@ -164,16 +168,7 @@ get '/job/create' do
   clean_job_list
 
   $scheudled_jobs[thr] = job
-  #return active_job list as JSON
-  active_jobs = []
-  $scheudled_jobs.each do |thr, desc|
-    active_jobs.push({device: desc[:device],
-                      action: desc[:action],
-                      start_time: desc[:start_time].strftime("%H:%M:%S"),
-                      end_time: desc[:end_time].strftime("%H:%M:%S"),
-                      id: thr.object_id})
-  end
-  return active_jobs.to_json
+  return_active_jobs
 end
 
 def run_job(delay, device, action)
@@ -191,6 +186,18 @@ def clean_job_list()
       $scheudled_jobs.delete(thread[0])
     end
   end
+end
+
+def return_active_jobs()
+  active_jobs = []
+  $scheudled_jobs.each do |thr, desc|
+    active_jobs.push({device: desc[:device],
+                      action: desc[:action],
+                      start_time: desc[:start_time].strftime("%H:%M:%S"),
+                      end_time: desc[:end_time].strftime("%H:%M:%S"),
+                      id: thr.object_id})
+  end
+  return active_jobs.to_json
 end
 
 get '/job/delete' do

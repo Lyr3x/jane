@@ -85,10 +85,10 @@
             min: $("#min").val(),
             sec: $("#sec").val(),
         }
-        $.get("jobs/create", job, update_DOM(data, status));
+        $.get("job/create", job, update_DOM(data));
     }
 
-    function update_DOM(data, status){
+    function update_DOM(data){
         // transform json to li elements
         return function(){
             var li_elements = "";
@@ -112,7 +112,7 @@
     }
 
     $( document ).ready(function(){
-        $.get("jobs/list", update_DOM(data, status));
+        $.get("job/list", update_DOM);
     });
     </script>
 
