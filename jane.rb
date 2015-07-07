@@ -165,8 +165,6 @@ get '/job/create' do
   job = {start_time: now, end_time: (now + delay), device: device, action: action}
   thr = Thread.new{run_job(delay, device, action)}
   
-  clean_job_list
-
   $scheudled_jobs[thr] = job
   return_active_jobs
 end
@@ -189,6 +187,7 @@ def clean_job_list()
 end
 
 def return_active_jobs()
+  clean_job_list
   active_jobs = []
   $scheudled_jobs.each do |thr, desc|
     active_jobs.push({device: desc[:device],
@@ -206,8 +205,5 @@ get '/job/delete' do
   # TODO: kill thread with id. return success or err message
 end
 
-get '/job/listall' do
-  #return JSON formated all active jobs with id
-end
 # sunset inital cron entry
 `rake update_cron`

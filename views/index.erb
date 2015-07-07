@@ -91,28 +91,27 @@
 
     function update_DOM(data){
         // transform json to li elements
-        console.log("update_DOM");
-        return function(){
-            console.log("inner function");
-            var new_list = "";
-            for(var i = 0; i < data.length; i++){
-                new_list += "<li class=\"list-group-item\">" +
-                "<b>End Time:</b>"+
-                 data.end_time +
-                 "</br>" +
-                 "<b>Start Time:</b>" +
-                 data.start_time +
-                 "</br>" +
-                 "<b>Device:</b>" +
-                 data.device +
-                 "</br>" +
-                 "<b>Action:</b>" +
-                 data.action +
-                 "</li>";
-            }
-            console.log(new_list);
-            $("#job-list").replaceWith(new_list);
+        var new_list = "";
+        for(var i = 0; i < data.length; i++){
+            new_list += "<li class=\"list-group-item\">" +
+            "<b>End Time:</b>"+
+             data[i]["end_time"] +
+             "</br>" +
+             "<b>Start Time:</b>" +
+             data[i]["start_time"] +
+             "</br>" +
+             "<b>Device:</b>" +
+             data[i]["device"] +
+             "</br>" +
+             "<b>Action:</b>" +
+             data[i]["action"] +
+             "</br>" +
+             "<b>ID:</b>" +
+             data[i]["id"] +
+             "</li>";
         }
+        // console.log(new_list);
+        $("#job-list").replaceWith(new_list);
     }
 
     $( document ).ready(function(){
