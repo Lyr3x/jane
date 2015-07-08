@@ -153,6 +153,7 @@ end
 
 get '/job/create' do
   expires 1, :public, :must_revalidate
+  content_type :json
   #parse URL params
   device = params[:device]
   action = params[:action]
