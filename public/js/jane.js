@@ -66,6 +66,7 @@ function update_devices(data){
 }
 
 function update_actions(data){
+    console.log(data);
     $("#action").html(function(){
         var actions = [];
         var options = "";
@@ -79,10 +80,9 @@ function update_actions(data){
 $( document ).ready(function(){
     job_list();
     get_devices();
-});
 
-$("#device").change(function(){
-    alert("change handler called");
-    var device = $(this).val();
-    $.get("actions", device, update_actions);
+    $("#device").change(function(){
+        var device = {device: $(this).val()}
+        $.get("actions", device, update_actions);
+    });
 });

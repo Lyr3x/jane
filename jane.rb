@@ -152,7 +152,6 @@ get '/actions' do
   expires 1, :public, :must_revalidate
   content_type :json
   device = params[:device]
-  puts device
   list_devices_and_actions[device].to_json
 end
 
