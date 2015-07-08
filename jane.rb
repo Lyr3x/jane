@@ -147,6 +147,7 @@ get '/v1' do
 end
 
 get '/job/list' do
+  expires 1, :public, :must_revalidate
   content_type :json
   return_active_jobs
 end

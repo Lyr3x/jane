@@ -6205,6 +6205,9 @@ button.close {
 .job-icon{
   margin-right: 10px;
 }
+.schedule{
+  margin-top: 40px;
+}
 
 .logo {
   font-family: 'Lobster', cursive;
