@@ -60,7 +60,7 @@ helpers do
   def render_button(button)
     button_options = {
       class: "btn #{button[:btn_class]} btn-lg btn-block",
-      onclick: "jane('#{button[:device]}', '#{button[:action]}')"
+      onclick: "run('#{button[:device]}', '#{button[:action]}')"
     }
     icon_tag = "<span class=\"glyphicon glyphicon-#{button[:icon]}\"></span>"
     content = "#{icon_tag} #{button[:label]}"
@@ -152,6 +152,7 @@ get '/actions' do
   expires 1, :public, :must_revalidate
   content_type :json
   device = params[:device]
+  puts device
   list_devices_and_actions[device].to_json
 end
 
