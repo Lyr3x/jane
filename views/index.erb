@@ -78,7 +78,6 @@
     }
 
     function create_job(){
-        console.log("create_job");
         var job = {
             device: $("#device").val(),
             action: $("#action").val(),
@@ -89,6 +88,11 @@
         $.get("job/create", job, update_DOM);
     }
 
+    function cancel_job(id){
+        job_id = {id: id}
+        $.get("job/cancel", job_id, update_DOM);
+    }
+
     function update_DOM(data){
         // transform json to li elements
         $("#job-list").html(function(){
@@ -96,7 +100,8 @@
             for(var i = 0; i < data.length; i++){
                 new_list += "<li class=\"list-group-item clearfix\"" + "job_id=" + data[i]["id"]+">" +
                  "<span class=\"pull-right\">" +
-                    "<button class=\"btn btn-sm btn-danger btn-circle\">" +
+                    "<button class=\"btn btn-sm btn-danger btn-circle\"" + 
+                             "onclick=\"cancel_job(" + data[i]["id"] + ")\">" +
                         "<span class=\"glyphicon glyphicon-remove\"></span>" + 
                     "</button>" +
                  "</span>" +

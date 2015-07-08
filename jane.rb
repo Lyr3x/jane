@@ -173,8 +173,15 @@ end
 get '/job/cancel' do
   expires 1, :public, :must_revalidate
   content_type :json
-  id = params[:id]
-  $scheudled_jobs[id]
+  id = params[:id].to_i
+  $scheudled_jobs.each_key do |thr|
+    if thr.object_id == id
+      Thread.kill(thr)
+    end
+  end
+  #wait a bit so thread is dead before cleanup starts
+  sleep(0.1)
+  return_active_jobs
 end
 
 def run_job(delay, device, action)
