@@ -170,6 +170,13 @@ get '/job/create' do
   return_active_jobs
 end
 
+get '/job/cancel' do
+  expires 1, :public, :must_revalidate
+  content_type :json
+  id = params[:id]
+  $scheudled_jobs[id]
+end
+
 def run_job(delay, device, action)
   sleep(delay)
   Commander.execute(device, action)
@@ -198,12 +205,6 @@ def return_active_jobs()
                       id: thr.object_id})
   end
   active_jobs.to_json
-end
-
-get '/job/delete' do
-  expires 1, :public, :must_revalidate
-  id = params[:id]
-  # TODO: kill thread with id. return success or err message
 end
 
 # sunset inital cron entry

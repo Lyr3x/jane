@@ -6202,6 +6202,10 @@ button.close {
 }
 /*# sourceMappingURL=bootstrap.css.map */
 
+.job-icon{
+  margin-right: 10px;
+}
+
 .logo {
   font-family: 'Lobster', cursive;
   font-size: 64px;

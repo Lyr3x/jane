@@ -100,13 +100,11 @@
                         "<span class=\"glyphicon glyphicon-remove\"></span>" + 
                     "</button>" +
                  "</span>" +
-                 "<b>End Time:</b>"+ data[i]["end_time"] +
+                 "<span class=\"glyphicon glyphicon-time job-icon\"></span>" + data[i]["end_time"] +
                  "</br>" +
-                 "<b>Start Time:</b>" + data[i]["start_time"] +
+                 "<span class=\"glyphicon glyphicon-phone job-icon\"></span>" + data[i]["device"] +
                  "</br>" +
-                 "<b>Device:</b>" + data[i]["device"] +
-                 "</br>" +
-                 "<b>Action:</b>" + data[i]["action"] +
+                 "<span class=\"glyphicon glyphicon-random job-icon\"></span>" + data[i]["action"] +
                  "</li>";
             }
             return new_list;
