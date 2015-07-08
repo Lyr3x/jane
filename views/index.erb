@@ -64,7 +64,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-xs-10 col-md-12 col-sm-12 col-xs-offset-1 col-md-offset-0 col-sm-offset-0">  
+            <div class="col-xs-10 col-md-10 col-sm-10 col-xs-offset-1 col-md-offset-0 col-sm-offset-0">  
                 <h4>Schedule</h4>
                 <ul class="list-group" id="job-list">
                 </ul>
@@ -94,18 +94,19 @@
         $("#job-list").html(function(){
             var new_list = "";
             for(var i = 0; i < data.length; i++){
-                new_list += "<li class=\"list-group-item\"" + "job_id=" + data[i]["id"]+">" +
-                "<b>End Time:</b>"+
-                 data[i]["end_time"] +
+                new_list += "<li class=\"list-group-item clearfix\"" + "job_id=" + data[i]["id"]+">" +
+                 "<span class=\"pull-right\">" +
+                    "<button class=\"btn btn-sm btn-danger btn-circle\">" +
+                        "<span class=\"glyphicon glyphicon-remove\"></span>" + 
+                    "</button>" +
+                 "</span>" +
+                 "<b>End Time:</b>"+ data[i]["end_time"] +
                  "</br>" +
-                 "<b>Start Time:</b>" +
-                 data[i]["start_time"] +
+                 "<b>Start Time:</b>" + data[i]["start_time"] +
                  "</br>" +
-                 "<b>Device:</b>" +
-                 data[i]["device"] +
+                 "<b>Device:</b>" + data[i]["device"] +
                  "</br>" +
-                 "<b>Action:</b>" +
-                 data[i]["action"] +
+                 "<b>Action:</b>" + data[i]["action"] +
                  "</li>";
             }
             return new_list;
