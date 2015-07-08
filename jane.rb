@@ -88,50 +88,6 @@ helpers do
     return html_device
   end
 
-  def config_parser(config)
-    device_action_hash = {}
-    config.each do |button|
-      if button[:generate_button]
-        device_action_hash[button[:device]] = []
-      end
-    end
-    config.each do |button|
-      if button[:generate_button]
-        device_action_hash[button[:device]].push(button[:action])
-      end
-    end
-    
-    return device_action_hash
-  end
-
-  def list_devices(config)
-    renderd = ""
-    device_action_hash = config_parser(config)
-
-    device_action_hash.keys.each do |device|
-      renderd += "<option value=\"#{device}\">#{device}</option>\n"
-    end
-    return renderd
-  end
-
-  def list_actions(config)
-    renderd = ""
-    device_action_hash = config_parser(config)
-    all_actions = []
-    
-    device_action_hash.each do |device, actions|
-      actions.each do |action|
-        unless all_actions.include? action
-          all_actions.push(action)
-        end
-      end
-    end
-    all_actions.each do |action|
-      renderd += "<option value=\"#{action}\">#{action}</option>\n"
-    end
-    return renderd
-  end
-
 end
 
 # render index.erb
@@ -183,6 +139,35 @@ get '/job/cancel' do
   #wait a bit so thread is dead before cleanup starts
   sleep(0.1)
   return_active_jobs
+end
+
+get '/devices' do 
+  expires 1, :public, :must_revalidate
+  content_type :json
+  
+  list_devices_and_actions.to_json
+end
+
+get '/actions' do
+  expires 1, :public, :must_revalidate
+  content_type :json
+  device = params[:device]
+  list_devices_and_actions[device].to_json
+end
+
+def list_devices_and_actions()
+  devices_and_actions = {}
+  Jane.config.each do |button|
+    if button[:generate_button]
+      devices_and_actions[button[:device]] = []
+    end
+  end
+  Jane.config.each do |button|
+    if button[:generate_button]
+      devices_and_actions[button[:device]].push(button[:action])
+    end
+  end
+  devices_and_actions
 end
 
 def run_job(delay, device, action)
