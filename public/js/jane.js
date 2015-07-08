@@ -1,4 +1,4 @@
-function jane(device_in, action_in){
+function run(device_in, action_in){
     $.get("v1", { device : device_in, action : action_in});
 }
 
@@ -10,19 +10,23 @@ function create_job(){
         min: $("#min").val(),
         sec: $("#sec").val(),
     }
-    $.get("job/create", job, update_DOM);
+    $.get("job/create", job, update_schedule);
 }
 
 function cancel_job(id){
     job_id = {id: id}
-    $.get("job/cancel", job_id, update_DOM);
+    $.get("job/cancel", job_id, update_schedule);
 }
 
 function job_list(){
-    $.get("job/list", update_DOM);
+    $.get("job/list", update_schedule);
 }
 
-function update_DOM(data){
+function get_devices(){
+    $.get("devices", update_devices);
+}
+
+function update_schedule(data){
     // transform json to li elements
     $("#job-list").html(function(){
         var new_list = "";
@@ -45,6 +49,40 @@ function update_DOM(data){
     });
 }
 
+function update_devices(data){
+    $("#device").html(function(){
+        var options = "";
+        var devices = [];
+        for(var device in data){
+            if(data.hasOwnProperty(device)){
+                devices.push(device);
+            }
+        }
+        for(var i=0; i<devices.length; i++){
+            options += "<option value=" + devices[i] + ">" + devices[i] + "</option>\n";
+        }
+        return options;
+    });
+}
+
+function update_actions(data){
+    console.log(data);
+    $("#action").html(function(){
+        var actions = [];
+        var options = "";
+        for(var i=0; i<data.length; i++){
+            options += "<option value=" + data[i] + ">" + data[i] + "</option>\n";
+        }
+        return options;
+    });
+}
+
 $( document ).ready(function(){
     job_list();
+    get_devices();
+
+    $("#device").change(function(){
+        var device = {device: $(this).val()}
+        $.get("actions", device, update_actions);
+    });
 });
