@@ -66,7 +66,6 @@ function update_devices(data){
 }
 
 function update_actions(data){
-    console.log(data);
     $("#action").html(function(){
         var actions = [];
         var options = "";
