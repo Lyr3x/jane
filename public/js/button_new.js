@@ -1,6 +1,6 @@
 function add_command() {
     $("#commands").append(
-        "<div class='well well-sm col-sm-offset-2 col-sm-6' id='command'>" +
+        "<div class='well well-sm col-sm-offset-2 col-sm-7' id='command'>" +
          "<div class='form-group'> "+
            "<label for='addon' class='col-sm-3 control-label'>Addon</label>" +
            "<div class='col-sm-9'>" +
@@ -21,7 +21,7 @@ function add_command() {
            "<div class='col-sm-4 parameter-field right'> "+
              "<input type='text' class='form-control' id='value'>" +
            "</div>" +
-           "<button type='button' class='btn btn-sx btn-success' onclick='add_parameter(this)'><span class='glyphicon glyphicon-plus'></span></button>" +
+           "<button type='button' class='btn btn-sx btn-success parameter-btn' onclick='add_parameter(this)'><span class='glyphicon glyphicon-plus'></span></button>" +
          "</div>" +
         "</div>"
         );

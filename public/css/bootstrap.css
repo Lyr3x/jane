@@ -6250,3 +6250,6 @@ button.close {
 .parameter-field.right{
   padding-left: 0px;
 }
+.parameter-btn{
+  margin-left: -10px;
+}
