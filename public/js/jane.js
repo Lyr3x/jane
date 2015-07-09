@@ -51,6 +51,7 @@ function update_schedule(data){
 
 function update_devices(data){
     $("#device").html(function(){
+        console.log("ud: start")
         var options = "";
         var devices = [];
         for(var device in data){
@@ -63,6 +64,8 @@ function update_devices(data){
         }
         return options;
     });
+    var device = {device :$("#device").first().val()}
+    $.get("actions", device, update_actions);
 }
 
 function update_actions(data){
