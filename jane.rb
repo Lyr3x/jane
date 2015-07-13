@@ -69,7 +69,7 @@ helpers do
 
   def render_device(device_name, buttons)
     html_device =
-    "<div class=\"col-md-4 col-sm-6\"><h3>#{device_name}</h3><div class=\"well\">\n"
+    "<div class=\"col-md-4 col-sm-6\"><div class=\"panel panel-default\"><div class=\"panel-heading\" style=\"font-size:1.5em; font-weight:bold\">#{device_name}</div><div class=\"panel-body\">\n"
     # <span class=\"glyphicon glyphicon-#{category_hash[:icon]}\"></span>  
     
     buttons.each do |button|
