@@ -100,10 +100,7 @@ get '/button/new' do
 end
 
 post '/button/save' do
-  puts "-- html --"
-  puts params
   # build button hash
-  puts "-- build --"
   button = {}
   button[:label] = params[:label]
   button[:icon] = params[:icon]
@@ -118,7 +115,6 @@ post '/button/save' do
   button[:commands] = []
   # build command hash
   params[:commands].each do |input_command|
-    puts input_command
     command = {}
     command[:addon] = input_command[:addon]
     command[:sleep_after_command] = input_command[:sleep]
@@ -126,11 +122,9 @@ post '/button/save' do
     input_command[:params].each do |para|
       command[:command_parameter][para[:key]] = para[:value]
     end
-    puts command
     button[:commands] << command
   end
-  puts "-- config --"
-  puts button
+  # save runtime config to file
   config = Jane.config
   config << button
   Jane.save(config)
@@ -138,6 +132,10 @@ post '/button/save' do
 end
 
 get '/button/edit' do
+
+end
+
+get '/button/delete' do
 
 end
 

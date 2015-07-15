@@ -40,27 +40,3 @@ function add_parameter(element){
            "</div>"
         );
 }
-
-function save(){
-    var button = {
-        label: $("label").val(),
-        icon: $("icon").val(),
-        show: $("show").val(),
-        device: $("device").val(),
-        action: $("action").val(),
-        commmands: []
-    }
-    $("[name='command']").each(function(index, command){
-      console.log(command);
-      console.log(command.children("[name='parameter']"));
-    });
-    // var commands_dom = $("[name='command']");
-    // for(var i=0; i<commands_dom.length; i++){
-    //     console.log(commands_dom[i].find("[name='parameter']"));
-        // var command = {
-        //     addon: commands_dom[i].children("#addon").val(),
-        //     sleep: commands_dom[i].children("#sleep").val(),
-        // }
-        // button.commmands.push(command);
-    // }
-}
