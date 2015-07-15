@@ -16,10 +16,10 @@ function add_command() {
          "<div class='form-group'>" +
            "<label for='para' class='col-sm-3 control-label'>Parameter</label>" +
            "<div class='col-sm-4 parameter-field left'> "+
-             "<input type='text' class='form-control' name='commands[][params[]][key]'>" +
+             "<input type='text' class='form-control' name='commands[][params][][key]'>" +
            "</div>" +
            "<div class='col-sm-4 parameter-field right'> "+
-             "<input type='text' class='form-control' name='commands[][params[]][value]'>" +
+             "<input type='text' class='form-control' name='commands[][params][][value]'>" +
            "</div>" +
            "<button type='button' class='btn btn-sx btn-success parameter-btn' onclick='add_parameter(this)'><span class='glyphicon glyphicon-plus'></span></button>" +
          "</div>" +
@@ -32,10 +32,10 @@ function add_parameter(element){
            "<div name='parameter'>" +
            "<label for='para' class='col-sm-3 control-label'></label>" +
            "<div class='col-sm-4 parameter-field left'> "+
-             "<input type='text' class='form-control' name='commands[][params[]][key]'>" +
+             "<input type='text' class='form-control' name='commands[][params][][key]'>" +
            "</div>" +
            "<div class='col-sm-4 parameter-field right'> "+
-             "<input type='text' class='form-control' name='commands[][params[]][value]'>" +
+             "<input type='text' class='form-control' name='commands[][params][][value]'>" +
            "</div>" +
            "</div>"
         );
