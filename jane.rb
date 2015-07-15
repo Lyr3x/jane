@@ -100,6 +100,7 @@ get '/button/new' do
 end
 
 post '/button/save' do
+  puts params
   redirect to('/')
 end
 
