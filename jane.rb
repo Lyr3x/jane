@@ -109,6 +109,7 @@ post '/button/save' do
   button[:icon] = params[:icon]
   button[:device] = params[:device]
   button[:action] = params[:action]
+  button[:btn_class] = params[:color]
   if params[:show] == "on"
     button[:generate_button] = true
   else
