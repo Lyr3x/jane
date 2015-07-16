@@ -30,11 +30,19 @@ require 'rack'
   require jane_lib
   require command
   require sinatra_ssl
+  pub = 
+    File.expand_path(
+      File.join(
+        ENV['JANE_PATH'],'CA','zertifikat-pub.pem'))
 
+  priv = 
+    File.expand_path(
+      File.join(
+        ENV['JANE_PATH'],'CA','zertifikat-key.pem'))
   set :bind, '0.0.0.0'
   set :port, 4567
-  set :ssl_certificate, "./CA/zertifikat-pub.pem"
-  set :ssl_key, "./CA/zertifikat-key.pem"
+  set :ssl_certificate, pub
+  set :ssl_key, priv
 
 
   use Rack::Cache,
