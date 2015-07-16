@@ -40,7 +40,7 @@
         <div class="form-group">
           <label for="label" class="col-sm-2 control-label">Button Label</label>
           <div class="col-sm-7">
-            <input type="text" class="form-control" name="label">
+            <input type="text" class="form-control" name="label" required>
           </div>
         </div>
         <div class="form-group">
@@ -52,19 +52,20 @@
         <div class="form-group">
           <label for="color" class="col-sm-2 control-label">Button Color</label>
           <div class="col-sm-7">
-            <input type="text" class="form-control" name="color" value="btn-info">
+            <input type="text" class="form-control" name="color" value="btn-info" required>
           </div>
         </div>
         <div class="form-group">
           <label for="device" class="col-sm-2 control-label">Device</label>
           <div class="col-sm-7">
-            <input type="text" class="form-control" name="device">
+            <input type="text" class="form-control" name="device" required>
           </div>
         </div>
         <div class="form-group">
           <label for="action" class="col-sm-2 control-label">Action</label>
           <div class="col-sm-7">
-            <input type="text" class="form-control" name="action">
+            <input type="text" class="form-control" name="action" required>
+            <span id="helpBlock" class="help-block">The device action pair must be unique</span>
           </div>
         </div>
         <div class='col-sm-offset-2 checkbox'>
