@@ -96,10 +96,21 @@ get '/' do
 end
 
 get '/button/new' do
-  erb :button_new
+  if params[:error] == "duplicate"
+    erb :button_error
+  else
+    erb :button_new
+  end
 end
 
 post '/button/save' do
+  # make sure that new button has a unique device-action pair
+  config = Jane.config
+  config.each do |button|
+    if button[:device] == params[:device] and button[:action] == params[:action]
+      redirect to('/button/new?error=duplicate')
+    end
+  end
   # build button hash
   button = {}
   button[:label] = params[:label]
@@ -125,7 +136,6 @@ post '/button/save' do
     button[:commands] << command
   end
   # save runtime config to file
-  config = Jane.config
   config << button
   Jane.save(config)
   redirect to('/')

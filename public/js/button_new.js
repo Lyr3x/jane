@@ -41,14 +41,15 @@ function add_parameter(element){
         );
 }
 
-$("action").change(function(){
-  var device ={device: $("device").val()}
-  console.log(device);
-  $.get("actions", device, function(res){
-    console.log(res);
-    // if (!res) {
-    //   return;
-    // }
-    // if (res) {};
-  });
-});
+// $(document).ready(function(){   
+//   $('#addButton').submit(function(event) {
+//     var device = {device: $("input[name=device]").val()}
+//     console.log(device);
+//     $.get("actions", device, function(res){
+//       res.fail(function(){
+//         alert("")
+//         event.preventDefault();
+//       })
+//     });
+//   });
+// });
