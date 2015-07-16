@@ -40,3 +40,15 @@ function add_parameter(element){
            "</div>"
         );
 }
+
+$("action").change(function(){
+  var device ={device: $("device").val()}
+  console.log(device);
+  $.get("actions", device, function(res){
+    console.log(res);
+    // if (!res) {
+    //   return;
+    // }
+    // if (res) {};
+  });
+});
