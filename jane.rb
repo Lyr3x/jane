@@ -146,7 +146,18 @@ get '/button/edit' do
 end
 
 get '/button/delete' do
+  erb :button_delete
+end
 
+post '/button/delete' do
+  config = Jane.config
+  config.each do |button|
+    if button[:device] == params[:device] and button[:action] == params[:action]
+      config.delete(button)
+    end
+  end
+  Jane.save(config)
+  redirect to('/')
 end
 
 get '/v1' do
