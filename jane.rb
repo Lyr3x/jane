@@ -4,25 +4,14 @@ require 'json'
 require 'net/http'
 require 'rake'
 require 'rack/cache'
+require 'rack'
 
-require 'sinatra/base'
-require 'webrick'
-require 'webrick/https'
-require 'openssl'
-
- ## SSL Setup
-  CERT_PATH = '/Users/Kai/Development/CA'
-  webrick_options = {
-          :Port               => 8443,
-          :Logger             => WEBrick::Log::new($stderr, WEBrick::Log::DEBUG),
-          :DocumentRoot       => "/ruby/htdocs",
-          :SSLEnable          => true,
-          :SSLVerifyClient    => OpenSSL::SSL::VERIFY_NONE,
-          :SSLCertificate     => OpenSSL::X509::Certificate.new(  File.open(File.join(CERT_PATH, "zertifikat-pub.pem")).read),
-          :SSLPrivateKey      => OpenSSL::PKey::RSA.new(          File.open(File.join(CERT_PATH, "zertifikat-key.pem")).read),
-          :SSLCertName        => [ [ "CN",WEBrick::Utils::getservername ] ]
-  }
-class Application < Sinatra::Base
+  sinatra_ssl =
+    File.expand_path(
+      File.join(
+        ENV['JANE_PATH'], 'lib', 'sinatra_ssl'
+      )
+    )
 
   jane_lib =
     File.expand_path(
@@ -40,11 +29,13 @@ class Application < Sinatra::Base
 
   require jane_lib
   require command
+  require sinatra_ssl
 
-  # listen to 0.0.0.0 instead of localhost
-  set :environment, :production
   set :bind, '0.0.0.0'
-  set :environment, :production
+  set :port, 4567
+  set :ssl_certificate, "./CA/zertifikat-pub.pem"
+  set :ssl_key, "./CA/zertifikat-key.pem"
+
 
   use Rack::Cache,
     :verbose => true,
@@ -222,5 +213,4 @@ class Application < Sinatra::Base
 
   # sunset inital cron entry
   `rake update_cron`
-end
-Rack::Handler::WEBrick.run Application, webrick_options
+
