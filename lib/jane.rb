@@ -18,11 +18,5 @@ module Jane
   def self.config
     JSON.parse(File.read(config_file), symbolize_names: true)
   end
-
-  def self.save(config)
-    file = File.open(config_file, "w")
-    file.write(config.to_json)
-    file.close
-  end
 end
 
