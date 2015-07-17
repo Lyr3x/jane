@@ -21,7 +21,7 @@ module Jane
 
   def self.save(config)
     file = File.open(config_file, "w")
-    file.write(config.to_json)
+    file.write(JSON.pretty_generate(config))
     file.close
   end
 end
