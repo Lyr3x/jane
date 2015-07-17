@@ -1,4 +1,5 @@
 {
   "host" : "0.0.0.0",
-  "username" : "xbmc"
+  "user" : "username",
+  "password" : "password"
 }

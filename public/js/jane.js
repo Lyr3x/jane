@@ -10,20 +10,20 @@ function create_job(){
         min: $("#min").val(),
         sec: $("#sec").val(),
     }
-    $.get("/job/create", job, update_schedule);
+    $.get("job/create", job, update_schedule);
 }
 
 function cancel_job(id){
     job_id = {id: id}
-    $.get("/job/cancel", job_id, update_schedule);
+    $.get("job/cancel", job_id, update_schedule);
 }
 
 function job_list(){
-    $.get("/job/list", update_schedule);
+    $.get("job/list", update_schedule);
 }
 
 function get_devices(){
-    $.get("/devices", update_devices);
+    $.get("devices", update_devices);
 }
 
 function update_schedule(data){
@@ -64,7 +64,7 @@ function update_devices(data){
         return options;
     });
     var device = {device :$("#device").first().val()}
-    $.get("/actions", device, update_actions);
+    $.get("actions", device, update_actions);
 }
 
 function update_actions(data){
@@ -84,6 +84,6 @@ $( document ).ready(function(){
 
     $("#device").change(function(){
         var device = {device: $(this).val()}
-        $.get("/actions", device, update_actions);
+        $.get("actions", device, update_actions);
     });
 });
