@@ -24,7 +24,7 @@ module Ssh
           end
         end
     
-        channel.exec(command_parameter[:commands].join(';')) do |ch, success|
+        channel.exec(command_parameter[:command]) do |ch, success|
           abort "Could not execute commands!" unless success
     
           channel.on_data do |ch, data|
