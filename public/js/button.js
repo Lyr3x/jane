@@ -37,14 +37,14 @@ function add_command() {
             "<button type='button' class='btn btn-xs btn-danger pull-right' onclick='remove_parameter(this)'><span class='glyphicon glyphicon-remove'></span></button>" +
         "</div>" +
       "</div>" +
-        "<button type='button' class='btn btn-xs btn-success pull-right' onclick='add_parameter()'> Add Parameter <span class='glyphicon glyphicon-plus'></span></button>" +
+        "<button type='button' class='btn btn-xs btn-success pull-right' onclick='add_parameter(this)'> Add Parameter <span class='glyphicon glyphicon-plus'></span></button>" +
         "</div>" +
     "</div>"
   );
 }
 
-function add_parameter(){
-  $(".parameter").append(
+function add_parameter(element){
+  $(element).parent().find(".parameter").append(
     "<div class='well well-sm col-sm-12'>" +
       "<div class='form-group'>" +
         "<label for='para' class='col-sm-2 control-label'>Key</label>" +
