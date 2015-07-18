@@ -14,7 +14,7 @@ module Ssh
   end
 
   def self.run(command_parameter)
-    Net::SSH.start(config[:host], config[:user]) do |ssh|
+    Net::SSH.start(config[:host], config[:username]) do |ssh|
       ssh.open_channel do |channel|
         channel.request_pty do |ch, success|
           if success
