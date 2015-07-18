@@ -129,7 +129,7 @@ post '/button/save' do
   params[:commands].each do |input_command|
     command = {}
     command[:addon] = input_command[:addon]
-    command[:sleep_after_command] = input_command[:sleep]
+    command[:sleep_after_command] = input_command[:sleep].to_i
     command[:command_parameter] = {}
     input_command[:params].each do |para|
       command[:command_parameter][para[:key]] = para[:value]
