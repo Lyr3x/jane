@@ -38,3 +38,6 @@
   border-radius: 35px;
 }
 
+body {
+overflow-x: hidden;
+}
