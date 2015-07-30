@@ -12,7 +12,8 @@
     <!-- Bootstrap -->
     <link href="/css/bootstrap.css" rel="stylesheet">
     <link href="/css/custom.css" rel="stylesheet">
-    <link href="css/simple-sidebar.css" rel="stylesheet">
+    <link href="css/jasny-bootstrap.css" rel="stylesheet">
+    <link href="css/navmenu-push.css" rel="stylesheet">
     <!-- iOS and Android icon -->
     <link rel="apple-touch-icon-precomposed" href="favicon-152.png">
 
@@ -30,72 +31,71 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="/js/jane.js"></script>
     <script src="/js/button.js"></script>
-    <script type="text/javascript" src="js/bootstrap.min.js"></script>
 
     <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <!-- <script src="js/bootstrap.min.js"></script> -->
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="/js/jasny-bootstrap.min.js"></script>
+    
+ <!--  <nav id="myNavmenu" class="navmenu navmenu-default navmenu-fixed-left offcanvas" role="navigation">
+    <a class="navmenu-brand" href="#">Brand</a>
 
-    <!-- <nav class="navbar navbar-default">
-      <div class="container-fluid"> -->
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <!-- <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-        </div>
- -->
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <!-- <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-          <ul class="nav navbar-nav">
-            <li><a href="http://www.golem.de">Golem.de</a></li>
+    <ul class="nav navmenu-nav">
+      <li class="active"><a href="#">Link</a></li>
+      <li><a href="#">Link</a></li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+        <ul class="dropdown-menu navmenu-nav" role="menu">
+          <li><a href="#">Action</a></li>
+          <li><a href="#">Another action</a></li>
+          <li><a href="#">Something else here</a></li>
+          <li><a href="#">Separated link</a></li>
+          <li><a href="#">One more separated link</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+
+  <div class="navbar navbar-default navbar-fixed-top">
+    <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target="#myNavmenu" data-canvas="body">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+  </div> -->
+    <div id="sidebar" class="navmenu navmenu-default navmenu-fixed-left offcanvas">
+      <a class="navmenu-brand" href="#">External Links</a>
+      <ul class="nav navmenu-nav">
+        <li style="padding:10px"> Home Stuff </li>
+        <li><a href="#fritzbox">Frtiz!Box</a></li>
+      </ul>
+      <ul class="nav navmenu-nav">
+        <li style="padding:10px"> External Links </li>
+        <li><a href="#">Link</a></li>
+        <li><a href="#">Link</a></li>
+        <li><a href="#">Link</a></li>
+        <!-- <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">Dropdown <b class="caret"></b></a>
+          <ul class="dropdown-menu navmenu-nav">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li class="divider"></li>
+            <li class="dropdown-header">Nav header</li>
+            <li><a href="#">Separated link</a></li>
+            <li><a href="#">One more separated link</a></li>
           </ul>
-          <ul class="nav navbar-nav navbar-right">
-            <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" type="button" aria-haspopup="true" aria-expanded="true">Settings <span class="caret"></span></a>
-              <ul class="dropdown-menu" role="menu">
-                <li><a href="#">Add Link</a></li>
-                <li><a href="#">Remove Link</a></li>
-              </ul>
-            </li>
-          </ul>
-        </div> --><!-- /.navbar-collapse -->
-      <!-- </div> --><!-- /.container-fluid -->
-    <!-- </nav> -->
-    <div id="wrapper" class="toggled">
-
-        <!-- Sidebar -->
-        <div id="sidebar-wrapper">
-            <ul class="sidebar-nav">
-                <li>
-                    <a href="#">FritzBox</a>
-                </li>
-                <li>
-                    <a href="#">Solar Panel logger</a>
-                </li>
-            </ul>
-        </div>
-        <!-- /#sidebar-wrapper -->
-
-        <!-- Page Content -->
-        <div id="page-content-wrapper">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-12">
-                     
-                        <a href="#menu-toggle" class="btn btn-default" id="menu-toggle">Toggle Menu</a>
+        </li> -->
+      </ul>
     </div>
-    <!-- /#wrapper -->
 
-    <!-- Menu Toggle Script -->
-    <script>
-    $("#menu-toggle").click(function(e) {
-        e.preventDefault();
-        $("#wrapper").toggleClass("toggled");
-    });
-    </script>
+    <div class="navbar navbar-default navbar-fixed-top">
+      <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target="#sidebar" data-canvas="body">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
 
     <div class="container" style="margin-bottom: 60px">
       <div class="row">
