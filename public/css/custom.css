@@ -49,4 +49,7 @@
 .container-margin-bottom{
   margin-bottom: 60px;
 }
-
+.btn-group.nav{
+  margin-left: 19px;
+  margin-top: 10px;
+}

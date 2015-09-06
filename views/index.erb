@@ -37,7 +37,14 @@
     <script src="/js/jasny-bootstrap.min.js"></script>
     
     <div id="sidebar" class="navmenu navmenu-default navmenu-fixed-left offcanvas">
-      <a class="navmenu-brand" href="#">External Links</a>
+      <div class="nav navmenu-nav">
+        <div class="btn-group nav" role="group">
+          <a href="/button/new" title="add" class="btn btn-primary btn-sm">Add Button</a>
+          <a href="/button/edit" title="edit" class="btn btn-primary btn-sm">Edit Button</a>
+          <a href="/button/delete" title="delete" class="btn btn-primary btn-sm">Delete Button</a>
+        </div>
+      </div>
+      <div class="navmenu-brand">External Links</div>
       <ul class="nav navmenu-nav">
         <li class="nav-menu-pad"> Home Stuff </li>
         <li><a href="#fritzbox">Frtiz!Box</a></li>
@@ -99,15 +106,6 @@
         </div>
         <div class="col-xs-10 col-md-8 col-sm-8 col-xs-offset-1 col-md-offset-0 col-sm-offset-0">  
           <ul class="list-group" id="job-list"></ul>
-        </div>
-      </div>
-      <div class="row">
-        <div class="text-center">
-            <div class="btn-group" role="group">
-              <a href="/button/new" title="add" class="btn btn-default btn-sm">Add Button</a>
-              <a href="/button/edit" title="edit" class="btn btn-default btn-sm">Edit Button</a>
-              <a href="/button/delete" title="delete" class="btn btn-default btn-sm">Delete Button</a>
-            </div>
         </div>
       </div>
     </div>
