@@ -162,7 +162,6 @@ post '/button/delete' do
 end
 
 get '/v1' do
-  expires 1, :public, :must_revalidate
   device = params[:device]
   action = params[:action]
   Commander.execute(device, action)
