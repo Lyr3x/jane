@@ -45,15 +45,9 @@
         </div>
       </div>
       <div class="navmenu-brand">External Links</div>
+      <!-- generate external links from links -->
       <ul class="nav navmenu-nav">
-        <li class="nav-menu-pad"> Home Stuff </li>
-        <li><a href="#fritzbox">Frtiz!Box</a></li>
-      </ul>
-      <ul class="nav navmenu-nav">
-        <li class="nav-menu-pad"> External Links </li>
-        <li><a href="#">Link</a></li>
-        <li><a href="#">Link</a></li>
-        <li><a href="#">Link</a></li>
+        <%= render_navlinks(Navlinks.config)%>
       </ul>
     </div>
 

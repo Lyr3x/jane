@@ -19,8 +19,16 @@ command =
     )
   )
 
+navlinks =
+  File.expand_path(
+    File.join(
+      ENV['JANE_PATH'], 'lib', 'navlinks'
+    )
+  )
+
 require jane_lib
 require command
+require navlinks
 
 # listen to 0.0.0.0 instead of localhost
 set :environment, :production
@@ -89,6 +97,13 @@ helpers do
     return html_device
   end
 
+  def render_navlinks(navlinks_config)
+    html_nav_links = ""
+    navlinks_config.each do |link|
+      html_nav_links << "<li><a href=\"#{link[:url]}\">#{link[:name]}</a></li>"
+    end
+    return html_nav_links
+  end
 end
 
 # render index.erb
