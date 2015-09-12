@@ -38,3 +38,18 @@
   border-radius: 35px;
 }
 
+.nav-menu-pad {
+  padding: 10px;
+}
+
+.container-margin-top{
+  margin-top: 44px; 
+}
+
+.container-margin-bottom{
+  margin-bottom: 60px;
+}
+.btn-group.nav{
+  margin-left: 19px;
+  margin-top: 10px;
+}
