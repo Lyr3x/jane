@@ -100,7 +100,7 @@ helpers do
   def render_navlinks(navlinks_config)
     html_nav_links = ""
     navlinks_config.each do |link|
-      html_nav_links << "<li><a href=\"#{link[:url]}\">#{link[:name]}</a></li>"
+      html_nav_links << "<li><a href=\"#{link[:url]}\" target=\"_blank\">#{link[:name]}</a></li>"
     end
     return html_nav_links
   end
