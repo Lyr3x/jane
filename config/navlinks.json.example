@@ -1,0 +1,10 @@
+[
+    {
+        "name": "link",
+        "url": "http://foo.baa"
+    },
+    {
+        "name": "link2",
+        "url": "http://baa.foo"
+    }
+]
