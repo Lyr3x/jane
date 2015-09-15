@@ -1,9 +1,8 @@
 # Jane
-require 'sinatra'
+# require 'sinatra'
 require 'json'
 require 'net/http'
-require 'rake'
-require 'rack/cache'
+require 'sinatra/base'
 
 jane_lib =
   File.expand_path(
@@ -30,255 +29,242 @@ require jane_lib
 require command
 require navlinks
 
-# listen to 0.0.0.0 instead of localhost
-set :environment, :production
-set :bind, '0.0.0.0'
-set :environment, :production
+class JaneApp < Sinatra::Base
+  @@scheudled_jobs = {}
+  helpers do
+    def render_ui(config)
+      ui = ""
+      sorted_by_device = {}
+      # fill hash with device keys and empty arrays
+      config.each do |button|
+        if button[:generate_button]
+          sorted_by_device[button[:device]] = []
+        end
+      end
+      # write buttons based on device in array at key_device
+      config.each do |button|
+        if button[:generate_button]
+          sorted_by_device[button[:device]] << button
+        end
+      end
+      sorted_by_device.each do |device_name, buttons|
+        ui << render_device(device_name, buttons)
+      end
+      return ui
+    end
+  
+    def render_button(button)
+      button_options = {
+        class: "btn #{button[:btn_class]} btn-lg btn-block",
+        onclick: "run('#{button[:device]}', '#{button[:action]}')"
+      }
+      icon_tag = "<span class=\"glyphicon glyphicon-#{button[:icon]}\"></span>"
+      content = "#{icon_tag} #{button[:label]}"
+      "<button #{button_options.map { |k, v| "#{k}=\"#{v}\"" }.join(' ')}>#{content}</button>"
+    end
+  
+    def render_device(device_name, buttons)
+      html_device =
+      # "<div class=\"col-md-4 col-sm-6\"><h3>#{device_name}</h3><div class=\"well\">\n"
+      "<div class=\"col-md-4 col-sm-6\"><div class=\"panel panel-default\"><div class=\"panel-heading\" style=\"font-size:1.5em; font-weight:bold\">#{device_name}</div><div class=\"panel-body\">\n"
+      # <span class=\"glyphicon glyphicon-#{category_hash[:icon]}\"></span>  
+      
+      buttons.each do |button|
+        html_device += render_button(button)
+      end
+      html_device += "</div></div></div>"
+      
+      @i += 1
+      if @i%2==0
+        html_device += "<div class=\"clearfix visible-sm-block visible-md-block\"></div>" 
+      end
+  
+      if @i%3==0
+        html_device += "<div class=\"clearfix visible-lg-block\"></div>" 
+      end
+      return html_device
+    end
+  
+    def render_navlinks(navlinks_config)
+      html_nav_links = ""
+      navlinks_config.each do |link|
+        html_nav_links << "<li><a href=\"#{link[:url]}\" target=\"_blank\">#{link[:name]}</a></li>"
+      end
+      return html_nav_links
+    end
+  end
 
-use Rack::Cache,
-  :verbose => true,
-    :metastore   => 'file:public/cache/meta',
-    :entitystore => 'file:public/cache/body',
-    :default_ttl => 604800
-
-$scheudled_jobs = {}
-
-helpers do
-  def render_ui(config)
-    ui = ""
-    sorted_by_device = {}
-    # fill hash with device keys and empty arrays
+  
+  # render index.erb
+  get '/' do
+    erb :index
+  end
+  
+  get '/button/new' do
+    if params[:error] == "duplicate"
+      erb :button_error
+    else
+      erb :button_new
+    end
+  end
+  
+  post '/button/save' do
+    # make sure that new button has a unique device-action pair
+    config = Jane.config
     config.each do |button|
-      if button[:generate_button]
-        sorted_by_device[button[:device]] = []
+      if button[:device] == params[:device] and button[:action] == params[:action]
+        redirect to('/button/new?error=duplicate')
       end
     end
-    # write buttons based on device in array at key_device
+    # build button hash
+    button = {}
+    button[:label] = params[:label]
+    button[:icon] = params[:icon]
+    button[:device] = params[:device]
+    button[:action] = params[:action]
+    button[:btn_class] = params[:color]
+    if params[:show] == "on"
+      button[:generate_button] = true
+    else
+      button[:generate_button] = false
+    end
+    button[:commands] = []
+    # build command hash
+    params[:commands].each do |input_command|
+      command = {}
+      command[:addon] = input_command[:addon]
+      command[:sleep_after_command] = input_command[:sleep].to_i
+      command[:command_parameter] = {}
+      input_command[:params].each do |para|
+        command[:command_parameter][para[:key]] = para[:value]
+      end
+      button[:commands] << command
+    end
+    # save runtime config to file
+    config << button
+    Jane.save(config)
+    redirect to('/')
+  end
+  
+  get '/button/edit' do
+  
+  end
+  
+  get '/button/delete' do
+    erb :button_delete
+  end
+  
+  post '/button/delete' do
+    config = Jane.config
     config.each do |button|
-      if button[:generate_button]
-        sorted_by_device[button[:device]] << button
+      if button[:device] == params[:device] and button[:action] == params[:action]
+        config.delete(button)
       end
     end
-    sorted_by_device.each do |device_name, buttons|
-      ui << render_device(device_name, buttons)
-    end
-    return ui
+    Jane.save(config)
+    redirect to('/')
   end
-
-  def render_button(button)
-    button_options = {
-      class: "btn #{button[:btn_class]} btn-lg btn-block",
-      onclick: "run('#{button[:device]}', '#{button[:action]}')"
-    }
-    icon_tag = "<span class=\"glyphicon glyphicon-#{button[:icon]}\"></span>"
-    content = "#{icon_tag} #{button[:label]}"
-    "<button #{button_options.map { |k, v| "#{k}=\"#{v}\"" }.join(' ')}>#{content}</button>"
+  
+  get '/v1' do
+    device = params[:device]
+    action = params[:action]
+    Commander.execute(device, action)
   end
-
-  def render_device(device_name, buttons)
-    html_device =
-    # "<div class=\"col-md-4 col-sm-6\"><h3>#{device_name}</h3><div class=\"well\">\n"
-    "<div class=\"col-md-4 col-sm-6\"><div class=\"panel panel-default\"><div class=\"panel-heading\" style=\"font-size:1.5em; font-weight:bold\">#{device_name}</div><div class=\"panel-body\">\n"
-    # <span class=\"glyphicon glyphicon-#{category_hash[:icon]}\"></span>  
+  
+  get '/job/list' do
+    content_type :json
+    return_active_jobs
+  end
+  
+  get '/job/create' do
+    content_type :json
+    #parse URL params
+    device = params[:device]
+    action = params[:action]
+    sec = params[:sec].to_i or 0
+    min = params[:min].to_i or 0
+    hour = params[:hour].to_i or 0
+    #create job
+    delay = sec + (60*min) + (60*60*hour)
+    now = Time.now
+    job = {start_time: now, end_time: (now + delay), device: device, action: action}
+    thr = Thread.new{run_job(delay, device, action)}
     
-    buttons.each do |button|
-      html_device += render_button(button)
+    @@scheudled_jobs[thr] = job
+    return_active_jobs
+  end
+  
+  get '/job/cancel' do
+    content_type :json
+    id = params[:id].to_i
+    @@scheudled_jobs.each_key do |thr|
+      if thr.object_id == id
+        Thread.kill(thr)
+      end
     end
-    html_device += "</div></div></div>"
+    #wait a bit so thread is dead before cleanup starts
+    sleep(0.1)
+    return_active_jobs
+  end
+  
+  get '/devices' do 
+    content_type :json
     
-    @i += 1
-    if @i%2==0
-      html_device += "<div class=\"clearfix visible-sm-block visible-md-block\"></div>" 
-    end
-
-    if @i%3==0
-      html_device += "<div class=\"clearfix visible-lg-block\"></div>" 
-    end
-    return html_device
+    list_devices_and_actions.to_json
   end
-
-  def render_navlinks(navlinks_config)
-    html_nav_links = ""
-    navlinks_config.each do |link|
-      html_nav_links << "<li><a href=\"#{link[:url]}\" target=\"_blank\">#{link[:name]}</a></li>"
-    end
-    return html_nav_links
-  end
-end
-
-# render index.erb
-get '/' do
-  erb :index
-end
-
-get '/button/new' do
-  if params[:error] == "duplicate"
-    erb :button_error
-  else
-    erb :button_new
-  end
-end
-
-post '/button/save' do
-  # make sure that new button has a unique device-action pair
-  config = Jane.config
-  config.each do |button|
-    if button[:device] == params[:device] and button[:action] == params[:action]
-      redirect to('/button/new?error=duplicate')
-    end
-  end
-  # build button hash
-  button = {}
-  button[:label] = params[:label]
-  button[:icon] = params[:icon]
-  button[:device] = params[:device]
-  button[:action] = params[:action]
-  button[:btn_class] = params[:color]
-  if params[:show] == "on"
-    button[:generate_button] = true
-  else
-    button[:generate_button] = false
-  end
-  button[:commands] = []
-  # build command hash
-  params[:commands].each do |input_command|
-    command = {}
-    command[:addon] = input_command[:addon]
-    command[:sleep_after_command] = input_command[:sleep].to_i
-    command[:command_parameter] = {}
-    input_command[:params].each do |para|
-      command[:command_parameter][para[:key]] = para[:value]
-    end
-    button[:commands] << command
-  end
-  # save runtime config to file
-  config << button
-  Jane.save(config)
-  redirect to('/')
-end
-
-get '/button/edit' do
-
-end
-
-get '/button/delete' do
-  erb :button_delete
-end
-
-post '/button/delete' do
-  config = Jane.config
-  config.each do |button|
-    if button[:device] == params[:device] and button[:action] == params[:action]
-      config.delete(button)
-    end
-  end
-  Jane.save(config)
-  redirect to('/')
-end
-
-get '/v1' do
-  device = params[:device]
-  action = params[:action]
-  Commander.execute(device, action)
-end
-
-get '/job/list' do
-  expires 1, :public, :must_revalidate
-  content_type :json
-  return_active_jobs
-end
-
-get '/job/create' do
-  expires 1, :public, :must_revalidate
-  content_type :json
-  #parse URL params
-  device = params[:device]
-  action = params[:action]
-  sec = params[:sec].to_i or 0
-  min = params[:min].to_i or 0
-  hour = params[:hour].to_i or 0
-  #create job
-  delay = sec + (60*min) + (60*60*hour)
-  now = Time.now
-  job = {start_time: now, end_time: (now + delay), device: device, action: action}
-  thr = Thread.new{run_job(delay, device, action)}
   
-  $scheudled_jobs[thr] = job
-  return_active_jobs
-end
-
-get '/job/cancel' do
-  expires 1, :public, :must_revalidate
-  content_type :json
-  id = params[:id].to_i
-  $scheudled_jobs.each_key do |thr|
-    if thr.object_id == id
-      Thread.kill(thr)
-    end
+  get '/actions' do
+    content_type :json
+    device = params[:device]
+    list_devices_and_actions[device].to_json
   end
-  #wait a bit so thread is dead before cleanup starts
-  sleep(0.1)
-  return_active_jobs
-end
-
-get '/devices' do 
-  expires 1, :public, :must_revalidate
-  content_type :json
   
-  list_devices_and_actions.to_json
-end
-
-get '/actions' do
-  expires 1, :public, :must_revalidate
-  content_type :json
-  device = params[:device]
-  list_devices_and_actions[device].to_json
-end
-
-def list_devices_and_actions()
-  devices_and_actions = {}
-  Jane.config.each do |button|
-    if button[:generate_button]
-      devices_and_actions[button[:device]] = []
+  def list_devices_and_actions()
+    devices_and_actions = {}
+    Jane.config.each do |button|
+      if button[:generate_button]
+        devices_and_actions[button[:device]] = []
+      end
     end
-  end
-  Jane.config.each do |button|
-    if button[:generate_button]
-      devices_and_actions[button[:device]].push(button[:action])
+    Jane.config.each do |button|
+      if button[:generate_button]
+        devices_and_actions[button[:device]].push(button[:action])
+      end
     end
+    devices_and_actions
   end
-  devices_and_actions
-end
-
-def run_job(delay, device, action)
-  sleep(delay)
-  Commander.execute(device, action)
-end
   
-def remove_from_schedule(thr_id)
-  $scheudled_jobs.delete(thr_id)
-end
-
-def clean_job_list()
-  $scheudled_jobs.each do |thread|
-    if !thread[0].status
-      $scheudled_jobs.delete(thread[0])
+  def run_job(delay, device, action)
+    sleep(delay)
+    Commander.execute(device, action)
+  end
+    
+  def remove_from_schedule(thr_id)
+    @@scheudled_jobs.delete(thr_id)
+  end
+  
+  def clean_job_list()
+    @@scheudled_jobs.each do |thread|
+      if !thread[0].status
+        @@scheudled_jobs.delete(thread[0])
+      end
     end
   end
-end
-
-def return_active_jobs()
-  clean_job_list
-  active_jobs = []
-  $scheudled_jobs.each do |thr, desc|
-    active_jobs.push({device: desc[:device],
-                      action: desc[:action],
-                      start_time: desc[:start_time].strftime("%H:%M:%S"),
-                      end_time: desc[:end_time].strftime("%H:%M:%S"),
-                      id: thr.object_id})
+  
+  def return_active_jobs()
+    clean_job_list
+    active_jobs = []
+    @@scheudled_jobs.each do |thr, desc|
+      active_jobs.push({device: desc[:device],
+                        action: desc[:action],
+                        start_time: desc[:start_time].strftime("%H:%M:%S"),
+                        end_time: desc[:end_time].strftime("%H:%M:%S"),
+                        id: thr.object_id})
+    end
+    active_jobs.to_json
   end
-  active_jobs.to_json
-end
+  
+  # sunset inital cron entry
+  `rake update_cron`
 
-# sunset inital cron entry
-`rake update_cron`
+end
