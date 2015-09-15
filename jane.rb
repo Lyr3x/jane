@@ -168,7 +168,8 @@ class JaneApp < Sinatra::Base
   get '/v1' do
     device = params[:device]
     action = params[:action]
-    Commander.execute(device, action)
+    Thread.new{Commander.execute(device, action)}
+    "[Executed] #{device} #{action}\n"
   end
   
   get '/job/list' do
