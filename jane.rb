@@ -30,10 +30,6 @@ require command
 require navlinks
 
 class JaneApp < Sinatra::Base
-  # listen to 0.0.0.0 instead of localhost
-  # set :environment, :production
-  # set :bind, '0.0.0.0'
-  
   @@scheudled_jobs = {}
   helpers do
     def render_ui(config)
