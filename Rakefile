@@ -10,3 +10,8 @@ task :update_cron do
   schedule_path = File.join(ENV['JANE_PATH'], 'config', 'schedule.rb')
   `whenever --load-file #{schedule_path} --update-crontab`
 end
+
+task :start do
+  unicorn_config = File.join(ENV['JANE_PATH'], 'unicorn.rb')
+  `unicorn -c #{unicorn_config} -E production -D`
+end

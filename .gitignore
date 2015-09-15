@@ -4,3 +4,4 @@ log_sunset
 config/*.json
 config/*.yml
 cache
+tmp/pids/unicorn.pid
