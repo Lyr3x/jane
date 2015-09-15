@@ -4,4 +4,3 @@ log_sunset
 config/*.json
 config/*.yml
 cache
-!config/navlinks.json
