@@ -7,4 +7,4 @@ jane = File.expand_path(
        )
 require jane
 
-run Jane
+run JaneApp
