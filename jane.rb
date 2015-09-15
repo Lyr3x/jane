@@ -169,7 +169,6 @@ class JaneApp < Sinatra::Base
     device = params[:device]
     action = params[:action]
     Thread.new{Commander.execute(device, action)}
-    "[Executed] #{device} #{action}\n"
   end
   
   get '/job/list' do
