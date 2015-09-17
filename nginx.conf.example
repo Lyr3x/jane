@@ -57,6 +57,12 @@ http {
     client_max_body_size 4G;
     # the server will close connections after this time
     keepalive_timeout 5;
+    
+    location ~* \.(?:ico|css|js|gif|jpe?g|png)$ {
+        expires 30d;
+        add_header Vary Accept-Encoding;
+        access_log off;
+    }
 
     location / {
       try_files $uri @app;
