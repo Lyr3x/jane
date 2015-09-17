@@ -132,12 +132,14 @@ class JaneApp < Sinatra::Base
   post '/timetable/save' do
     # build entry
     timetable_entries = []
-    params[:entries].each do |e|
-      entry = {}
-      entry[:device] = e[:device]
-      entry[:action] = e[:action]
-      entry[:cron] = e[:cron]
-      timetable_entries << entry
+    unless params[:entries].empty?
+      params[:entries].each do |e|
+        entry = {}
+        entry[:device] = e[:device]
+        entry[:action] = e[:action]
+        entry[:cron] = e[:cron]
+        timetable_entries << entry
+      end
     end
     Timetable.update(timetable_entries)
     redirect to('/')
