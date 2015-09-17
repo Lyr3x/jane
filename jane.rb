@@ -132,7 +132,7 @@ class JaneApp < Sinatra::Base
   post '/timetable/save' do
     # build entry
     timetable_entries = []
-    unless params[:entries].empty?
+    unless params[:entries].nil?
       params[:entries].each do |e|
         entry = {}
         entry[:device] = e[:device]
