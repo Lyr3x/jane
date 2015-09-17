@@ -25,9 +25,17 @@ navlinks =
     )
   )
 
+timetable =
+  File.expand_path(
+    File.join(
+      ENV['JANE_PATH'], 'lib', 'timetable'
+    )
+  )
+
 require jane_lib
 require command
 require navlinks
+require timetable
 
 class JaneApp < Sinatra::Base
   @@scheudled_jobs = {}
@@ -92,6 +100,24 @@ class JaneApp < Sinatra::Base
       end
       return html_nav_links
     end
+
+    def render_timetable(timetable_config)
+      html_timetable = ""
+      timetable_config.each do |entry|
+        html_timetable << "<div name=\"entry\">\n" \
+            "<label for=\"device\">Device</label>\n" \
+            "<input type=\"text\" form=\"timetable\" value=\"#{entry[:device]}\" name=\"entries[][device]\">\n" \
+            "<label for=\"action\">Action</label>\n" \
+            "<input type=\"text\" form=\"timetable\" value=\"#{entry[:action]}\" name=\"entries[][action]\">\n" \
+            "<label for=\"cron\">Cron</label>\n" \
+            "<input type=\"text\" form=\"timetable\" value=\"#{entry[:cron]}\" name=\"entries[][cron]\">\n" \
+            "<button type='button' class='btn btn-xs btn-danger' onclick='remove_entry(this)'>\n" \
+            "<span class='glyphicon glyphicon-remove'>\n" \
+            "</span></button>\n" \
+          "</div>\n"
+        end
+      return html_timetable
+    end
   end
 
   
@@ -100,6 +126,24 @@ class JaneApp < Sinatra::Base
     erb :index
   end
   
+  get '/timetable' do
+    erb :timetable
+  end
+
+  post '/timetable/save' do
+    # build entry
+    timetable_entries = []
+    params[:entries].each do |e|
+      entry = {}
+      entry[:device] = e[:device]
+      entry[:action] = e[:action]
+      entry[:cron] = e[:cron]
+      timetable_entries << entry
+    end
+    Timetable.update(timetable_entries)
+    redirect to('/')
+  end
+
   get '/button/new' do
     if params[:error] == "duplicate"
       erb :button_error
@@ -266,5 +310,7 @@ class JaneApp < Sinatra::Base
   
   # sunset inital cron entry
   `rake update_cron`
+  Timetable.parse_config
+  `rake update_timetable`
 
 end
