@@ -29,11 +29,8 @@ module Timetable
 
   def self.entry_str(entry)
     command = "every \'#{entry[:cron]}\' do\n" \
-                    "  `curl -G " \
-                    "--data-urlencode \"device=#{entry[:device]}\" " \
-                    "--data-urlencode \"action=#{entry[:action]}\" " \
-                    "\"http://localhost/v1\"`\n" \
-               "end\n\n"
+              "  command \"ruby -r $JANE_PATH/lib/apicall.rb -e \\\"APICall.call '#{entry[:device]}', '#{entry[:action]}'\\\"\"\n" \
+              "end\n\n"
     return command
   end
 

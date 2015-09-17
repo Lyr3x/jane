@@ -1,7 +1,6 @@
 # Jane
 # require 'sinatra'
 require 'json'
-require 'net/http'
 require 'sinatra/base'
 
 jane_lib =
