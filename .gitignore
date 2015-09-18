@@ -5,3 +5,4 @@ config/*.json
 config/*.yml
 cache
 tmp/pids/unicorn.pid
+config/timetable.rb

@@ -29,11 +29,14 @@
           <%= render_timetable(Timetable.config) %>
         </div>
       </form>
-      <button type="button" class="btn btn-success btn-sm" onclick="add_entry()">
+      <button type="button" class="btn btn-success" onclick="add_entry()">
         Add Entry <span class="glyphicon glyphicon-plus"></span>
       </button>
       <a href="/" class="btn btn-danger" role="button">Cancel</a>
       <input form="timetable" type="submit" value="Save" class="btn btn-primary" />
+      <div class="pull-right">
+        <p><a href="http://www.openjs.com/scripts/jslibrary/demos/crontab.php" target="_blank">Crontab Generator</a></p>
+      </div>
     </div>
 
   </body>
