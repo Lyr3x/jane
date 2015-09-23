@@ -15,7 +15,6 @@ module Milight
 
   wifi_bridge_ip = config[:wifi_bridge_ip]
   wifi_bridge_port = config[:wifi_bridge_port]
-  puts wifi_bridge_port
 
   ######## GROUP 1 ########
   #define lamp states
