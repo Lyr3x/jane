@@ -82,24 +82,26 @@ module Milight
         break if Time.now > t + 0.1
       end
         socket.send(NIGHT_MODE, 0, WIFI_BRIDGE_IP, WIFI_BRIDGE_PORT)
+  end
 
   def self.run(command_parameter)
-  case command_parameter[:command]
-    when "on"
-      on
-    when "off"
-      off
-    when "white"
-      white
-    when "disco"
-      disco
-    when "faster"
-      faster
-    when "slower"
-      slower
-    when "night"
-      night
-    else puts "unknown command"
+    case command_parameter[:command]
+      when "on"
+        on
+      when "off"
+        off
+      when "white"
+        white
+      when "disco"
+        disco
+      when "faster"
+        faster
+      when "slower"
+        slower
+      when "night"
+        night
+      else puts "unknown command"
+    end
   end
 
 end
