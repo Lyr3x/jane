@@ -60,10 +60,9 @@ module Milight
   end
 
   def self.run(command_parameter)
-    case command_parameter[:command]
-      when "on"
-        puts on
-      else puts "wrong command"
+    puts command_parameter[:command]
+    if command_parameter[:command] == "on"
+      on
     end
   end
 
