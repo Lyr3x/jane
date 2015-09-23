@@ -62,6 +62,7 @@ module Milight
     case command_parameter[:command]
       when "on"
         on
+      else puts "wrong command"
     end
   end
 
