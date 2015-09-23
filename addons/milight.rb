@@ -1,6 +1,7 @@
 #!/usr/bin/ruby
 require 'socket'
 require 'json'
+
 module Milight
   def self.config()
       milight_config = File.expand_path(
@@ -61,7 +62,7 @@ module Milight
   def self.run(command_parameter)
     case command_parameter[:command]
       when "on"
-        on
+        puts on
       else puts "wrong command"
     end
   end
