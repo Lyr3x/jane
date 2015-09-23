@@ -79,7 +79,7 @@ module Milight
       t = Time.now
       loop do
         socket.send(LAMP_OFF, 0, WIFI_BRIDGE_IP, WIFI_BRIDGE_PORT)
-        break if Time.now > t + 0.1
+        break if Time.now > t
       end
         socket.send(NIGHT_MODE, 0, WIFI_BRIDGE_IP, WIFI_BRIDGE_PORT)
   end
