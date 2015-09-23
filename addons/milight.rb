@@ -61,7 +61,7 @@ module Milight
   def self.run(command_parameter)
     case command_parameter[:command]
       when "on"
-        on()
+        on
     end
   end
 
