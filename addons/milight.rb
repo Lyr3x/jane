@@ -42,10 +42,28 @@ module Milight
   night_mode = "\xC6\x00\x55"
 
   def self.run(command_parameter)
-    socket = UDPSocket.new
-    socket.send(command_parameter[:command], 0, config[:wifi_bridge_ip], config[:wifi_bridge_port])
   end
+
+  def on()
+    socket = UDPSocket.new
+    socket.send(lamp_on, 0, wifi_bridge_ip, wifi_bridge_port)
+  end
+
+  def off()
+    socket = UDPSocket.new
+    socket.send(lamp_off, 0, wifi_bridge_ip, wifi_bridge_port)
+  end
+  
+  def white()
+    socket = UDPSocket.new
+    socket.send(white_init, 0, wifi_bridge_ip, wifi_bridge_port)
+    sleep 0.1
+    socket.send(white_finish, 0, wifi_bridge_ip, wifi_bridge_port)
+  end
+
 end
+
+
 
   ######################old stuff#########################
   # case ARGV[0]
