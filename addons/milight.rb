@@ -19,7 +19,7 @@ module Milight
 
   ######## GROUP 1 ########
   #define lamp states
-  lamp_on = "\x45\x00\x55"
+  LAMP_ON = "\x45\x00\x55"
   lamp_off = "\x46\x00\x55"
 
   #define white
@@ -43,9 +43,9 @@ module Milight
   night_mode = "\xC6\x00\x55"
 
   def self.on()
-    puts test
+    puts 'test'
     socket = UDPSocket.new
-    socket.send(lamp_on, 0, wifi_bridge_ip, wifi_bridge_port)
+    socket.send(LAMP_ON, 0, wifi_bridge_ip, wifi_bridge_port)
   end
 
   def self.off()
@@ -61,7 +61,7 @@ module Milight
   end
 
   def self.run(command_parameter)
-    puts lamp_on
+    puts LAMP_ON
     on
   end
 
