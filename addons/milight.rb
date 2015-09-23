@@ -60,8 +60,8 @@ module Milight
   end
 
   def self.run(command_parameter)
-    puts command_parameter[:command]
     if command_parameter[:command] == "on"
+      puts "in if"
       on
     end
   end
