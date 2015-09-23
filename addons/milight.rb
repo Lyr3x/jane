@@ -14,8 +14,8 @@ module Milight
 
   # master list of commands here: http://www.limitlessled.com/dev/
 
-  wifi_bridge_ip = config[:wifi_bridge_ip]
-  wifi_bridge_port = config[:wifi_bridge_port]
+  WIFI_BRIDGE_IP = config[:wifi_bridge_ip]
+  WIFI_BRIDGE_PORT = config[:wifi_bridge_port]
 
   ######## GROUP 1 ########
   #define lamp states
@@ -43,25 +43,23 @@ module Milight
   night_mode = "\xC6\x00\x55"
 
   def self.on()
-    puts 'test'
     socket = UDPSocket.new
-    socket.send(LAMP_ON, 0, wifi_bridge_ip, wifi_bridge_port)
+    socket.send(LAMP_ON, 0, WIFI_BRIDGE_IP, WIFI_BRIDGE_PORT)
   end
 
   def self.off()
     socket = UDPSocket.new
-    socket.send(lamp_off, 0, wifi_bridge_ip, wifi_bridge_port)
+    socket.send(lamp_off, 0, WIFI_BRIDGE_IP, WIFI_BRIDGE_PORT)
   end
   
   def self.white()
     socket = UDPSocket.new
-    socket.send(white_init, 0, wifi_bridge_ip, wifi_bridge_port)
+    socket.send(white_init, 0, WIFI_BRIDGE_IP, WIFI_BRIDGE_PORT)
     sleep 0.1
-    socket.send(white_finish, 0, wifi_bridge_ip, wifi_bridge_port)
+    socket.send(white_finish, 0, WIFI_BRIDGE_IP, WIFI_BRIDGE_PORT)
   end
 
   def self.run(command_parameter)
-    puts LAMP_ON
     on
   end
 
@@ -73,46 +71,46 @@ end
   # case ARGV[0]
   # when "on"
   #   socket = UDPSocket.new
-  #   socket.send(lamp_on, 0, wifi_bridge_ip, wifi_bridge_port)
+  #   socket.send(lamp_on, 0, WIFI_BRIDGE_IP, wifi_bridge_port)
     
   # when "off"
   #   socket = UDPSocket.new
-  #   socket.send(lamp_off, 0, wifi_bridge_ip, wifi_bridge_port)
+  #   socket.send(lamp_off, 0, WIFI_BRIDGE_IP, wifi_bridge_port)
     
   # when "maxbright"
   #     socket = UDPSocket.new
-  #     socket.send(max_bright, 0, wifi_bridge_ip, wifi_bridge_port)
+  #     socket.send(max_bright, 0, WIFI_BRIDGE_IP, wifi_bridge_port)
     
   # when "maxdim"
   #     socket = UDPSocket.new
-  #     socket.send(max_dim, 0, wifi_bridge_ip, wifi_bridge_port) 
+  #     socket.send(max_dim, 0, WIFI_BRIDGE_IP, wifi_bridge_port) 
 
   # when "disco"
   #     socket = UDPSocket.new
-  #     socket.send(disco, 0, wifi_bridge_ip, wifi_bridge_port) 
+  #     socket.send(disco, 0, WIFI_BRIDGE_IP, wifi_bridge_port) 
 
   # when "faster"
   #   socket = UDPSocket.new
-  #   socket.send(speed_up, 0, wifi_bridge_ip, wifi_bridge_port)
+  #   socket.send(speed_up, 0, WIFI_BRIDGE_IP, wifi_bridge_port)
     
   # when "slower"
   #   socket = UDPSocket.new
-  #   socket.send(speed_down, 0, wifi_bridge_ip, wifi_bridge_port)
+  #   socket.send(speed_down, 0, WIFI_BRIDGE_IP, wifi_bridge_port)
 
   # when "white"
   #     socket = UDPSocket.new
-  #     socket.send(white_init, 0, wifi_bridge_ip, wifi_bridge_port)
+  #     socket.send(white_init, 0, WIFI_BRIDGE_IP, wifi_bridge_port)
   #     sleep 0.1
-  #     socket.send(white_finish, 0, wifi_bridge_ip, wifi_bridge_port)
+  #     socket.send(white_finish, 0, WIFI_BRIDGE_IP, wifi_bridge_port)
 
   # when "night"
   #     socket = UDPSocket.new
   #     t = Time.now
   #     loop do
-  #       socket.send(lamp_off, 0, wifi_bridge_ip, wifi_bridge_port)
+  #       socket.send(lamp_off, 0, WIFI_BRIDGE_IP, wifi_bridge_port)
   #       break if Time.now > t 
   #     end
-  #       socket.send(night_mode, 0, wifi_bridge_ip, wifi_bridge_port)
+  #       socket.send(night_mode, 0, WIFI_BRIDGE_IP, wifi_bridge_port)
 
   # when "color"
   #   #set color argument to be an integer
@@ -126,7 +124,7 @@ end
   #   #send the value being sure to encode the color code into hex
   #   set_color = "\x40#{colorcode.hex.chr}\x55"
   #   socket = UDPSocket.new
-  #   socket.send(set_color, 0, wifi_bridge_ip, wifi_bridge_port)
+  #   socket.send(set_color, 0, WIFI_BRIDGE_IP, wifi_bridge_port)
     
   # else puts "usage: milight.rb [on|off|max(bright|dim)|disco|faster|slower|white|night|color (1-255)]"
   # end
