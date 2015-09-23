@@ -42,7 +42,11 @@ module Milight
   night_mode = "\xC6\x00\x55"
 
   def self.run(command_parameter)
-    command_parameter[:command]
+    case command_parameter[:command]
+      when "on"
+        on
+      end
+      
   end
 
   def self.on()
