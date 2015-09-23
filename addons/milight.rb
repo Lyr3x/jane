@@ -15,6 +15,7 @@ module Milight
 
   wifi_bridge_ip = config[:wifi_bridge_ip]
   wifi_bridge_port = config[:wifi_bridge_port]
+  puts wifi_bridge_port
 
   ######## GROUP 1 ########
   #define lamp states
@@ -58,14 +59,13 @@ module Milight
     socket.send(white_finish, 0, wifi_bridge_ip, wifi_bridge_port)
   end
 
-   def self.run(command_parameter)
+  def self.run(command_parameter)
     case command_parameter[:command]
       when "on"
-        on
+        on()
     end
-      
   end
-  
+
 end
 
 
