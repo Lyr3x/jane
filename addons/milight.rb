@@ -43,6 +43,7 @@ module Milight
   night_mode = "\xC6\x00\x55"
 
   def self.on()
+    puts test
     socket = UDPSocket.new
     socket.send(lamp_on, 0, wifi_bridge_ip, wifi_bridge_port)
   end
@@ -60,6 +61,7 @@ module Milight
   end
 
   def self.run(command_parameter)
+    puts lamp_on
     on
   end
 
