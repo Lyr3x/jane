@@ -99,7 +99,7 @@ module Milight
       slower
     when "night"
       night
-    else puts "wrong command"
+    else puts "unknown command"
   end
 
 end
