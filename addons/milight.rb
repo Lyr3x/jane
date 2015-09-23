@@ -20,27 +20,27 @@ module Milight
   ######## GROUP 1 ########
   #define lamp states
   LAMP_ON = "\x45\x00\x55"
-  lamp_off = "\x46\x00\x55"
+  LAMP_OFF = "\x46\x00\x55"
 
   #define white
-  white_init = "\x45\x00\x55"
-  white_finish = "\xC5\x00\x55"
+  WHITE_INIT = "\x45\x00\x55"
+  WHITE_FINISH = "\xC5\x00\x55"
 
   #define max brightness
-  max_bright = "\x4E\x1B\x55"
+  MAX_BRIGHT = "\x4E\x1B\x55"
 
   #define max dim
-  max_dim = "\x4E\x02\x55"
+  MAX_DIM = "\x4E\x02\x55"
 
   #define disco mode
-  disco = "\x4D\x00\x55"
+  DISCO = "\x4D\x00\x55"
 
   #define speed states
-  speed_up = "\x44\x00\x55"
-  speed_down = "\x43\x00\x55"
+  SPEED_UP = "\x44\x00\x55"
+  SPEED_DOWN = "\x43\x00\x55"
 
   #define night mode
-  night_mode = "\xC6\x00\x55"
+  NIGHT_MODE = "\xC6\x00\x55"
 
   def self.on()
     socket = UDPSocket.new
@@ -49,18 +49,25 @@ module Milight
 
   def self.off()
     socket = UDPSocket.new
-    socket.send(lamp_off, 0, WIFI_BRIDGE_IP, WIFI_BRIDGE_PORT)
+    socket.send(LAMP_OFF, 0, WIFI_BRIDGE_IP, WIFI_BRIDGE_PORT)
   end
   
   def self.white()
     socket = UDPSocket.new
-    socket.send(white_init, 0, WIFI_BRIDGE_IP, WIFI_BRIDGE_PORT)
+    socket.send(WHITE_INIT, 0, WIFI_BRIDGE_IP, WIFI_BRIDGE_PORT)
     sleep 0.1
-    socket.send(white_finish, 0, WIFI_BRIDGE_IP, WIFI_BRIDGE_PORT)
+    socket.send(WHITE_FINISH, 0, WIFI_BRIDGE_IP, WIFI_BRIDGE_PORT)
   end
 
   def self.run(command_parameter)
-    on
+  case command_parameter[:command]
+    when "on"
+      on
+    when "off"
+      off
+    when "white"
+      white
+    else puts "wrong command"
   end
 
 end
