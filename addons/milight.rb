@@ -84,6 +84,16 @@ module Milight
         socket.send(NIGHT_MODE, 0, WIFI_BRIDGE_IP, WIFI_BRIDGE_PORT)
   end
 
+  def self.maxbright()
+    socket = UDPSocket.new
+    socket.send(MAX_BRIGHT, 0, WIFI_BRIDGE_IP, WIFI_BRIDGE_PORT)
+  end
+
+  def self.maxdim()
+    socket = UDPSocket.new
+    socket.send(MAX_DIM, 0, WIFI_BRIDGE_IP, WIFI_BRIDGE_PORT)
+  end
+
   def self.run(command_parameter)
     case command_parameter[:command]
       when "on"
@@ -100,6 +110,10 @@ module Milight
         slower
       when "night"
         night
+      when "maxbright"
+        maxbright
+      when "maxdim"
+        maxdim
       else puts "unknown command"
     end
   end
