@@ -16,8 +16,6 @@ module Eiscp
 
     host = config[:host]
     `onkyo --host #{host} #{command_parameter[:command]}`
-    # `onkyo #{command_parameter[:command]}`
-
   end
 
 end
