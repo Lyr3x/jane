@@ -15,7 +15,7 @@ module Eiscp
   def self.run(command_parameter)
 
     host = config[:host]
-    puts `onkyo --host #{host} #{command_parameter[:command]}`
+    `onkyo --host #{host} #{command_parameter[:command]}`
 
   end
 
