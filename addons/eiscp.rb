@@ -13,9 +13,13 @@ module Eiscp
   end
 
   def self.run(command_parameter)
-
+    onkyo_iscp = File.expand_path(
+                  File.join(
+                    ENV['JANE_PATH'], 'lib', 'onkyo_iscp'
+                  )
+                )
     host = config[:host]
-    `onkyo --host #{host} #{command_parameter[:command]}`
+    system "#{onkyo_iscp} #{host} #{command_parameter[:command]}"
   end
 
 end
