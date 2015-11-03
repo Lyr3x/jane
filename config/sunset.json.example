@@ -1,6 +1,7 @@
 {
   // Get cityID from openweathermap.org
   "cityID" : 2946447,
+  "apiKey" : "..."
   "lights" : [
           {
             "device" : "lamp",

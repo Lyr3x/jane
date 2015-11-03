@@ -24,7 +24,8 @@ module Sunset
 
   def self.sunset_time
     city_id = config[:cityID]
-    uri = URI('http://api.openweathermap.org/data/2.5/weather?id=' + city_id.to_s)
+    api_key = config[:apiKey]
+    uri = URI("http://api.openweathermap.org/data/2.5/weather?id=#{city_id}&appid=#{api_key}")
     sunset_time = JSON.parse(Net::HTTP.get(uri), symbolize_names:true)
     sunset_time = Time.at(sunset_time[:sys][:sunset])
     return sunset_time
