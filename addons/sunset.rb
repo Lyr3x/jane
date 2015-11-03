@@ -7,7 +7,7 @@ ping = File.expand_path(
 
 apicall = File.expand_path(
         File.join(
-          ENV['JANE_PATH'], 'addons', 'apicall'
+          ENV['JANE_PATH'], 'lib', 'apicall'
         )
        )
 
