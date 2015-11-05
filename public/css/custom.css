@@ -5,14 +5,14 @@
   margin-top: 40px;
 }
 
-.logo {
+/*.logo {
   font-family: 'Lobster', cursive;
   font-size: 64px;
   text-align: center;
   color: #b7293a;
   text-shadow: 2px 2px 0 #513a33;
-}
-.btn-circle {
+}*/
+/*.btn-circle {
   width: 30px;
   height: 30px;
   text-align: center;
@@ -36,7 +36,7 @@
   font-size: 24px;
   line-height: 1.33;
   border-radius: 35px;
-}
+}*/
 
 .nav-menu-pad {
   padding: 10px;
@@ -49,7 +49,14 @@
 .container-margin-bottom{
   margin-bottom: 60px;
 }
+
 .btn-group.nav{
   margin-left: 19px;
   margin-top: 10px;
+}
+.btn-default {
+  background-color: #39444e;
+}
+.btn-default:hover {
+  background-color: #313B44;
 }
