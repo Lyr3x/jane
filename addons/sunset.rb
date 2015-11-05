@@ -1,9 +1,4 @@
 # sunset
-ping = File.expand_path(
-        File.join(
-          ENV['JANE_PATH'], 'addons', 'ping'
-        )
-       )
 
 apicall = File.expand_path(
         File.join(
@@ -39,9 +34,8 @@ module Sunset
   end
 
   def self.run(command_parameters)
-    if Ping.run(nil)
       config[:lights].each do |light|
-        APICall.call(light[:device], light[:action])
+        APICall.call(light[:device], light[:action], config[:homecheck])
       end
     end
   end
