@@ -31,10 +31,18 @@ timetable =
     )
   )
 
+ping =
+  File.expand_path(
+    File.join(
+      ENV['JANE_PATH'], 'lib', 'ping'
+    )
+  )
+
 require jane_lib
 require command
 require navlinks
 require timetable
+require ping
 
 class JaneApp < Sinatra::Base
   @@scheudled_jobs = {}
@@ -138,6 +146,11 @@ class JaneApp < Sinatra::Base
         entry[:device] = e[:device]
         entry[:action] = e[:action]
         entry[:cron] = e[:cron]
+        if params[:ping] == "on"
+        entry[:ping] = true
+        else
+          entry[:ping] = false
+        end
         timetable_entries << entry
       end
     end
@@ -213,6 +226,13 @@ class JaneApp < Sinatra::Base
   get '/v1' do
     device = params[:device]
     action = params[:action]
+    if params[:ping] == 'true'
+      if Ping.run
+        Thread.new{Commander.execute(device, action)}
+      else
+        return
+      end
+    end
     Thread.new{Commander.execute(device, action)}
   end
   
