@@ -21,7 +21,8 @@ function add_command() {
       "</div>" +
       "<div class='parameter'>" +
         "<p><strong>Parameter</strong></p>" +
-        "<div class='well well-sm col-sm-12'>" +
+        "<div class='well well-sm col-sm-12 parameter-well'>" +
+          "<button type='button' class='btn btn-xs btn-danger pull-right' onclick='remove_parameter(this)'><span class='glyphicon glyphicon-remove'></span></button>" +
           "<div class='form-group'>" +
             "<label for='para' class='col-sm-2 control-label'>Key</label>" +
             "<div class='col-sm-9'>" +
@@ -34,7 +35,6 @@ function add_command() {
               "<input type='text' class='form-control' name='commands[][params][][value]'>" +
             "</div>" +
           "</div>" +
-            "<button type='button' class='btn btn-xs btn-danger pull-right' onclick='remove_parameter(this)'><span class='glyphicon glyphicon-remove'></span></button>" +
         "</div>" +
       "</div>" +
         "<button type='button' class='btn btn-xs btn-success pull-right' onclick='add_parameter(this)'> Add Parameter <span class='glyphicon glyphicon-plus'></span></button>" +
@@ -45,7 +45,8 @@ function add_command() {
 
 function add_parameter(element){
   $(element).parent().find(".parameter").append(
-    "<div class='well well-sm col-sm-12'>" +
+    "<div class='well well-sm col-sm-12 parameter-well'>" +
+      "<button type='button' class='btn btn-xs btn-danger pull-right' onclick='remove_parameter(this)'><span class='glyphicon glyphicon-remove'></span></button>" +
       "<div class='form-group'>" +
         "<label for='para' class='col-sm-2 control-label'>Key</label>" +
         "<div class='col-sm-9'>" +
@@ -58,7 +59,6 @@ function add_parameter(element){
           "<input type='text' class='form-control' name='commands[][params][][value]'>" +
         "</div>" +
       "</div>" +
-        "<button type='button' class='btn btn-xs btn-danger pull-right' onclick='remove_parameter(this)'><span class='glyphicon glyphicon-remove'></span></button>" +
     "</div>"
   );
 }
