@@ -8,6 +8,8 @@
     <title>Jane</title>
     <link href="/css/bootstrap.css" rel="stylesheet">
     <link href="/css/custom.css" rel="stylesheet">
+    <link href="/css/jasny-bootstrap.css" rel="stylesheet">
+    <link href="/css/navmenu-push.css" rel="stylesheet">
     <!-- iOS and Android icon -->
     <link rel="apple-touch-icon-precomposed" href="favicon-152.png">
   </head>
@@ -17,6 +19,51 @@
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script src="/js/timetable.js"></script>
+  <script src="/js/bootstrap.min.js"></script>
+  <script src="/js/jasny-bootstrap.min.js"></script>
+
+  <!-- nav menu -->
+  <nav id="sidebar" class="navmenu navmenu-default navmenu-fixed-left offcanvas">
+    <a class="navmenu-brand" href="/">Jane</a>
+    <ul class="nav navmenu-nav">
+      <li><a href="/" title="dashboard">
+        <span class="glyphicon glyphicon-dashboard nav-icon" aria-hidden="true"></span> Dashboard
+      </a></li>
+      <li><a href="/timetable" title="timetable">
+        <span class="glyphicon glyphicon-calendar nav-icon" aria-hidden="true"></span> Timetable
+      </a></li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          <span class="glyphicon glyphicon-th-large nav-icon" aria-hidden="true"></span> Buttons <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu navmenu-nav" role="menu">
+          <li><a href="/button/new" title="add-button">
+            <span class="glyphicon glyphicon-plus nav-icon" aria-hidden="true"></span> Add Button
+          </a></li>
+          <li><a href="/button/delete" title="delete-button">
+            <span class="glyphicon glyphicon-remove nav-icon" aria-hidden="true"></span> Delete Button
+          </a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+          <span class="glyphicon glyphicon-share-alt nav-icon" aria-hidden="true"></span> External Links <b class="caret"></b>
+        </a>
+        <ul class="dropdown-menu navmenu-nav" role="menu">
+          <%= render_navlinks(Navlinks.config)%>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+  <!-- nav icon -->
+  <div class="navbar navbar-default navbar-fixed-top">
+    <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target="#sidebar" data-canvas="body">
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+  </div>
+
 
   <div class="container">
     <div class="page-header">
