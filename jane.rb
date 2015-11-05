@@ -226,7 +226,7 @@ class JaneApp < Sinatra::Base
   get '/v1' do
     device = params[:device]
     action = params[:action]
-    if params[:ping] == 'true'
+    if params[:home] == 'true'
       if Ping.run
         Thread.new{Commander.execute(device, action)}
       else
