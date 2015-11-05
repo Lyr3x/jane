@@ -70,21 +70,25 @@
       <h1>Timetable</h1>
     </div>
 
-    <div class="container col-sm-offset-1 col-sm-11">
-      <form class="form-inline" id="timetable" action="timetable/save" method="post">
-        <div name="entries[]" class="entries">
+    <div class="container col-lg-offset-1 col-lg-12">
+    <div class="row">
+      <form class="form-horizontal" id="timetable" action="timetable/save" method="post">
+        <div name="entries[]" class="entries col-lg-5">
+          <!-- crontab entry -->
           <%= render_timetable(Timetable.config) %>
         </div>
       </form>
+    </div>
+    <div class="row">
       <button type="button" class="btn btn-success" onclick="add_entry()">
-        Add Entry <span class="glyphicon glyphicon-plus"></span>
+        Add Entry  <span class="glyphicon glyphicon-plus"></span>
       </button>
       <a href="/" class="btn btn-danger" role="button">Cancel</a>
-      <input form="timetable" type="submit" value="Save" class="btn btn-primary" />
-      <div class="pull-right">
-        <p><a href="http://www.openjs.com/scripts/jslibrary/demos/crontab.php" target="_blank">Crontab Generator</a></p>
-      </div>
+      <input form="timetable" type="submit" value="Save" class="btn btn-info" />
     </div>
-
+    <div class="pull-right">
+      <p><a href="http://www.openjs.com/scripts/jslibrary/demos/crontab.php" target="_blank">Crontab Generator</a></p>
+    </div>
+  </div>
   </body>
 </html>

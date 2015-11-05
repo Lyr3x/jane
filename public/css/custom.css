@@ -39,3 +39,13 @@
 .navmenu-brand {
   font-size: 25px;
 }
+
+.form-group.cron-entry {
+  margin-left: 0px;
+  margin-right: 0px;
+  margin-bottom: 0px;
+}
+
+.form-group.cron-field {
+  margin-bottom: 0px;
+}
