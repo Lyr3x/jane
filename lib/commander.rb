@@ -6,6 +6,7 @@ jane_lib_path =
   )
 
 require jane_lib_path
+require "time"
 
 module Commander
 
@@ -23,7 +24,8 @@ module Commander
           mod = Object.const_get(addon)
           mod.run(command[:command_parameter])
           sleep(command[:sleep_after_command])
-          status_msg += "[Executed] addon:#{addon} device:#{device} action:#{action} command_parameter:#{command[:command_parameter]}\n"
+          now = Time.now
+          status_msg += "[#{now}] addon:#{addon} device:#{device} action:#{action} command_parameter:#{command[:command_parameter]}\n"
         end
         puts status_msg
         return status_msg
