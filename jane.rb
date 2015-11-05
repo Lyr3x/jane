@@ -80,9 +80,7 @@ class JaneApp < Sinatra::Base
   
     def render_device(device_name, buttons)
       html_device =
-      # "<div class=\"col-md-4 col-sm-6\"><h3>#{device_name}</h3><div class=\"well\">\n"
       "<div class=\"col-md-4 col-sm-6\"><div class=\"panel panel-default\"><div class=\"panel-heading\" style=\"font-size:1.5em; font-weight:bold\">#{device_name}</div><div class=\"panel-body\">\n"
-      # <span class=\"glyphicon glyphicon-#{category_hash[:icon]}\"></span>  
       
       buttons.each do |button|
         html_device += render_button(button)
@@ -111,16 +109,26 @@ class JaneApp < Sinatra::Base
     def render_timetable(timetable_config)
       html_timetable = ""
       timetable_config.each do |entry|
-        html_timetable << "<div name=\"entry\">\n" \
-            "<label for=\"device\">Device</label>\n" \
-            "<input type=\"text\" form=\"timetable\" value=\"#{entry[:device]}\" name=\"entries[][device]\">\n" \
-            "<label for=\"action\">Action</label>\n" \
-            "<input type=\"text\" form=\"timetable\" value=\"#{entry[:action]}\" name=\"entries[][action]\">\n" \
-            "<label for=\"cron\">Cron</label>\n" \
-            "<input type=\"text\" form=\"timetable\" value=\"#{entry[:cron]}\" name=\"entries[][cron]\">\n" \
-            "<button type='button' class='btn btn-xs btn-danger' onclick='remove_entry(this)'>\n" \
-            "<span class='glyphicon glyphicon-remove'>\n" \
-            "</span></button>\n" \
+        html_timetable << "<div class='panel panel-default'>\n" \
+            "<div class='panel-body'>\n" \
+              "<button type='button' class='btn btn-xs btn-danger pull-right' onclick='remove_entry(this)'>\n" \
+                "<span class='glyphicon glyphicon-remove'></span>\n" \
+              "</button>\n" \
+              "<div name='entry' class='form-group cron-entry'>\n" \
+                "<div class='form-group'>\n" \
+                  "<label for='device' class='col-lg-2'>Device</label>\n" \
+                  "<input type='text' form='timetable' value=\"#{entry[:device]}\" class='col-lg-8' name='entries[][device]'>\n" \
+                "</div>\n" \
+                "<div class='form-group'>\n" \
+                  "<label for='action' class='col-lg-2'>Action</label>\n" \
+                  "<input type='text' form='timetable' value=\"#{entry[:action]}\" class='col-lg-8' name='entries[][action]'>\n" \
+                "</div>\n" \
+                "<div class='form-group cron-field'>\n" \
+                  "<label for='cron' class='col-lg-2'>Cron</label>\n" \
+                  "<input type='text' form='timetable' value=\"#{entry[:cron]}\" class='col-lg-8' name='entries[][cron]'>\n" \
+                "</div>\n" \
+              "</div>\n" \
+            "</div>\n" \
           "</div>\n"
         end
       return html_timetable
