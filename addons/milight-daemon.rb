@@ -1,9 +1,10 @@
 require 'rubygems'
 require 'json'
+require 'net/http'
 
 module Milight
   def self.config()
-    config_path = 
+    config= 
       File.expand_path(
         File.join(
            ENV['JANE_PATH'], 'config', 'milight.json'
@@ -18,19 +19,9 @@ module Milight
                     config[:executable]
                   )
                 )
-    uuri = URI('http://localhost:8080/on')
+    uri = URI('http://#{config[:host]}:#{config[:port]}/#{command_parameter[:command]}?group=#{command_parameter[:group]}')
     req = Net::HTTP::Post.new(uri)
-    req.set_form_data('group' => '1')
-
     res = Net::HTTP.start(uri.hostname, uri.port) do |http|
       http.request(req)
     end
-
-    case res
-      when Net::HTTPSuccess, Net::HTTPRedirection
-      # OK
-    else
-      res.value
-    end
-  end
 end
