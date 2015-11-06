@@ -1,4 +1,4 @@
 {
-  "wifi_bridge_ip" : "192.168.2.141",
-  "wifi_bridge_port" : "8899"
+ "host" : "192.168.2.101",
+ "port" : "8080"
 }
