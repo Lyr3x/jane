@@ -1,3 +1,4 @@
 {
- "executeable" : "/usr/bin/milight/milight-daemon"
+ "host" : "192.168.2.101",
+ "port" : "8080"
 }
