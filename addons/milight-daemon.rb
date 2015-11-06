@@ -18,18 +18,19 @@ module Milight
                     config[:executable]
                   )
                 )
-  uuri = URI('http://localhost:8080/on')
-  req = Net::HTTP::Post.new(uri)
-  req.set_form_data('group' => '1')
+    uuri = URI('http://localhost:8080/on')
+    req = Net::HTTP::Post.new(uri)
+    req.set_form_data('group' => '1')
 
-  res = Net::HTTP.start(uri.hostname, uri.port) do |http|
-    http.request(req)
-  end
+    res = Net::HTTP.start(uri.hostname, uri.port) do |http|
+      http.request(req)
+    end
 
-  case res
-    when Net::HTTPSuccess, Net::HTTPRedirection
-    # OK
-  else
-    res.value
+    case res
+      when Net::HTTPSuccess, Net::HTTPRedirection
+      # OK
+    else
+      res.value
+    end
   end
 end
