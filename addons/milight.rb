@@ -14,7 +14,7 @@ module Milight
   end
 
   def self.run(command_parameter)
-    uri = URI('http://#{config[:host]}:#{config[:port]}/#{command_parameter[:command]}?group=#{command_parameter[:group]}')
+    uri = URI("http://#{config[:host]}:#{config[:port]}/#{command_parameter[:command]}?group=#{command_parameter[:group]}")
     puts uri
     req = Net::HTTP::Post.new(uri)
     res = Net::HTTP.start(uri.hostname, uri.port) do |http|
