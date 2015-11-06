@@ -10,7 +10,7 @@ module Milight
            ENV['JANE_PATH'], 'config', 'milight.json'
         )
       )
-    return JSON.parse(File.read(config_path), symbolize_names: true)
+    return JSON.parse(File.read(config), symbolize_names: true)
   end
 
   def self.run(command_parameter)
