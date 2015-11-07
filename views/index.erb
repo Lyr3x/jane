@@ -96,17 +96,21 @@
         <div class="col-xs-12 col-md-12 col-sm-12">
           <h3>Timer</h3>
           <form class="form-inline" id="timer">
-            <label for="device">Device</label>
-            <select class="form-control" id="device" form="timer" name="device"></select>
-            <label for="action">Action</label>
-            <select class="form-control" id="action" form="timer" name="action"></select>
+            <div class="form-group">
+              <label for="device">Device</label>
+              <select class="form-control timer-margin" id="device" form="timer" name="device"></select>
+            </div>
+            <div class="form-group">
+              <label for="action">Action</label>
+              <select class="form-control timer-margin" id="action" form="timer" name="action"></select>
+            </div>
             <div class="form-group">
               <label for="delay">Delay</label>
-              <input type="number" class="form-control" id="hour" placeholder="hours">
-              <input type="number" class="form-control" id="min" placeholder="minutes">
-              <input type="number" class="form-control" id="sec" placeholder="secounds">
+              <input type="number" class="form-control timer-margin" id="hour" placeholder="hours">
+              <input type="number" class="form-control timer-margin" id="min" placeholder="minutes">
+              <input type="number" class="form-control timer-margin" id="sec" placeholder="secounds">
             </div>
-            <button type="button" class="btn btn-primary" onclick="create_job()">set timer</button>
+            <button type="button" class="btn btn-primary timer-margin" onclick="create_job()">set timer</button>
           </form>
         </div>
       </div>
