@@ -30,7 +30,7 @@
 
   <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-  <script src="/js/jane.js"></script>
+  <!-- <script src="/js/jane.js"></script> -->
   <script src="/js/bootstrap.min.js"></script>
   <script src="/js/jasny-bootstrap.min.js"></script>
   <script src="/js/bootstrap-slider.js"></script>
@@ -120,9 +120,9 @@
                         <h3 class="panel-title">Power</h3>
                       </div>
                       <div class="panel-body">
-                        <button type="submit" class="btn btn-success btn-lg btn-block">On</button>
-                        <button type="submit" class="btn btn-danger btn-lg btn-block">Off</button>
-                        <button type="submit" class="btn btn-default btn-lg btn-block">Night</button>
+                        <button type="submit" id="on" class="btn btn-success btn-lg btn-block">On</button>
+                        <button type="submit" id="off" class="btn btn-danger btn-lg btn-block">Off</button>
+                        <button type="submit" id="night" class="btn btn-default btn-lg btn-block">Night</button>
                       </div>
                     </div>
                 </div>
@@ -132,10 +132,10 @@
                         <h3 class="panel-title">Mode</h3>
                       </div>
                       <div class="panel-body">
-                        <button type="submit" class="btn btn-warning btn-lg btn-block">White</button>
-                        <button type="submit" class="btn btn-info btn-lg btn-block">Disco</button>
-                        <button type="submit" class="btn btn-default btn-lg btn-block">Speed Up</button>
-                        <button type="submit" class="btn btn-default btn-lg btn-block">Speed Down</button>
+                        <button type="submit" id="white" class="btn btn-warning btn-lg btn-block">White</button>
+                        <button type="submit" id="disco" class="btn btn-info btn-lg btn-block">Disco</button>
+                        <button type="submit" id="speedUp" class="btn btn-default btn-lg btn-block">Speed Up</button>
+                        <button type="submit" id="speedDown" class="btn btn-default btn-lg btn-block">Speed Down</button>
                       </div>
                     </div>
                 </div>
@@ -177,14 +177,14 @@
                         <h3 class="panel-title">Warm</h3>
                       </div>
                       <div class="panel-body">
-                        <button type="submit" class="btn btn-default btn-lg btn-block">Red</button>
-                        <button type="submit" class="btn btn-default btn-lg btn-block">Orange</button>
-                        <button type="submit" class="btn btn-default btn-lg btn-block">Yellow Orange</button>
-                        <button type="submit" class="btn btn-default btn-lg btn-block">Yellow</button>
-                        <button type="submit" class="btn btn-default btn-lg btn-block">Pink</button>
-                        <button type="submit" class="btn btn-default btn-lg btn-block">Seafoam Green</button>
-                        <button type="submit" class="btn btn-default btn-lg btn-block">Green</button>
-                        <button type="submit" class="btn btn-default btn-lg btn-block">Lime Green</button>
+                        <button type="submit" class="btn color btn-default btn-lg btn-block">Red</button>
+                        <button type="submit" class="btn color btn-default btn-lg btn-block">Orange</button>
+                        <button type="submit" class="btn color btn-default btn-lg btn-block">Yellow Orange</button>
+                        <button type="submit" class="btn color btn-default btn-lg btn-block">Yellow</button>
+                        <button type="submit" class="btn color btn-default btn-lg btn-block">Pink</button>
+                        <button type="submit" class="btn color btn-default btn-lg btn-block">Seafoam Green</button>
+                        <button type="submit" class="btn color btn-default btn-lg btn-block">Green</button>
+                        <button type="submit" class="btn color btn-default btn-lg btn-block">Lime Green</button>
                       </div>
                     </div>
                 </div>
@@ -194,14 +194,14 @@
                         <h3 class="panel-title">Cold</h3>
                       </div>
                       <div class="panel-body">
-                        <button type="submit" class="btn btn-default btn-lg btn-block">Royal Blue</button>
-                        <button type="submit" class="btn btn-default btn-lg btn-block">Baby Blue</button>
-                        <button type="submit" class="btn btn-default btn-lg btn-block">Aqua</button>
-                        <button type="submit" class="btn btn-default btn-lg btn-block">Mint</button>
-                        <button type="submit" class="btn btn-default btn-lg btn-block">Violet</button>
-                        <button type="submit" class="btn btn-default btn-lg btn-block">Lila</button>
-                        <button type="submit" class="btn btn-default btn-lg btn-block">Lavendar</button>
-                        <button type="submit" class="btn btn-default btn-lg btn-block">Fusia</button>
+                        <button type="submit" class="btn color btn-default btn-lg btn-block">Royal Blue</button>
+                        <button type="submit" class="btn color btn-default btn-lg btn-block">Baby Blue</button>
+                        <button type="submit" class="btn color btn-default btn-lg btn-block">Aqua</button>
+                        <button type="submit" class="btn color btn-default btn-lg btn-block">Mint</button>
+                        <button type="submit" class="btn color btn-default btn-lg btn-block">Violet</button>
+                        <button type="submit" class="btn color btn-default btn-lg btn-block">Lila</button>
+                        <button type="submit" class="btn color btn-default btn-lg btn-block">Lavendar</button>
+                        <button type="submit" class="btn color btn-default btn-lg btn-block">Fusia</button>
                       </div>
                     </div>
                 </div>
