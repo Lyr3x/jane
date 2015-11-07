@@ -18,6 +18,11 @@ function add_entry() {
             "<label for='cron' class='col-lg-2'>Cron</label>" +
             "<input type='text' form='timetable' class='col-lg-8' name='entries[][cron]'>" +
           "</div>" +
+          "<div class='checkbox'>" +
+            "<label>" +
+              "<input type='checkbox' name='entries[][home]'> Homecheck" +
+            "</label>" +
+          "</div>" +
         "</div>" +
       "</div>" +
     "</div>"

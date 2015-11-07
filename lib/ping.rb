@@ -2,7 +2,7 @@ require "json"
 
 module Ping
   @ping_status = []
-  def self.run(command_parameters)
+  def self.run()
     config = JSON.parse(
               File.read(File.expand_path(File.join(ENV['JANE_PATH'], 'config', 'ping.json'))),
               symbolize_names: true

@@ -29,7 +29,7 @@ module Timetable
 
   def self.entry_str(entry)
     command = "every \'#{entry[:cron]}\' do\n" \
-              "  command \"ruby -r $JANE_PATH/lib/apicall.rb -e \\\"APICall.call '#{entry[:device]}', '#{entry[:action]}'\\\"\"\n" \
+              "  command \"ruby -r $JANE_PATH/lib/apicall.rb -e \\\"APICall.call '#{entry[:device]}', '#{entry[:action]}', '#{entry[:home]}'\\\"\"\n" \
               "end\n\n"
     return command
   end

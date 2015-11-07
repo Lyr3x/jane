@@ -31,10 +31,18 @@ timetable =
     )
   )
 
+ping =
+  File.expand_path(
+    File.join(
+      ENV['JANE_PATH'], 'lib', 'ping'
+    )
+  )
+
 require jane_lib
 require command
 require navlinks
 require timetable
+require ping
 
 class JaneApp < Sinatra::Base
   @@scheudled_jobs = {}
@@ -101,6 +109,11 @@ class JaneApp < Sinatra::Base
     def render_timetable(timetable_config)
       html_timetable = ""
       timetable_config.each do |entry|
+        if entry[:home]
+          checked = "checked='checked'"
+        else
+          checked = ""
+        end
         html_timetable << "<div class='panel panel-default'>\n" \
             "<div class='panel-body'>\n" \
               "<button type='button' class='btn btn-xs btn-danger pull-right' onclick='remove_entry(this)'>\n" \
@@ -119,6 +132,11 @@ class JaneApp < Sinatra::Base
                   "<label for='cron' class='col-lg-2'>Cron</label>\n" \
                   "<input type='text' form='timetable' value=\"#{entry[:cron]}\" class='col-lg-8' name='entries[][cron]'>\n" \
                 "</div>\n" \
+                "<div class='checkbox'>\n" \
+                  "<label>\n" \
+                    "<input type='checkbox' name='entries[][home]' #{checked}> Homecheck\n" \
+                  "</label>\n" \
+                "</div\n>" \
               "</div>\n" \
             "</div>\n" \
           "</div>\n"
@@ -146,6 +164,11 @@ class JaneApp < Sinatra::Base
         entry[:device] = e[:device]
         entry[:action] = e[:action]
         entry[:cron] = e[:cron]
+        if e[:home] == "on"
+        entry[:home] = true
+        else
+          entry[:home] = false
+        end
         timetable_entries << entry
       end
     end
@@ -221,6 +244,13 @@ class JaneApp < Sinatra::Base
   get '/v1' do
     device = params[:device]
     action = params[:action]
+    if params[:home] == 'true'
+      if Ping.run
+        Thread.new{Commander.execute(device, action)}
+      else
+        return
+      end
+    end
     Thread.new{Commander.execute(device, action)}
   end
   
