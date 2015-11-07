@@ -34,6 +34,7 @@
   <script src="/js/bootstrap.min.js"></script>
   <script src="/js/jasny-bootstrap.min.js"></script>
   <script src="/js/bootstrap-slider.js"></script>
+  <script src="/js/milight.js"></script>
   <!-- Include all compiled plugins (below), or include individual files as needed -->
   <!-- <script src="js/bootstrap.min.js"></script> -->
 
@@ -91,19 +92,19 @@
         <div class="col-sm-8 col-xs-12 col-sm-offset-3 col-md-offset-4">
           <div class="btn-group-sm" role="group" aria-label="..." data-toggle="buttons">
             <label class="btn btn-primary active">
-              <input type="radio" name="options" id="groupall" autocomplete="off" checked> All
+              <input type="radio" name="group" value="0" autocomplete="off" checked> All
             </label>
             <label class="btn btn-primary">
-              <input type="radio" name="options" id="group1" autocomplete="off" checked> Group 1
+              <input type="radio" name="group" value="1" autocomplete="off" checked> Group 1
             </label>
             <label class="btn btn-primary">
-              <input type="radio" name="options" id="group2" autocomplete="off" checked> Group 2
+              <input type="radio" name="group" value="2" autocomplete="off" checked> Group 2
             </label>
             <label class="btn btn-primary">
-              <input type="radio" name="options" id="group3" autocomplete="off" checked> Group 3
+              <input type="radio" name="group" value="3" autocomplete="off" checked> Group 3
             </label>
             <label class="btn btn-primary">
-              <input type="radio" name="options" id="group4" autocomplete="off" checked> Group 4
+              <input type="radio" name="group" value="4" autocomplete="off" checked> Group 4
             </label>
           </div>
         </div>
@@ -143,12 +144,11 @@
                       </div>
                       <div class="panel-body">
                       <!-- ID bzw Name ändern! -->
-                        <input id="ex6" type="text" data-slider-id='ex6' data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="50"/&t
-                        <span id="ex6CurrentSliderValLabel"> <div class="pull-right"> <span id="ex6SliderVal">50</span></div></span>
+                        <input id="brightness" type="text" data-slider-id='brightness' data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="50" <span id="ex6CurrentSliderValLabel"> <div class="pull-right"> <span id="brightnessVal">50</span></div></span>
                         <script type="text/javascript">
-                          $("#ex6").slider();
-                          $("#ex6").on("slide", function(slideEvt) {
-                            $("#ex6SliderVal").text(slideEvt.value);
+                          $("#brightness").slider();
+                          $("#brightness").on("slide", function(slideEvt) {
+                            $("#brightnessVal").text(slideEvt.value);
                           });
                         </script>
                       </div>
@@ -172,21 +172,7 @@
                         </p>
                         <div id="RGB"></div>
 
-                        <script type="text/javascript">
-                          var RGBChange = function() {
-                            $('#RGB').css('background', 'rgb('+r.getValue()+','+g.getValue()+','+b.getValue()+')')
-                          };
-
-                          var r = $('#R').slider()
-                              .on('slide', RGBChange)
-                              .data('slider');
-                          var g = $('#G').slider()
-                              .on('slide', RGBChange)
-                              .data('slider');
-                          var b = $('#B').slider()
-                              .on('slide', RGBChange)
-                              .data('slider');
-                        </script>
+                        
                       </div>
                     </div>
                 </div>
