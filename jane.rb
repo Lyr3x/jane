@@ -151,6 +151,10 @@ class JaneApp < Sinatra::Base
     erb :index
   end
   
+  get '/milight' do
+    erb :milight
+  end
+
   get '/timetable' do
     erb :timetable
   end
