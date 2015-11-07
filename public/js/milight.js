@@ -1,5 +1,5 @@
 $( document ).ready(function() {
-	var groupNr
+	var groupNr = 0;
 
 	var MilightRGB = function() {
 		$.post("http://192.168.2.101:8080/rgb" + "?group=" + groupNr + "&r=" + red.getValue() + "&g=" + green.getValue() + "&b=" + blue.getValue());
@@ -21,14 +21,20 @@ $( document ).ready(function() {
 	};
 
 	var RGBChange = function() {
-    	$('#RGB').css('background', 'rgb('+r.getValue()+','+g.getValue()+','+b.getValue()+')')
+    	$('#RGB').css('background', 'rgb('+red.getValue()+','+green.getValue()+','+blue.getValue()+')')
     };
+
+    $("#brightness").slider();
+    $("#brightness").on("slide", function(slideEvt) {
+			$("#brightnessVal").text(slideEvt.value);
+    });
 	
-	var red = $('#R').slider().on('slide', MilightRGB).data('slider');
+	var red = $('#R').slider().on('slide', MilightRGB, RGBChange).data('slider');
+
 	
-	var green = $('#G').slider().on('slide', MilightRGB).data('slider');
+	var green = $('#G').slider().on('slide', MilightRGB, RGBChange).data('slider');
 	
-	var blue = $('#B').slider().on('slide', MilightRGB).data('slider');
+	var blue = $('#B').slider().on('slide', MilightRGB, RGBChange).data('slider');
 	
 	var brightness = $('#brightness').slider().on('slide', MilightBrightness).data('slider');
 	

@@ -146,13 +146,8 @@
                       </div>
                       <div class="panel-body">
                       <!-- ID bzw Name ändern! -->
-                        <input id="brightness" type="text" data-slider-id='brightness' data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="50" <span id="ex6CurrentSliderValLabel"> <div class="pull-right"> <span id="brightnessVal">50</span></div></span>
-                        <script type="text/javascript">
-                          $("#brightness").slider();
-                          $("#brightness").on("slide", function(slideEvt) {
-                            $("#brightnessVal").text(slideEvt.value);
-                          });
-                        </script>
+                        <input id="brightness" type="text" data-slider-min="0" data-slider-max="100" data-slider-step="1" data-slider-value="50"/&t
+                        <span id="brightnessCurrentSliderValLabel"> <div class="pull-right"> <span id="brightnessVal">50</span></div></span>
                       </div>
                     </div>
                 </div>
@@ -173,8 +168,6 @@
                           <b>B</b> <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="255" data-slider-step="1" data-slider-value="128" data-slider-id="BC" id="B" data-slider-tooltip="hide" data-slider-handle="round" />
                         </p>
                         <div id="RGB"></div>
-
-                        
                       </div>
                     </div>
                 </div>
