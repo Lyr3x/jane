@@ -1,5 +1,9 @@
 var groupNr = 0;
 
+$.getJSON( "milight/config", function(data){
+	console.log(data);
+});
+
 $( document ).ready(function() {
 	var MilightRGB = function() {
 		$.post("http://192.168.2.101:8080/rgb" + "?group=" + groupNr + "&r=" + red.getValue() + "&g=" + green.getValue() + "&b=" + blue.getValue());
