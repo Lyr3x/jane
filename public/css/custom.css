@@ -46,6 +46,9 @@
 .navmenu-brand {
   font-size: 25px;
 }
+.navbar-toggle {
+  margin-top: 5px;
+}
 
 .form-group.cron-entry {
   margin-left: 0px;
