@@ -9,25 +9,9 @@ $( document ).ready(function() {
 		$.post("http://192.168.2.101:8080/brightness" + "?group=" + groupNr + "&level=" + brightness.getValue());
 	};
 
-	var MilightOn = function() {
-		$.post("http://192.168.2.101:8080/on" + "?group=" + groupNr);
-	};
-	
-	var MilightOff = function() {
-		$.post("http://192.168.2.101:8080/off" + "?group=" + groupNr);
-	};
-
-	var MilightNight = function() {
-		$.post("http://192.168.2.101:8080/night" + "?group=" + groupNr);
-	};
-
-	var MilightWhite = function() {
-		$.post("http://192.168.2.101:8080/white" + "?group=" + groupNr);
-	};
-
-	var MilightDisco = function() {
-		$.post("http://192.168.2.101:8080/disco" + "?group=" + groupNr);
-	};
+	var MilightSimple = function(arg){
+		$.post("http://192.168.2.101:8080/" + arg + "?group=" + groupNr);
+	}
 
 	var MilightSpeedUp = function() {
 		$.post("http://192.168.2.101:8080/disco" + "?group=" + groupNr + "&speed=up");
@@ -74,23 +58,23 @@ $( document ).ready(function() {
 	});
 
 	$('#on').click(function() {
-		MilightOn();
+		MilightSimple("on");
 	});
 
 	$('#off').click(function() {
-		MilightOff();
+		MilightSimple("off");
 	});
 
 	$('#night').click(function() {
-		MilightNight();
+		MilightSimple("night");
 	});
 
 	$('#white').click(function() {
-		MilightWhite();
+		MilightSimple("white");
 	});
 
 	$('#disco').click(function() {
-		MilightDisco();
+		MilightSimple("disco");
 	});
 
 	$('#speedUp').click(function() {
