@@ -165,7 +165,10 @@ class JaneApp < Sinatra::Base
 
   get '/milight/config' do
     content_type :json
-    return Milight.config
+    c = Milight.config
+    puts c
+    unsymbolized_config = {"port" => c[:port], "host" => c[:host]}
+    return unsymbolized_config.to_json
   end
 
   get '/timetable' do

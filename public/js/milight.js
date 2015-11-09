@@ -1,32 +1,33 @@
 var groupNr = 0;
+var url;
 
-$.getJSON( "milight/config", function(data){
-	console.log(data);
+$.getJSON( "http://localhost/milight/config", function(config){
+	url = "http://" + config.host + ":" + config.port + "/"
 });
 
 $( document ).ready(function() {
 	var MilightRGB = function() {
-		$.post("http://192.168.2.101:8080/rgb" + "?group=" + groupNr + "&r=" + red.getValue() + "&g=" + green.getValue() + "&b=" + blue.getValue());
+		$.post(url + "rgb" + "?group=" + groupNr + "&r=" + red.getValue() + "&g=" + green.getValue() + "&b=" + blue.getValue());
 	};
 	
 	var MilightBrightness = function() {
-		$.post("http://192.168.2.101:8080/brightness" + "?group=" + groupNr + "&level=" + brightness.getValue());
+		$.post(url + "brightness" + "?group=" + groupNr + "&level=" + brightness.getValue());
 	};
 
 	var MilightSimple = function(arg){
-		$.post("http://192.168.2.101:8080/" + arg + "?group=" + groupNr);
+		$.post(url + arg + "?group=" + groupNr);
 	}
 
 	var MilightSpeedUp = function() {
-		$.post("http://192.168.2.101:8080/disco" + "?group=" + groupNr + "&speed=up");
+		$.post(url + "disco" + "?group=" + groupNr + "&speed=up");
 	};
 
 	var MilightSpeedDown = function() {
-		$.post("http://192.168.2.101:8080/disco" + "?group=" + groupNr + "&speed=down");
+		$.post(url + "disco" + "?group=" + groupNr + "&speed=down");
 	};
 
 	var MilightColor = function(color) {
-		$.post("http://192.168.2.101:8080/color" + "?group=" + groupNr + "&color=" + color);
+		$.post(url + "color" + "?group=" + groupNr + "&color=" + color);
 	};
 
 	var RGBChange = function() {
