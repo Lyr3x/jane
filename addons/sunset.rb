@@ -8,7 +8,6 @@ apicall = File.expand_path(
 
 require "json"
 require "net/http"
-require ping
 require apicall
 
 module Sunset
@@ -34,9 +33,8 @@ module Sunset
   end
 
   def self.run(command_parameters)
-      config[:lights].each do |light|
-        APICall.call(light[:device], light[:action], config[:homecheck])
-      end
+    config[:lights].each do |light|
+      APICall.call(light[:device], light[:action], config[:homecheck])
     end
   end
 
