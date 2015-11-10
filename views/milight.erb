@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+    <title>Jane</title>
+
+    <!-- Lobster Font for Logo -->
+    <!-- <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'> -->
+    <!-- Bootstrap -->
+    <link href="/css/bootstrap.css" rel="stylesheet">
+    <link href="/css/custom.css" rel="stylesheet">
+    <link href="/css/jasny-bootstrap.css" rel="stylesheet">
+    <link href="/css/navmenu-push.css" rel="stylesheet">
+    <link href="/css/bootstrap-slider.css" rel="stylesheet">
+    <!-- iOS and Android icon -->
+    <link rel="apple-touch-icon-precomposed" href="favicon-152.png">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <!-- <script src="/js/jane.js"></script> -->
+  <script src="/js/bootstrap.min.js"></script>
+  <script src="/js/jasny-bootstrap.min.js"></script>
+  <script src="/js/bootstrap-slider.js"></script>
+  <script src="/js/milight.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <!-- <script src="js/bootstrap.min.js"></script> -->
+
+      <!-- nav menu -->
+    <nav id="sidebar" class="navmenu navmenu-default navmenu-fixed-left offcanvas">
+      <a class="navmenu-brand" href="/">Jane</a>
+      <ul class="nav navmenu-nav">
+        <li><a href="/" title="dashboard">
+          <span class="glyphicon glyphicon-dashboard nav-icon" aria-hidden="true"></span> Dashboard
+        </a></li>
+        </a></li><li><a href="/milight" title="milight">
+          <span class="glyphicon glyphicon-lamp nav-icon" aria-hidden="true"></span> Milight
+        </a></li>
+        <li><a href="/timetable" title="timetable">
+          <span class="glyphicon glyphicon-calendar nav-icon" aria-hidden="true"></span> Timetable
+        </a></li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <span class="glyphicon glyphicon-th-large nav-icon" aria-hidden="true"></span> Buttons <b class="caret"></b>
+          </a>
+          <ul class="dropdown-menu navmenu-nav" role="menu">
+            <li><a href="/button/new" title="add-button">
+              <span class="glyphicon glyphicon-plus nav-icon" aria-hidden="true"></span> Add Button
+            </a></li>
+            <li><a href="/button/delete" title="delete-button">
+              <span class="glyphicon glyphicon-remove nav-icon" aria-hidden="true"></span> Delete Button
+            </a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <span class="glyphicon glyphicon-share-alt nav-icon" aria-hidden="true"></span> External Links <b class="caret"></b>
+          </a>
+          <ul class="dropdown-menu navmenu-nav" role="menu">
+            <%= render_navlinks(Navlinks.config)%>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+    <!-- nav icon -->
+    <div class="navbar navbar-default navbar-fixed-top">
+      <button type="button" class="navbar-toggle" data-toggle="offcanvas" data-target="#sidebar" data-canvas="body">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+  <div class="container">
+    <div class="page-header hidden-xs">
+      <h1>Milight Control</h1>
+    </div>
+    <div class="row">
+      <div class="container">
+        <div class="col-sm-8 col-xs-12 col-sm-offset-3 col-md-offset-4">
+          <div class="btn-group-sm" role="group" aria-label="..." data-toggle="buttons">
+            <label class="btn btn-primary active">
+              <input type="radio" name="group" value="0" autocomplete="off" checked> All
+            </label>
+            <label class="btn btn-primary">
+              <input type="radio" name="group" value="1" autocomplete="off" checked> Group 1
+            </label>
+            <label class="btn btn-primary">
+              <input type="radio" name="group" value="2" autocomplete="off" checked> Group 2
+            </label>
+            <label class="btn btn-primary">
+              <input type="radio" name="group" value="3" autocomplete="off" checked> Group 3
+            </label>
+            <label class="btn btn-primary">
+              <input type="radio" name="group" value="4" autocomplete="off" checked> Group 4
+            </label>
+          </div>
+        </div>
+      </div>  
+    </div>
+    <div class="container col-xs-12 col-md-4 col-sm-6">
+      <div class="row">
+        <div class="container container-margin-top">  
+            <div class="row">
+                <div class="col-md-4 col-sm-6">
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h3 class="panel-title">Power</h3>
+                      </div>
+                      <div class="panel-body">
+                        <button type="submit" id="on" class="btn btn-success btn-lg btn-block">On</button>
+                        <button type="submit" id="off" class="btn btn-danger btn-lg btn-block">Off</button>
+                        <button type="submit" id="night" class="btn btn-default btn-lg btn-block">Night</button>
+                      </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h3 class="panel-title">Mode</h3>
+                      </div>
+                      <div class="panel-body">
+                        <button type="submit" id="white" class="btn btn-warning btn-lg btn-block">White</button>
+                        <button type="submit" id="disco" class="btn btn-info btn-lg btn-block">Disco</button>
+                        <button type="submit" id="speedUp" class="btn btn-default btn-lg btn-block">Speed Up</button>
+                        <button type="submit" id="speedDown" class="btn btn-default btn-lg btn-block">Speed Down</button>
+                      </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h3 class="panel-title">Brightness</h3>
+                      </div>
+                      <div class="panel-body">
+                      <!-- ID bzw Name ändern! -->
+                        <input id="brightness" type="text" data-slider-min="1" data-slider-max="100" data-slider-step="1" data-slider-value="50"/&t
+                        <span id="brightnessCurrentSliderValLabel"> <div class="pull-right"> <span id="brightnessVal">50</span></div></span>
+                      </div>
+                    </div>
+                </div>
+                 <div class="col-md-4 col-sm-6">
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h3 class="panel-title">RGB</h3>
+                      </div>
+                      <div class="panel-body">
+                      <!-- ID bzw Name ändern! -->
+                        <p>
+                          <b>R</b> <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="255" data-slider-step="1" data-slider-value="128" data-slider-id="RC" id="R" data-slider-tooltip="hide" data-slider-handle="round" />
+                        </p>
+                        <p>
+                          <b>G</b> <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="255" data-slider-step="1" data-slider-value="128" data-slider-id="GC" id="G" data-slider-tooltip="hide" data-slider-handle="round" />
+                        </p>
+                        <p>
+                          <b>B</b> <input type="text" class="span2" value="" data-slider-min="0" data-slider-max="255" data-slider-step="1" data-slider-value="128" data-slider-id="BC" id="B" data-slider-tooltip="hide" data-slider-handle="round" />
+                        </p>
+                        <div id="RGB"></div>
+                      </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h3 class="panel-title">Warm</h3>
+                      </div>
+                      <div class="panel-body">
+                        <button type="submit" class="btn color btn-default btn-lg btn-block">Red</button>
+                        <button type="submit" class="btn color btn-default btn-lg btn-block">Orange</button>
+                        <button type="submit" class="btn color btn-default btn-lg btn-block">Yellow Orange</button>
+                        <button type="submit" class="btn color btn-default btn-lg btn-block">Yellow</button>
+                        <button type="submit" class="btn color btn-default btn-lg btn-block">Pink</button>
+                        <button type="submit" class="btn color btn-default btn-lg btn-block">Seafoam Green</button>
+                        <button type="submit" class="btn color btn-default btn-lg btn-block">Green</button>
+                        <button type="submit" class="btn color btn-default btn-lg btn-block">Lime Green</button>
+                      </div>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="panel panel-default">
+                      <div class="panel-heading">
+                        <h3 class="panel-title">Cold</h3>
+                      </div>
+                      <div class="panel-body">
+                        <button type="submit" class="btn color btn-default btn-lg btn-block">Blue</button>
+                        <button type="submit" class="btn color btn-default btn-lg btn-block">Baby Blue</button>
+                        <button type="submit" class="btn color btn-default btn-lg btn-block">Aqua</button>
+                        <button type="submit" class="btn color btn-default btn-lg btn-block">Mint</button>
+                        <button type="submit" class="btn color btn-default btn-lg btn-block">Violet</button>
+                        <button type="submit" class="btn color btn-default btn-lg btn-block">Lila</button>
+                        <button type="submit" class="btn color btn-default btn-lg btn-block">Lavendar</button>
+                        <button type="submit" class="btn color btn-default btn-lg btn-block">Fusia</button>
+                      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  </body>
+</html>

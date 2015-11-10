@@ -38,11 +38,19 @@ ping =
     )
   )
 
+milight =
+  File.expand_path(
+    File.join(
+      ENV['JANE_PATH'], 'addons', 'milight'
+    )
+  )
+
 require jane_lib
 require command
 require navlinks
 require timetable
 require ping
+require milight
 
 class JaneApp < Sinatra::Base
   @@scheudled_jobs = {}
@@ -151,6 +159,18 @@ class JaneApp < Sinatra::Base
     erb :index
   end
   
+  get '/milight' do
+    erb :milight
+  end
+
+  get '/milight/config' do
+    content_type :json
+    c = Milight.config
+    puts c
+    unsymbolized_config = {"port" => c[:port], "host" => c[:host]}
+    return unsymbolized_config.to_json
+  end
+
   get '/timetable' do
     erb :timetable
   end
