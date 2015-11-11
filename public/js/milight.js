@@ -3,8 +3,6 @@ var url;
 
 $.getJSON( "/milight/config", function(config){
 	url = "http://" + config.host + ":" + config.port + "/"
-	// debuging
-	console.log(url)
 });
 
 $( document ).ready(function() {
