@@ -72,14 +72,6 @@ $( document ).ready(function() {
     	RGBPreviewColorChange(color);
     };
 	
-	// var red = $('#R').slider().on('slide', RGB).data('slider');
-	
-	// var green = $('#G').slider().on('slide', RGB).data('slider');
-	
-	// var blue = $('#B').slider().on('slide', RGB).data('slider');
-	
-	// var brightness = $('#brightness').on('slide', MilightBrightness).data('slider');
-
 	$('input[name=group]').change(function() {
 		groupNr = $(this).attr("value");
 	});
