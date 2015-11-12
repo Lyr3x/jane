@@ -1,7 +1,7 @@
 var groupNr = 0;
 var url;
 
-$.getJSON( "http://localhost/milight/config", function(config){
+$.getJSON( "/milight/config", function(config){
 	url = "http://" + config.host + ":" + config.port + "/"
 });
 
