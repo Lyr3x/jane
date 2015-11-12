@@ -6,12 +6,12 @@ $.getJSON( "/milight/config", function(config){
 });
 
 $( document ).ready(function() {
-	var MilightRGB = function() {
-		$.post(url + "rgb" + "?group=" + groupNr + "&r=" + red.getValue() + "&g=" + green.getValue() + "&b=" + blue.getValue());
+	var MilightRGB = function(color) {
+		$.post(url + "rgb" + "?group=" + groupNr + "&r=" + color.red + "&g=" + color.green + "&b=" + color.blue);
 	};
 	
-	var MilightBrightness = function() {
-		$.post(url + "brightness" + "?group=" + groupNr + "&level=" + brightness.getValue());
+	var MilightBrightness = function(brightness) {
+		$.post(url + "brightness" + "?group=" + groupNr + "&level=" + brightness);
 	};
 
 	var MilightSimple = function(arg){
@@ -30,27 +30,55 @@ $( document ).ready(function() {
 		$.post(url + "color" + "?group=" + groupNr + "&color=" + color);
 	};
 
-	var RGBChange = function() {
-    	$('#RGB').css('background', 'rgb('+red.getValue()+','+green.getValue()+','+blue.getValue()+')')
+	var RGBPreviewColorChange = function(color) {
+    	$('#RGB').css('background', 'rgb('+color.red+','+color.green+','+color.blue+')');
     };
 
-    $("#brightness").slider();
-    $("#brightness").on("slide", function(slideEvt) {
-			$("#brightnessVal").text(slideEvt.value);
-    });
+    $("#brightness").on('input change', function(event){
+    	var brightness = $(event.target).val();
+    	$("#brightnessVal").text(brightness);
+    	MilightBrightness(brightness);
+    });	
 
-    var RGB = function(){
-    	MilightRGB();
-    	RGBChange();
+    $("#redInput").on('input change', function(event){
+    	var red = $(event.target).val();
+    	$("#RC").text(red);
+    	SetRGB();
+    });	
+
+    $("#greenInput").on('input change', function(event){
+    	var green = $(event.target).val();
+    	$("#GC").text(green);
+    	SetRGB();
+    });	
+
+    $("#blueInput").on('input change', function(event){
+    	var blue = $(event.target).val();
+    	$("#BC").text(blue);
+    	SetRGB();
+    });	
+
+    var GetRGB = function(){
+    	var red = $("#redInput").val();
+    	var green = $("#greenInput").val();
+    	var blue = $("#blueInput").val();
+
+    	return {'red':red, 'green':green, 'blue':blue};
+    }
+
+    var SetRGB = function(){
+    	var color = GetRGB();
+    	MilightRGB(color);
+    	RGBPreviewColorChange(color);
     };
 	
-	var red = $('#R').slider().on('slide', RGB).data('slider');
+	// var red = $('#R').slider().on('slide', RGB).data('slider');
 	
-	var green = $('#G').slider().on('slide', RGB).data('slider');
+	// var green = $('#G').slider().on('slide', RGB).data('slider');
 	
-	var blue = $('#B').slider().on('slide', RGB).data('slider');
+	// var blue = $('#B').slider().on('slide', RGB).data('slider');
 	
-	var brightness = $('#brightness').slider().on('slide', MilightBrightness).data('slider');
+	// var brightness = $('#brightness').on('slide', MilightBrightness).data('slider');
 
 	$('input[name=group]').change(function() {
 		groupNr = $(this).attr("value");
