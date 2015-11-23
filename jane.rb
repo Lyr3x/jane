@@ -270,8 +270,9 @@ class JaneApp < Sinatra::Base
       else
         return
       end
+    else
+      Thread.new{Commander.execute(device, action)}
     end
-    Thread.new{Commander.execute(device, action)}
   end
   
   get '/job/list' do
