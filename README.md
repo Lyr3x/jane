@@ -38,7 +38,7 @@ INFO: Keep in mind that the wiki is outdated. The new documentation is under dev
 
 ##Circuit plan
 
-![Alt text](https://github.com/Lyr3x/Jane/blob/master/circuit/Circuit-plan_Steckplatine.png "Circuit Plan")
+![Alt text](https://camo.githubusercontent.com/d667d1e61cd9bfa45b526fa2a05be2f187b90ff0/687474703a2f2f6b61692e6265707065726c696e672e696e666f2f636972637569745f537465636b706c6174696e652e706e67 "Circuit Plan")
 
 ##Software installation
 ###LIRC
