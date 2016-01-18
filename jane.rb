@@ -94,6 +94,15 @@ class JaneApp < Sinatra::Base
         html_device += render_button(button)
       end
       html_device += "</div></div></div>"
+
+      # @i += 1
+      # if @i%2==0
+      #   html_device += "<div class=\"clearfix visible-sm-block visible-md-block\"></div>"
+      # end
+      #
+      # if @i%3==0
+      #   html_device += "<div class=\"clearfix visible-lg-block\"></div>"
+      # end
       return html_device
     end
 
