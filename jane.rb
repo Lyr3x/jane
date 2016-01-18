@@ -75,7 +75,7 @@ class JaneApp < Sinatra::Base
       end
       return ui
     end
-  
+
     def render_button(button)
       button_options = {
         class: "btn #{button[:btn_class]} btn-lg btn-block",
@@ -85,27 +85,18 @@ class JaneApp < Sinatra::Base
       content = "#{icon_tag} #{button[:label]}"
       "<button #{button_options.map { |k, v| "#{k}=\"#{v}\"" }.join(' ')}>#{content}</button>"
     end
-  
+
     def render_device(device_name, buttons)
       html_device =
       "<div class=\"col-md-4 col-sm-6\"><div class=\"panel panel-default\"><div class=\"panel-heading\" style=\"font-size:1.5em; font-weight:bold\">#{device_name}</div><div class=\"panel-body\">\n"
-      
+
       buttons.each do |button|
         html_device += render_button(button)
       end
       html_device += "</div></div></div>"
-      
-      @i += 1
-      if @i%2==0
-        html_device += "<div class=\"clearfix visible-sm-block visible-md-block\"></div>" 
-      end
-  
-      if @i%3==0
-        html_device += "<div class=\"clearfix visible-lg-block\"></div>" 
-      end
       return html_device
     end
-  
+
     def render_navlinks(navlinks_config)
       html_nav_links = ""
       navlinks_config.each do |link|
@@ -153,12 +144,12 @@ class JaneApp < Sinatra::Base
     end
   end
 
-  
+
   # render index.erb
   get '/' do
     erb :index
   end
-  
+
   get '/milight' do
     erb :milight
   end
@@ -203,7 +194,7 @@ class JaneApp < Sinatra::Base
       erb :button_new
     end
   end
-  
+
   post '/button/save' do
     # make sure that new button has a unique device-action pair
     config = Jane.config
@@ -241,15 +232,15 @@ class JaneApp < Sinatra::Base
     Jane.save(config)
     redirect to('/')
   end
-  
+
   get '/button/edit' do
-  
+
   end
-  
+
   get '/button/delete' do
     erb :button_delete
   end
-  
+
   post '/button/delete' do
     config = Jane.config
     config.each do |button|
@@ -260,7 +251,7 @@ class JaneApp < Sinatra::Base
     Jane.save(config)
     redirect to('/')
   end
-  
+
   get '/v1' do
     device = params[:device]
     action = params[:action]
@@ -274,12 +265,12 @@ class JaneApp < Sinatra::Base
       Thread.new{Commander.execute(device, action)}
     end
   end
-  
+
   get '/job/list' do
     content_type :json
     return_active_jobs
   end
-  
+
   get '/job/create' do
     content_type :json
     #parse URL params
@@ -293,11 +284,11 @@ class JaneApp < Sinatra::Base
     now = Time.now
     job = {start_time: now, end_time: (now + delay), device: device, action: action}
     thr = Thread.new{run_job(delay, device, action)}
-    
+
     @@scheudled_jobs[thr] = job
     return_active_jobs
   end
-  
+
   get '/job/cancel' do
     content_type :json
     id = params[:id].to_i
@@ -310,19 +301,19 @@ class JaneApp < Sinatra::Base
     sleep(0.1)
     return_active_jobs
   end
-  
-  get '/devices' do 
+
+  get '/devices' do
     content_type :json
-    
+
     list_devices_and_actions.to_json
   end
-  
+
   get '/actions' do
     content_type :json
     device = params[:device]
     list_devices_and_actions[device].to_json
   end
-  
+
   def list_devices_and_actions()
     devices_and_actions = {}
     Jane.config.each do |button|
@@ -337,16 +328,16 @@ class JaneApp < Sinatra::Base
     end
     devices_and_actions
   end
-  
+
   def run_job(delay, device, action)
     sleep(delay)
     Commander.execute(device, action)
   end
-    
+
   def remove_from_schedule(thr_id)
     @@scheudled_jobs.delete(thr_id)
   end
-  
+
   def clean_job_list()
     @@scheudled_jobs.each do |thread|
       if !thread[0].status
@@ -354,7 +345,7 @@ class JaneApp < Sinatra::Base
       end
     end
   end
-  
+
   def return_active_jobs()
     clean_job_list
     active_jobs = []
@@ -367,7 +358,7 @@ class JaneApp < Sinatra::Base
     end
     active_jobs.to_json
   end
-  
+
   # sunset inital cron entry
   `rake update_cron`
   Timetable.parse_config
