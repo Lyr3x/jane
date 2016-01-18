@@ -100,10 +100,10 @@ class JaneApp < Sinatra::Base
       if device_counter%2==0
         html_device += "<div class=\"clearfix visible-sm-block\"></div>"
       end
-
       if device_counter%3==0
         html_device += "<div class=\"clearfix visible-md-block visible-lg-block\"></div>"
       end
+      
       return html_device
     end
 
