@@ -70,8 +70,10 @@ class JaneApp < Sinatra::Base
           sorted_by_device[button[:device]] << button
         end
       end
+      device_counter = 0
       sorted_by_device.each do |device_name, buttons|
-        ui << render_device(device_name, buttons)
+        device_counter += 1
+        ui << render_device(device_name, buttons, device_counter)
       end
       return ui
     end
@@ -86,7 +88,7 @@ class JaneApp < Sinatra::Base
       "<button #{button_options.map { |k, v| "#{k}=\"#{v}\"" }.join(' ')}>#{content}</button>"
     end
 
-    def render_device(device_name, buttons)
+    def render_device(device_name, buttons, device_counter)
       html_device =
       "<div class=\"col-md-4 col-sm-6\"><div class=\"panel panel-default\"><div class=\"panel-heading\" style=\"font-size:1.5em; font-weight:bold\">#{device_name}</div><div class=\"panel-body\">\n"
 
@@ -95,14 +97,13 @@ class JaneApp < Sinatra::Base
       end
       html_device += "</div></div></div>"
 
-      # @i += 1
-      # if @i%2==0
-      #   html_device += "<div class=\"clearfix visible-sm-block visible-md-block\"></div>"
-      # end
-      #
-      # if @i%3==0
-      #   html_device += "<div class=\"clearfix visible-lg-block\"></div>"
-      # end
+      if device_counter%2==0
+        html_device += "<div class=\"clearfix visible-sm-block\"></div>"
+      end
+
+      if device_counter%3==0
+        html_device += "<div class=\"clearfix visible-md-block visible-lg-block\"></div>"
+      end
       return html_device
     end
 
