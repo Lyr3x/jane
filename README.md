@@ -1,4 +1,5 @@
 #Jane
+# Project stopped! No more active development! We both using now Domoticz, we dont have enough time for active development.
 
 Jane is released in Version 1.2 - Captain America
 
